@@ -1,4 +1,4 @@
-# masterlink-iwm
+# masterlink-iwm "Version 4"
 This is the MasterLink Intelligent Work Management (IWM) system, licensed under GPL V3.0 (see included LICENSE file).
 
 IWM is a work management / asset management system, which makes best use of a workforce by optimally assigning work to workers. IWM was developed for facilities maintenance and manufacturing applications in mind, but can be applied to a wide variety of problems. 
