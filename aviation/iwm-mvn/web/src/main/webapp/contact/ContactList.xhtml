@@ -1,0 +1,234 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="contactSearch" styleClass="edit">
+
+        <rich:simpleTogglePanel label="Contact Search Filter" switchType="ajax">
+
+            <s:decorate template="/layout/display.xhtml">
+                <ui:define name="label">Fname</ui:define>
+                <h:inputText id="fname" value="#{contactList.contact.fname}"/>
+            </s:decorate>
+
+            <s:decorate template="/layout/display.xhtml">
+                <ui:define name="label">Job title</ui:define>
+                <h:inputText id="jobTitle" value="#{contactList.contact.jobTitle}"/>
+            </s:decorate>
+
+            <s:decorate template="/layout/display.xhtml">
+                <ui:define name="label">Lname</ui:define>
+                <h:inputText id="lname" value="#{contactList.contact.lname}"/>
+            </s:decorate>
+
+            <s:decorate template="/layout/display.xhtml">
+                <ui:define name="label">Middle</ui:define>
+                <h:inputText id="middle" value="#{contactList.contact.middle}"/>
+            </s:decorate>
+
+            <s:decorate template="/layout/display.xhtml">
+                <ui:define name="label">Suffix</ui:define>
+                <h:inputText id="suffix" value="#{contactList.contact.suffix}"/>
+            </s:decorate>
+
+            <s:decorate template="/layout/display.xhtml">
+                <ui:define name="label">Match</ui:define>
+                <h:selectOneRadio id="logic" value="#{contactList.restrictionLogicOperator}" styleClass="radio">
+                    <f:selectItem itemLabel="All" itemValue="and"/>
+                    <f:selectItem itemLabel="Any" itemValue="or"/>
+                </h:selectOneRadio>
+            </s:decorate>
+
+        </rich:simpleTogglePanel>
+
+        <div class="actionButtons">
+            <h:commandButton id="search" value="Search" action="/contactContactList.xhtml"/>
+            <s:button id="reset" value="Reset" includePageParams="false"/>
+        </div>
+
+    </h:form>
+
+    <rich:panel>
+        <f:facet name="header">Contact Search Results (#{empty contactList.resultList ? 0 : (contactList.paginated ? contactList.resultCount : contactList.resultList.size)})</f:facet>
+    <div class="results" id="contactList">
+
+    <h:outputText value="The contact search returned no results."
+               rendered="#{empty contactList.resultList}"/>
+
+    <rich:dataTable id="contactList"
+                var="_contact"
+              value="#{contactList.resultList}"
+           rendered="#{not empty contactList.resultList}">
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{contactList}"/>
+                    <ui:param name="propertyLabel" value="Id"/>
+                    <ui:param name="propertyPath" value="contact.id"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_contact.id}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{contactList}"/>
+                    <ui:param name="propertyLabel" value="Archive date"/>
+                    <ui:param name="propertyPath" value="contact.archiveDate"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_contact.archiveDate}">
+                <s:convertDateTime type="both" dateStyle="short"/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{contactList}"/>
+                    <ui:param name="propertyLabel" value="Last change"/>
+                    <ui:param name="propertyPath" value="contact.lastChange"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_contact.lastChange}">
+                <s:convertDateTime type="both" dateStyle="short"/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{contactList}"/>
+                    <ui:param name="propertyLabel" value="Fname"/>
+                    <ui:param name="propertyPath" value="contact.fname"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_contact.fname}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{contactList}"/>
+                    <ui:param name="propertyLabel" value="Job title"/>
+                    <ui:param name="propertyPath" value="contact.jobTitle"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_contact.jobTitle}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{contactList}"/>
+                    <ui:param name="propertyLabel" value="Lname"/>
+                    <ui:param name="propertyPath" value="contact.lname"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_contact.lname}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{contactList}"/>
+                    <ui:param name="propertyLabel" value="Middle"/>
+                    <ui:param name="propertyPath" value="contact.middle"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_contact.middle}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{contactList}"/>
+                    <ui:param name="propertyLabel" value="Organization id"/>
+                    <ui:param name="propertyPath" value="contact.organization.id"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_contact.organization.id}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{contactList}"/>
+                    <ui:param name="propertyLabel" value="Suffix"/>
+                    <ui:param name="propertyPath" value="contact.suffix"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_contact.suffix}"/>
+        </h:column>
+        <rich:column styleClass="action">
+            <f:facet name="header">Action</f:facet>
+            <s:link view="/contact/#{empty from ? 'Contact' : from}.xhtml"
+                   value="#{empty from ? 'View' : 'Select'}"
+             propagation="#{empty from ? 'none' : 'default'}"
+                      id="contactViewId">
+                <f:param name="contactId"
+                        value="#{_contact.id}"/>
+            </s:link>
+            #{' '}
+            <s:link view="/contact/ContactEdit.xhtml"
+                   value="Edit"
+             propagation="none"
+                      id="contactEdit"
+                rendered="#{empty from}">
+                <f:param name="contactId"
+                        value="#{_contact.id}"/>
+            </s:link>
+        </rich:column>
+    </rich:dataTable>
+
+    </div>
+    </rich:panel>
+
+    <div class="tableControl">
+
+        <s:link view="/contact/ContactList.xhtml"
+            rendered="#{contactList.previousExists}"
+               value="#{messages.left}#{messages.left} First Page"
+                  id="firstPage">
+          <f:param name="firstResult" value="0"/>
+        </s:link>
+
+        <s:link view="/contact/ContactList.xhtml"
+            rendered="#{contactList.previousExists}"
+               value="#{messages.left} Previous Page"
+                  id="previousPage">
+            <f:param name="firstResult"
+                    value="#{contactList.previousFirstResult}"/>
+        </s:link>
+
+        <s:link view="/contact/ContactList.xhtml"
+            rendered="#{contactList.nextExists}"
+               value="Next Page #{messages.right}"
+                  id="nextPage">
+            <f:param name="firstResult"
+                    value="#{contactList.nextFirstResult}"/>
+        </s:link>
+
+        <s:link view="/contact/ContactList.xhtml"
+            rendered="#{contactList.nextExists}"
+               value="Last Page #{messages.right}#{messages.right}"
+                  id="lastPage">
+            <f:param name="firstResult"
+                    value="#{contactList.lastFirstResult}"/>
+        </s:link>
+
+    </div>
+
+    <s:div styleClass="actionButtons" rendered="#{empty from}">
+        <s:button view="/contact/ContactEdit.xhtml"
+                    id="create"
+           propagation="none"
+                 value="Create contact">
+            <f:param name="contactId"/>
+        </s:button>
+    </s:div>
+
+</ui:define>
+
+</ui:composition>

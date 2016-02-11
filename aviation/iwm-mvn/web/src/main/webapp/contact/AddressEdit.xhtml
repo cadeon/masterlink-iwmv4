@@ -1,0 +1,214 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="address" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{addressHome.managed ? 'Edit' : 'Add'} Address</f:facet>
+
+
+
+            <s:decorate id="archiveDateField" template="/layout/edit.xhtml">
+                <ui:define name="label">Archive date</ui:define>
+                <rich:calendar id="archiveDate"
+                          value="#{addressHome.instance.archiveDate}" datePattern="MM/dd/yyyy hh:mm a"/>
+            </s:decorate>
+
+
+            <s:decorate id="lastChangeField" template="/layout/edit.xhtml">
+                <ui:define name="label">Last change</ui:define>
+                <rich:calendar id="lastChange"
+                          value="#{addressHome.instance.lastChange}" datePattern="MM/dd/yyyy hh:mm a"/>
+            </s:decorate>
+
+
+            <s:decorate id="addrTypeField" template="/layout/edit.xhtml">
+                <ui:define name="label">Addr type</ui:define>
+                <h:inputText id="addrType"
+                       required="true"
+                          value="#{addressHome.instance.addrType}">
+                    <a:support event="onblur" reRender="addrTypeField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="cityField" template="/layout/edit.xhtml">
+                <ui:define name="label">City</ui:define>
+                <h:inputText id="city"
+                           size="25"
+                      maxlength="25"
+                          value="#{addressHome.instance.city}">
+                    <a:support event="onblur" reRender="cityField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+
+            <s:decorate id="isMailingAddrField" template="/layout/edit.xhtml">
+                <ui:define name="label">Is mailing addr</ui:define>
+                <h:selectBooleanCheckbox id="isMailingAddr"
+                                      value="#{addressHome.instance.isMailingAddr}"/>
+            </s:decorate>
+
+
+            <s:decorate id="line1Field" template="/layout/edit.xhtml">
+                <ui:define name="label">Line1</ui:define>
+                <h:inputText id="line1"
+                           size="50"
+                      maxlength="50"
+                          value="#{addressHome.instance.line1}">
+                    <a:support event="onblur" reRender="line1Field" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="line2Field" template="/layout/edit.xhtml">
+                <ui:define name="label">Line2</ui:define>
+                <h:inputText id="line2"
+                           size="50"
+                      maxlength="50"
+                          value="#{addressHome.instance.line2}">
+                    <a:support event="onblur" reRender="line2Field" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="stateField" template="/layout/edit.xhtml">
+                <ui:define name="label">State</ui:define>
+                <h:inputText id="state"
+                       required="true"
+                          value="#{addressHome.instance.state}">
+                    <a:support event="onblur" reRender="stateField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="zipField" template="/layout/edit.xhtml">
+                <ui:define name="label">Zip</ui:define>
+                <h:inputText id="zip"
+                           size="50"
+                      maxlength="50"
+                          value="#{addressHome.instance.zip}">
+                    <a:support event="onblur" reRender="zipField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{addressHome.persist}"
+                       disabled="#{!addressHome.wired}"
+                       rendered="#{!addressHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{addressHome.update}"
+                       rendered="#{addressHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{addressHome.remove}"
+                      immediate="true"
+                       rendered="#{addressHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/contact/Address.xhtml"
+                rendered="#{addressHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/contact/#{empty addressFrom ? 'AddressList' : addressFrom}.xhtml"
+                rendered="#{!addressHome.managed}"/>
+
+        </div>
+    </h:form>
+
+<rich:tabPanel switchType="ajax">
+
+    <rich:tab label="Contact">
+    <div class="association" id="contactParent">
+
+        <h:outputText value="There is no contact associated with this address."
+                   rendered="#{addressHome.instance.contact == null}"/>
+
+        <rich:dataTable var="_contact"
+                   value="#{addressHome.instance.contact}"
+                rendered="#{addressHome.instance.contact != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="contactTable">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{_contact.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Archive date</f:facet>
+                <h:outputText value="#{_contact.archiveDate}">
+                    <s:convertDateTime type="both" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Last change</f:facet>
+                <h:outputText value="#{_contact.lastChange}">
+                    <s:convertDateTime type="both" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Fname</f:facet>
+                <h:outputText value="#{_contact.fname}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Job title</f:facet>
+                <h:outputText value="#{_contact.jobTitle}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Lname</f:facet>
+                <h:outputText value="#{_contact.lname}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Middle</f:facet>
+                <h:outputText value="#{_contact.middle}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Organization id</f:facet>
+                <h:outputText value="#{_contact.organization.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Suffix</f:facet>
+                <h:outputText value="#{_contact.suffix}"/>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{addressHome.instance.contact != null ? 'changeParent' : 'selectParent'}" value="#{addressHome.instance.contact != null ? 'Change' : 'Select'} contact"
+                       view="/contact/ContactList.xhtml">
+                <f:param name="from" value="AddressEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

@@ -1,0 +1,235 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="jobActionSearch" styleClass="edit">
+
+        <rich:simpleTogglePanel label="JobAction Search Filter" switchType="ajax">
+
+            <s:decorate template="/layout/display.xhtml">
+                <ui:define name="label">Field condition</ui:define>
+                <h:inputText id="fieldCondition" value="#{jobActionList.jobAction.fieldCondition}"/>
+            </s:decorate>
+
+            <s:decorate template="/layout/display.xhtml">
+                <ui:define name="label">Modifier</ui:define>
+                <h:inputText id="modifier" value="#{jobActionList.jobAction.modifier}"/>
+            </s:decorate>
+
+            <s:decorate template="/layout/display.xhtml">
+                <ui:define name="label">Name</ui:define>
+                <h:inputText id="name" value="#{jobActionList.jobAction.name}"/>
+            </s:decorate>
+
+            <s:decorate template="/layout/display.xhtml">
+                <ui:define name="label">Note</ui:define>
+                <h:inputText id="note" value="#{jobActionList.jobAction.note}"/>
+            </s:decorate>
+
+            <s:decorate template="/layout/display.xhtml">
+                <ui:define name="label">Sequence</ui:define>
+                <h:inputText id="sequence" value="#{jobActionList.jobAction.sequence}"/>
+            </s:decorate>
+
+            <s:decorate template="/layout/display.xhtml">
+                <ui:define name="label">Verb</ui:define>
+                <h:inputText id="verb" value="#{jobActionList.jobAction.verb}"/>
+            </s:decorate>
+
+            <s:decorate template="/layout/display.xhtml">
+                <ui:define name="label">Match</ui:define>
+                <h:selectOneRadio id="logic" value="#{jobActionList.restrictionLogicOperator}" styleClass="radio">
+                    <f:selectItem itemLabel="All" itemValue="and"/>
+                    <f:selectItem itemLabel="Any" itemValue="or"/>
+                </h:selectOneRadio>
+            </s:decorate>
+
+        </rich:simpleTogglePanel>
+
+        <div class="actionButtons">
+            <h:commandButton id="search" value="Search" action="/job/JobActionList.xhtml"/>
+            <s:button id="reset" value="Reset" includePageParams="false"/>
+        </div>
+
+    </h:form>
+
+    <rich:panel>
+        <f:facet name="header">JobAction Search Results (#{empty jobActionList.resultList ? 0 : (jobActionList.paginated ? jobActionList.resultCount : jobActionList.resultList.size)})</f:facet>
+    <div class="results" id="jobActionList">
+
+    <h:outputText value="The jobAction search returned no results."
+               rendered="#{empty jobActionList.resultList}"/>
+
+    <rich:dataTable id="jobActionList"
+                var="_jobAction"
+              value="#{jobActionList.resultList}"
+           rendered="#{not empty jobActionList.resultList}">
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{jobActionList}"/>
+                    <ui:param name="propertyLabel" value="Job action id"/>
+                    <ui:param name="propertyPath" value="jobAction.id"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_jobAction.id}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{jobActionList}"/>
+                    <ui:param name="propertyLabel" value="Action action id"/>
+                    <ui:param name="propertyPath" value="jobAction.action.id"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_jobAction.action.id}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{jobActionList}"/>
+                    <ui:param name="propertyLabel" value="Field condition"/>
+                    <ui:param name="propertyPath" value="jobAction.fieldCondition"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_jobAction.fieldCondition}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{jobActionList}"/>
+                    <ui:param name="propertyLabel" value="Job task job task id"/>
+                    <ui:param name="propertyPath" value="jobAction.jobTask.id"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_jobAction.jobTask.id}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{jobActionList}"/>
+                    <ui:param name="propertyLabel" value="Modifier"/>
+                    <ui:param name="propertyPath" value="jobAction.modifier"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_jobAction.modifier}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{jobActionList}"/>
+                    <ui:param name="propertyLabel" value="Name"/>
+                    <ui:param name="propertyPath" value="jobAction.name"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_jobAction.name}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{jobActionList}"/>
+                    <ui:param name="propertyLabel" value="Note"/>
+                    <ui:param name="propertyPath" value="jobAction.note"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_jobAction.note}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{jobActionList}"/>
+                    <ui:param name="propertyLabel" value="Sequence"/>
+                    <ui:param name="propertyPath" value="jobAction.sequence"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_jobAction.sequence}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{jobActionList}"/>
+                    <ui:param name="propertyLabel" value="Verb"/>
+                    <ui:param name="propertyPath" value="jobAction.verb"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_jobAction.verb}"/>
+        </h:column>
+        <rich:column styleClass="action">
+            <f:facet name="header">Action</f:facet>
+            <s:link view="/job/#{empty from ? 'JobAction' : from}.xhtml"
+                   value="#{empty from ? 'View' : 'Select'}"
+             propagation="#{empty from ? 'none' : 'default'}"
+                      id="jobActionViewId">
+                <f:param name="jobActionJobActionId"
+                        value="#{_jobAction.id}"/>
+            </s:link>
+            #{' '}
+            <s:link view="/job/JobActionEdit.xhtml"
+                   value="Edit"
+             propagation="none"
+                      id="jobActionEdit"
+                rendered="#{empty from}">
+                <f:param name="jobActionJobActionId"
+                        value="#{_jobAction.id}"/>
+            </s:link>
+        </rich:column>
+    </rich:dataTable>
+
+    </div>
+    </rich:panel>
+
+    <div class="tableControl">
+
+        <s:link view="/job/JobActionList.xhtml"
+            rendered="#{jobActionList.previousExists}"
+               value="#{messages.left}#{messages.left} First Page"
+                  id="firstPage">
+          <f:param name="firstResult" value="0"/>
+        </s:link>
+
+        <s:link view="/job/JobActionList.xhtml"
+            rendered="#{jobActionList.previousExists}"
+               value="#{messages.left} Previous Page"
+                  id="previousPage">
+            <f:param name="firstResult"
+                    value="#{jobActionList.previousFirstResult}"/>
+        </s:link>
+
+        <s:link view="/job/JobActionList.xhtml"
+            rendered="#{jobActionList.nextExists}"
+               value="Next Page #{messages.right}"
+                  id="nextPage">
+            <f:param name="firstResult"
+                    value="#{jobActionList.nextFirstResult}"/>
+        </s:link>
+
+        <s:link view="/job/JobActionList.xhtml"
+            rendered="#{jobActionList.nextExists}"
+               value="Last Page #{messages.right}#{messages.right}"
+                  id="lastPage">
+            <f:param name="firstResult"
+                    value="#{jobActionList.lastFirstResult}"/>
+        </s:link>
+
+    </div>
+
+    <s:div styleClass="actionButtons" rendered="#{empty from}">
+        <s:button view="/job/JobActionEdit.xhtml"
+                    id="create"
+           propagation="none"
+                 value="Create jobAction">
+            <f:param name="jobActionJobActionId"/>
+        </s:button>
+    </s:div>
+
+</ui:define>
+
+</ui:composition>

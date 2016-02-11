@@ -1,0 +1,273 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="tenantRequest" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{tenantRequestHome.managed ? 'Edit' : 'Add'} Tenant request</f:facet>
+
+
+
+            <s:decorate id="completedDateField" template="/layout/edit.xhtml">
+                <ui:define name="label">Completed date</ui:define>
+                <rich:calendar id="completedDate"
+                          value="#{tenantRequestHome.instance.completedDate}" datePattern="MM/dd/yyyy" />
+            </s:decorate>
+
+
+
+            <s:decorate id="createdDateField" template="/layout/edit.xhtml">
+                <ui:define name="label">Created date</ui:define>
+                <rich:calendar id="createdDate"
+                          value="#{tenantRequestHome.instance.createdDate}" datePattern="MM/dd/yyyy" />
+            </s:decorate>
+
+
+            <s:decorate id="isUrgentField" template="/layout/edit.xhtml">
+                <ui:define name="label">Is urgent</ui:define>
+                <h:selectBooleanCheckbox id="isUrgent"
+                                      value="#{tenantRequestHome.instance.isUrgent}"/>
+            </s:decorate>
+
+
+
+            <s:decorate id="jobDescriptionField" template="/layout/edit.xhtml">
+                <ui:define name="label">Job description</ui:define>
+                <h:inputTextarea id="jobDescription"
+                               cols="80"
+                               rows="6"
+                              value="#{tenantRequestHome.instance.jobDescription}"/>
+            </s:decorate>
+
+
+            <s:decorate id="jobStatusField" template="/layout/edit.xhtml">
+                <ui:define name="label">Job status</ui:define>
+                <h:inputText id="jobStatus"
+                       required="true"
+                          value="#{tenantRequestHome.instance.jobStatus}">
+                    <a:support event="onblur" reRender="jobStatusField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="locationCommentField" template="/layout/edit.xhtml">
+                <ui:define name="label">Location comment</ui:define>
+                <h:inputText id="locationComment"
+                           size="50"
+                      maxlength="50"
+                          value="#{tenantRequestHome.instance.locationComment}">
+                    <a:support event="onblur" reRender="locationCommentField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="noteField" template="/layout/edit.xhtml">
+                <ui:define name="label">Note</ui:define>
+                <h:inputTextarea id="note"
+                               cols="80"
+                               rows="6"
+                              value="#{tenantRequestHome.instance.note}"/>
+            </s:decorate>
+
+
+            <s:decorate id="requestTypeField" template="/layout/edit.xhtml">
+                <ui:define name="label">Request type</ui:define>
+                <h:inputText id="requestType"
+                       required="true"
+                          value="#{tenantRequestHome.instance.requestType}">
+                    <a:support event="onblur" reRender="requestTypeField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{tenantRequestHome.persist}"
+                       disabled="#{!tenantRequestHome.wired}"
+                       rendered="#{!tenantRequestHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{tenantRequestHome.update}"
+                       rendered="#{tenantRequestHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{tenantRequestHome.remove}"
+                      immediate="true"
+                       rendered="#{tenantRequestHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/job/TenantRequest.xhtml"
+                rendered="#{tenantRequestHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/job/#{empty tenantRequestFrom ? 'TenantRequestList' : tenantRequestFrom}.xhtml"
+                rendered="#{!tenantRequestHome.managed}"/>
+
+        </div>
+    </h:form>
+
+<rich:tabPanel switchType="ajax">
+
+    <rich:tab label="Contact">
+    <div class="association" id="contactParent">
+
+        <h:outputText value="There is no contact associated with this tenantRequest."
+                   rendered="#{tenantRequestHome.instance.contact == null}"/>
+
+        <rich:dataTable var="_contact"
+                   value="#{tenantRequestHome.instance.contact}"
+                rendered="#{tenantRequestHome.instance.contact != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="contactTable">
+            <h:column>
+                <f:facet name="header">Contact id</f:facet>
+                <h:outputText value="#{_contact.id}"/>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{tenantRequestHome.instance.contact != null ? 'changeParent' : 'selectParent'}" value="#{tenantRequestHome.instance.contact != null ? 'Change' : 'Select'} contact"
+                       view="/job/ContactList.xhtml">
+                <f:param name="from" value="TenantRequestEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab label="Job">
+    <div class="association" id="jobParent">
+
+        <h:outputText value="There is no job associated with this tenantRequest."
+                   rendered="#{tenantRequestHome.instance.job == null}"/>
+
+        <rich:dataTable var="_job"
+                   value="#{tenantRequestHome.instance.job}"
+                rendered="#{tenantRequestHome.instance.job != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="jobTable">
+            <h:column>
+                <f:facet name="header">Job id</f:facet>
+                <h:outputText value="#{_job.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Completed date</f:facet>
+                <h:outputText value="#{_job.completedDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Created by</f:facet>
+                <h:outputText value="#{_job.createdBy}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Created date</f:facet>
+                <h:outputText value="#{_job.createdDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Description</f:facet>
+                <h:outputText value="#{_job.description}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Dispatched date</f:facet>
+                <h:outputText value="#{_job.dispatchedDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Earliest start</f:facet>
+                <h:outputText value="#{_job.earliestStart}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Est time</f:facet>
+                <h:outputText value="#{_job.estTime}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Job type</f:facet>
+                <h:outputText value="#{_job.jobType.label}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Latest start</f:facet>
+                <h:outputText value="#{_job.latestStart}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Note</f:facet>
+                <h:outputText value="#{_job.note}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Organization org id</f:facet>
+                <h:outputText value="#{_job.organization.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Priority</f:facet>
+                <h:outputText value="#{_job.priority.label}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Scheduled date</f:facet>
+                <h:outputText value="#{_job.scheduledDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Started date</f:facet>
+                <h:outputText value="#{_job.startedDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Status</f:facet>
+                <h:outputText value="#{_job.status.label}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Sticky</f:facet>
+                <h:outputText value="#{_job.sticky}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Task instance task instance id</f:facet>
+                <h:outputText value="#{_job.taskInstance.id}"/>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{tenantRequestHome.instance.job != null ? 'changeParent' : 'selectParent'}" value="#{tenantRequestHome.instance.job != null ? 'Change' : 'Select'} job"
+                       view="/job/JobList.xhtml">
+                <f:param name="from" value="TenantRequestEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

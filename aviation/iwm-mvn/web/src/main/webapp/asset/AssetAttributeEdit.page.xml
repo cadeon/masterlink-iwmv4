@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.com/products/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.2.xsd"
+      no-conversation-view-id="/asset/AssetAttributeList.xhtml"
+      login-required="true">
+
+   <begin-conversation join="true" flush-mode="MANUAL"/>
+
+   <action execute="#{assetAttributeHome.wire}"/>
+
+   <param name="assetAttributeFrom"/>
+   <param name="assetAttributeAssetAttributeId" value="#{assetAttributeHome.id}"/>
+   <param name="assetAttributeTemplateFrom"/>
+   <param name="assetAttributeTemplateAssetAttributeTemplateId" value="#{assetAttributeTemplateHome.id}"/>
+   <param name="assetTemplateFrom"/>
+   <param name="assetTemplateAssetTemplateId" value="#{assetTemplateHome.id}"/>
+   <param name="assetTypeFrom"/>
+   <param name="assetTypeAssetTypeId" value="#{assetTypeHome.id}"/>
+
+
+
+   <param name="assetFrom"/>
+   <param name="assetAssetId" value="#{assetHome.id}"/>
+   <param name="taskFrom"/>
+   <param name="taskTaskId" value="#{taskHome.id}"/>
+   <param name="taskTemplateFrom"/>
+   <param name="taskTemplateTaskTemplateId" value="#{taskTemplateHome.id}"/>
+
+
+
+
+
+   <navigation from-action="#{assetAttributeHome.persist}">
+      <rule if-outcome="persisted">
+         <end-conversation/>
+         <redirect view-id="/asset/AssetAttribute.xhtml"/>
+      </rule>
+   </navigation>
+
+   <navigation from-action="#{assetAttributeHome.update}">
+      <rule if-outcome="updated">
+         <end-conversation/>
+         <redirect view-id="/asset/AssetAttribute.xhtml"/>
+      </rule>
+   </navigation>
+
+   <navigation from-action="#{assetAttributeHome.remove}">
+      <rule if-outcome="removed">
+         <end-conversation/>
+         <redirect view-id="/asset/AssetAttributeList.xhtml"/>
+      </rule>
+   </navigation>
+
+</page>

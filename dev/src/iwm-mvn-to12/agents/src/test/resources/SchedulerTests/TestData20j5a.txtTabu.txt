@@ -1,0 +1,26 @@
+
+//Tested  20jobs5assets
+
+//On Tue Jun 28 17:32:38 GMT-05:00 2011
+
+//Utility 0.14205621
+
+//Scheduling 4 of 20 jobs which is 20.0%
+
+// Asset ID, Asset Resource ID, job ID, start time, end time
+4
+5 12012 12 1 76
+5 4004 4 1 251
+5 7007 7 1 251
+3 20020 20 1 51
+
+//  NSN   Quantity Used,  Type,  Job ID
+0
+
+//  NSN   Quantity Used,  Type
+2
+3456 16 1
+8888 22 0
+
+//  Error Severity   Text   ID
+0

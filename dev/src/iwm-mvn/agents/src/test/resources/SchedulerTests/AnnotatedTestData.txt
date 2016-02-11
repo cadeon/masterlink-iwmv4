@@ -1,0 +1,139 @@
+// (3 jobs, 2 assets) test of tabu search
+
+// Scheduling Period start, end, locator, est time conversion factor, valid job statuses to schedule, k, max priority, travel vector (# valse, val1,...valN), travel importance (0 to 100),  travel function-enum
+
+101,43677, 3jobs.2assets, 2, 1;2;3, 50, 5, 40;5;10;5;2, 40, 1
+
+// Number of Jobs
+3
+
+// Jobs
+
+// Job 1
+
+//Job id, Managed Asset ID, Locator, Job Status, Est Time, Rec Time, Priority, Org Id, Start Time, End Time, 
+// # Maintainabilities, # ARs, # NARs, Earliest Start, Latest End
+110, 3333, bldg2.fl3.rm15, 0, 100, 0, 5, 0, 1, 0, 2, 1, 1, 120, 10000
+
+//Job maintainabilities
+1, 301
+401, 999851
+
+// Job ARs
+
+// First Job AR
+// ID, RequestedAssetId, AssignedAssetId, ClassID, #attributes, #proficiencies
+1000,  220, 220, 2111, 0, 2
+
+// Job AR Attributes: id, key, value,  function
+
+
+// Job AR Proficiencies: class id, level, importance, function, max value
+4444, 1, 10, 1, 5
+6666, 4, 20, 1, 10
+
+// Job NARs
+3456, 13, 1
+
+// Job 3
+
+//Job id, Managed Asset ID, Locator, Job Status, Est Time, Rec Time, Priority, Org Id, Start Time, End Time, 
+// # Maintainabilities, # ARs, # NARs, Earliest Start, Latest End
+310, 8888, bldg2.fl3.rm15, 1, 100, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0
+
+//Job maintainabilities
+1, 666
+
+// Job ARs
+
+// First Job AR
+// ID, RequestedAssetId, AssignedAssetId, ClassID, #attributes, #proficiencies
+3000,  0, 0, 2222, 0, 2
+
+// Job AR Attributes: id, key, value,  function
+
+
+// Job AR Proficiencies: class id, level, importance, function, max value
+4444, 1, 40, 1, 5
+6666, 1, 20, 1, 10
+
+// Job NARs
+// Job 2
+
+//Job id, Managed Asset ID, Locator, Job Status, Est Time, Rec Time, Priority, Org Id, Start Time, End Time, 
+// # Maintainabilities, # ARs, # NARs, Earliest Start, Latest End
+211, 4444, bldg2.fl3.rm15, 1, 200, 0, 4, 0, 0, 0, 1, 2, 0, 0, 0
+
+//Job timespecs
+1, 501
+
+// Job ARs
+
+// First Job AR
+// ID, RequestedAssetId, AssignedAssetId,  ClassID, #attributes, #proficiencies
+2001,  0, 0, 2222, 0, 2
+
+// Job AR Attributes
+
+// Job AR Proficiencies
+4444, 1, 40, 1, 5
+6666, 1, 20, 1, 10
+
+// Second Job AR
+// ID,  RequestedAssetId, AssignedAssetId, ClassID, #attributes, #proficiencies
+2002,  0, 0, 2111, 0, 2
+
+// Job AR Attributes
+
+
+// Job AR Proficiencies
+4444, 1, 10, 1, 5
+6666, 4, 20, 1, 10
+
+// Job NARs
+
+// Assets
+2
+
+// Asset 1
+// ID, Class ID, Org, Track Travel Time?, track in utility?, #attrs, #profs, #timespecs
+120, 2222, 222, 1, 1, 3,2, 1
+
+// Asset 1 attributes id, key, value
+666, foofoo, 33
+222, foo, 3
+333, bar, 22
+
+// Asset 1 proficiencies class level
+4444, 1 
+6666, 1 
+
+// asset 1 timespecs
+1, 9999
+
+
+// Asset 2
+// ID, Class ID, Org, Track Travel Time?, track in utility?, #attrs, #profs, #timespecs
+220, 2111, 222, 1, 1, 4,2, 2
+
+// Asset 2 attributes
+666, foofoo, 33
+888, barbar, 13
+222, foo, 3
+333, bar, 22
+
+// Asset 2 proficiencies
+4444, 1
+6666, 4
+
+// asset 2 timespecs
+1, 301
+401,1401
+
+
+// NARs
+2
+3456, 16, 1
+8888, 22, 0
+
+			

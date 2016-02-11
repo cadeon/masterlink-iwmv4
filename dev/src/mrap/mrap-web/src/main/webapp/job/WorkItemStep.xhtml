@@ -1,0 +1,94 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <rich:panel>
+        <f:facet name="header">Work item step Details</f:facet>
+
+
+        <s:decorate id="note" template="layout/display.xhtml">
+            <ui:define name="label">Note</ui:define>
+            <h:outputText value="#{workItemStepHome.instance.note}"/>
+        </s:decorate>
+
+        <div style="clear:both"/>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+
+        <s:button view="/WorkItemStepEdit.xhtml"
+                    id="edit"
+                 value="Edit"/>
+
+        <s:button view="/#{empty workItemStepFrom ? 'WorkItemStepList' : workItemStepFrom}.xhtml"
+                    id="done"
+                 value="Done"/>
+
+    </div>
+
+    <rich:tabPanel switchType="ajax">
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Work item</h:panelGroup>
+        </f:facet>
+    <div class="association" id="workItemParent">
+
+        <h:outputText value="There is no workItem associated with this workItemStep."
+                   rendered="#{workItemStepHome.instance.workItem == null}"/>
+
+        <rich:dataTable var="_workItem"
+                   value="#{workItemStepHome.instance.workItem}"
+                rendered="#{workItemStepHome.instance.workItem != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="workItemTable">
+            <h:column>
+                <f:facet name="header">Work item id</f:facet>
+                <h:outputText value="#{_workItem.workItemId}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Actual time</f:facet>
+                <h:outputText value="#{_workItem.actualTime}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Description</f:facet>
+                <h:outputText value="#{_workItem.description}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Est time</f:facet>
+                <h:outputText value="#{_workItem.estTime}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Job job id</f:facet>
+                <h:outputText value="#{_workItem.job.jobId}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Task instance task instance id</f:facet>
+                <h:outputText value="#{_workItem.taskInstance.taskInstanceId}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewworkItem"
+                     value="View"
+                      view="/WorkItem.xhtml">
+                    <f:param name="workItemWorkItemId"
+                           value="#{_workItem.workItemId}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

@@ -1,0 +1,199 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:a4j="http://richfaces.org/a4j"
+    template="/mrap/layout/iwmtemplate.xhtml">
+
+<ui:param name="currentView" value="reports" />
+<ui:define name="body">
+
+    
+<f:view>
+
+    <table border="1" rules="none" frame="box" cellpadding="7" cellspacing="0" width="100%">
+		<tr>
+			<td width="20%">&nbsp;</td>
+			<td align="center" width="60%"><h:outputText id="headingTitle" value="Search and view reports for 20000 H" styleClass="Headline"/></td>
+			<td align="right" width="20%">
+				<h:outputText value="Today is #{jobManager.today}" style="font-style:italic"/> <span style="color: #FFFFFF">---</span> 
+			</td>
+		</tr>
+	</table>
+<rich:tabPanel style="background-color:white;width:100%;height:100%" switchType = "ajax"  contentClass="containerTabPanel">
+ <rich:tab id="searchTab" label="Search">
+ 	<h:form id="sv_PrintHelpForm">
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr align="right">
+ 				<td valign="middle">
+					<h:commandButton id="print"
+			                        value="Print"
+			                       action="#{jobManager.help}"/>
+					<h:commandButton id="help"
+			                        value="Help"
+			                       action="#{jobManager.help}"/>
+             	</td>
+			</tr>
+		</table>
+	</h:form>
+	<hr/>
+      <table border="0" cellpadding="2" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+       	<tr> 
+        	<td width="100%">
+        		<table width="100%" cellpadding="4" cellspacing="0" style="padding-left:10px">
+	                <tr>
+		                <td colspan="2"> 		 	
+		                	<p align="left" style="color: #4682B4;">NOTE: Functional implementation of this screen pending requirements gathering with end users</p>	
+		                	<p align="left"><span id="instructions" style="font-weight: bold;">
+		                	Search for maintenance jobs using one or more of the criteria below. Fill out the criteria and click Add as many times as desired, then click Search.
+		                	<br/>
+		                	Click on a results or report tab to see saved results or predefined reports.</span></p>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+       	<tr> 
+        	<td width="100%">
+       			<h:panelGrid columns="3" rowClasses="topAligned">
+        		<rich:panel id="searchPanel1" styleClass="noBorder">
+        			<h:panelGrid columns="2" styleClass="topAligned">
+					    <h:outputText value="ERO # .............................."/>
+						<h:inputText id="sv_eroNumber" value="#{reportManager.ero}"/>
+						
+					    <h:outputText value="TAM ................................."/>
+					    <h:inputText id="sv_tam" value="#{reportManager.tam}"/>
+				        
+						<h:outputText value="ID ...................................."/>
+					    <h:inputText id="sv_vid" value="#{reportManager.vId}"/>
+				        
+				     	<h:outputText value="Serial # ............................"/>
+						<h:inputText id="sv_serialNum" value="#{reportManager.serial}"/> 
+				     	
+					    <h:outputText value="Model ..............................."/>
+					    <h:inputText id="sv_model" value="#{reportManager.model}"/>
+				        
+					    <h:outputText value="Status ..............................."/>
+					    <h:selectOneMenu id="sv_jobstatus" value="#{reportManager.jobStatus}" >
+			 				<s:selectItems value="#{reportManager.jobStatuses}" var="status" label="#{status.label}"
+			 				 						noSelectionLabel="Select one..." />
+			 				<s:convertEnum />
+						</h:selectOneMenu>
+						
+				        <h:outputText value="Echelon of maintenance ......."/>
+			          	<h:selectOneMenu id="sv_eom" value="#{reportManager.eom}" >
+			 				<s:selectItems value="#{reportManager.eoms}" var="eom" label="#{eom.label}"
+			 				 						noSelectionLabel="Select one..." />
+			 				<s:convertEnum />
+						</h:selectOneMenu>
+					    
+					    <h:outputText value="Category ..........................."/>
+			          	<h:selectOneMenu id="sv_category" value="#{reportManager.category}" >
+			 				<s:selectItems value="#{reportManager.categories}" var="category" label="#{category.label}"
+			 				 						noSelectionLabel="Select one..." />
+			 				<s:convertEnum />
+						</h:selectOneMenu>
+				        
+					    <h:outputText value="Priority ............................."/>
+					    <rich:inputNumberSpinner id="sv_priority" value="#{reportManager.priorityLabel}"  minValue="1" maxValue="13"/>
+				        
+					    <h:outputText value="Owning Organization ..........."/>
+					    <h:inputText id="sv_owningOrg" value="#{reportManager.owningOrganization}" />
+						
+					    <h:outputText value="Owner activity code ............."/>
+					    <h:inputText id="sv_activityCode" value="#{reportManager.activityCode}"/>
+				        
+					    <h:outputText value="Defect code ......................."/>
+					    <h:inputText id="sv_defectCode" value="#{reportManager.defectCode}"/>
+					</h:panelGrid>
+				</rich:panel>
+				<rich:panel id="searchPanel2" styleClass="noBorder">
+					<table border="0" cellpadding="2" cellspacing="0">
+				        <tr>
+				            <td valign="middle">Date ERO was created ....</td>
+				            <td valign="middle">from <span style="color: #FFFFFF">.</span>
+				            	<rich:calendar id="sv_createdDateCalendarFrom" value="#{reportManager.createdDateFrom}" datePattern="#{jobManager.datePattern}" inputSize="11"/>
+					            to <span style="color: #FFFFFF">.</span>
+					            <rich:calendar id="sv_createdDateCalendarTo" value="#{reportManager.createdDateTo}" datePattern="#{jobManager.datePattern}" inputSize="11"/>
+			  		 	    </td>
+				        </tr>
+				        <tr>
+							<td valign="middle">Date received in shop ....</td>
+							<td valign="middle">from <span style="color: #FFFFFF">.</span> 
+								<rich:calendar id="sv_receivedInShopDateCalendarFrom" value="#{reportManager.receivedInShopDateFrom}" datePattern="#{jobManager.datePattern}" inputSize="11"/>
+					            to  <span style="color: #FFFFFF">.</span> 
+					            <rich:calendar id="sv_receivedInShopDateCalendarTo" value="#{reportManager.receivedInShopDateTo}" datePattern="#{jobManager.datePattern}" inputSize="11"/>
+			  		 	    </td>
+				        </tr>
+				        <tr>
+					        <td valign="middle">Start work date ............</td>
+					        <td valign="middle">from <span style="color: #FFFFFF">.</span> 
+					        	<rich:calendar id="sv_startWorkDateCalendarFrom" value="#{reportManager.startWorkDateFrom}" datePattern="#{jobManager.datePattern}" inputSize="11"/>
+					            to <span style="color: #FFFFFF">.</span>
+					            <rich:calendar id="sv_startWorkDateCalendarTo" value="#{reportManager.startWorkDateTo}" datePattern="#{jobManager.datePattern}" inputSize="11"/>
+					        </td>
+				        </tr>
+				        <tr>
+					        <td valign="middle">Date closed .................</td>
+					        <td valign="middle">from <span style="color: #FFFFFF">.</span>  
+					        	<rich:calendar id="sv_closedDateCalendarFrom" value="#{reportManager.closedDateFrom}" datePattern="#{jobManager.datePattern}" inputSize="11"/>
+					            to <span style="color: #FFFFFF">.</span> 
+					            <rich:calendar id="sv_closedDateCalendarTo" value="#{reportManager.closedDateTo}" datePattern="#{jobManager.datePattern}" inputSize="11"/>
+					        </td>
+				        </tr>
+				        <tr><td colspan="2">&nbsp;</td></tr>
+			          	<tr>
+					    	<td >Work items ..................</td>
+			          		<td><h:inputText id="sv_workItem" value="#{reportManager.workItem}" size="43"/></td>
+			          	</tr>
+			          	<tr>
+					    	<td >Qualifications ...............</td>
+			          		<td><h:inputText id="sv_qual" value="#{reportManager.qualification}" size="43"/></td>
+			          	</tr>
+			          	<tr>
+					    	<td >Technician ...................</td>
+			          		<td><h:inputText id="sv_tech" value="#{reportManager.technician}" size="43"/></td>
+			          	</tr>
+			          	<tr>
+					    	<td >Key word .....................</td>
+			          		<td><h:inputText id="sv_keyword" value="#{reportManager.keyword}" size="43"/></td>
+			          	</tr>
+			          
+					</table>
+				</rich:panel>
+				<rich:panel id="searchElementsPanel" styleClass="noBorder" >
+        			<h:panelGrid columns="3" >
+        				<rich:panel styleClass="noBorder">
+							<a4j:commandLink action="#{reportManager.add}" reRender="">
+								<h:outputText value="Add >"/>
+							</a4j:commandLink>
+						</rich:panel>
+        				<rich:panel  bodyClass="criteriaBox" header="Search for job by: ">
+        					<h:outputText value="#{reportManager.criteria}"/>
+        				</rich:panel>
+        				<rich:panel styleClass="noBorder">
+							<a4j:commandButton id="searchButton"
+	                          value="Search"
+	                         action="#{reportManager.search}"/>
+                         </rich:panel>
+        			</h:panelGrid>
+				</rich:panel>
+			</h:panelGrid>
+			</td>
+       	</tr>
+      </table>
+	</rich:tab>
+ 
+	<rich:tab id="results1Tab" label="Results 1" disabled="true"/>
+	<rich:tab id="results2Tab" label="Results 2" disabled="true"/>
+	<rich:tab id="results3Tab" label="Results 3" disabled="true"/>
+	<rich:tab id="PMPlanTab" label="PM Plan" disabled="true"/>
+	<rich:tab id="LM2ReportTab" label="LM2 Report" disabled="true"/>
+</rich:tabPanel>
+</f:view>
+</ui:define>
+</ui:composition>

@@ -1,0 +1,254 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/template.xhtml">
+
+<ui:define name="body">
+
+    <rich:panel>
+        <f:facet name="header">Asset time share Details</f:facet>
+
+
+        <s:decorate id="asResource" template="/layout/display.xhtml">
+            <ui:define name="label">As resource</ui:define>
+            <h:outputText value="#{assetTimeShareHome.instance.asResource}"/>
+        </s:decorate>
+
+        <s:decorate id="assigned" template="/layout/display.xhtml">
+            <ui:define name="label">Assigned</ui:define>
+            <h:outputText value="#{assetTimeShareHome.instance.assigned}"/>
+        </s:decorate>
+
+        <s:decorate id="endDate" template="/layout/display.xhtml">
+            <ui:define name="label">End date</ui:define>
+            <h:outputText value="#{assetTimeShareHome.instance.endDate}">
+                <s:convertDateTime type="both" dateStyle="short"/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="startDate" template="/layout/display.xhtml">
+            <ui:define name="label">Start date</ui:define>
+            <h:outputText value="#{assetTimeShareHome.instance.startDate}">
+                <s:convertDateTime type="both" dateStyle="short"/>
+            </h:outputText>
+        </s:decorate>
+
+        <div style="clear:both"/>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+
+        <s:button view="/asset/AssetTimeShareEdit.xhtml"
+                    id="edit"
+                 value="Edit"/>
+
+        <s:button view="/asset/#{empty assetTimeShareFrom ? 'AssetTimeShareList' : assetTimeShareFrom}.xhtml"
+                    id="done"
+                 value="Done"/>
+
+    </div>
+
+    <rich:tabPanel switchType="ajax">
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Asset</h:panelGroup>
+        </f:facet>
+    <div class="association" id="assetParent">
+
+        <h:outputText value="There is no asset associated with this assetTimeShare."
+                   rendered="#{assetTimeShareHome.instance.asset == null}"/>
+
+        <rich:dataTable var="_asset"
+                   value="#{assetTimeShareHome.instance.asset}"
+                rendered="#{assetTimeShareHome.instance.asset != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="assetTable">
+   
+            <h:column>
+                <f:facet name="header">Asset kind</f:facet>
+                <h:outputText value="#{_asset.assetKind.label}"/>
+            </h:column>
+
+    
+            <h:column>
+                <f:facet name="header">Created date</f:facet>
+                <h:outputText value="#{_asset.createdDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Has custom data</f:facet>
+                <h:outputText value="#{_asset.hasCustomData}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Has custom task</f:facet>
+                <h:outputText value="#{_asset.hasCustomTask}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Is active</f:facet>
+                <h:outputText value="#{_asset.isActive}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Is custom</f:facet>
+                <h:outputText value="#{_asset.isCustom}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Is parent</f:facet>
+                <h:outputText value="#{_asset.isParent}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Is sticky resource</f:facet>
+                <h:outputText value="#{_asset.isStickyResource}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Organization</f:facet>
+                <h:outputText value="#{_asset.organization}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Run hours</f:facet>
+                <h:outputText value="#{_asset.runHours}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Start date</f:facet>
+                <h:outputText value="#{_asset.startDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+           
+            <h:column>
+                <f:facet name="header">Serial</f:facet>
+                <h:outputText value="#{_asset.tag}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewasset"
+                     value="View"
+                      view="/asset/Asset.xhtml">
+                    <f:param name="assetAssetId"
+                           value="#{_asset.id}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Job allocated to</h:panelGroup>
+        </f:facet>
+    <div class="association" id="jobAllocatedToParent">
+
+        <h:outputText value="There is no jobAllocatedTo associated with this assetTimeShare."
+                   rendered="#{assetTimeShareHome.instance.jobAllocatedTo == null}"/>
+
+        <rich:dataTable var="_job"
+                   value="#{assetTimeShareHome.instance.jobAllocatedTo}"
+                rendered="#{assetTimeShareHome.instance.jobAllocatedTo != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="jobAllocatedToTable">
+            <h:column>
+                <f:facet name="header">Job id</f:facet>
+                <h:outputText value="#{_job.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Completed date</f:facet>
+                <h:outputText value="#{_job.completedDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Created by</f:facet>
+                <h:outputText value="#{_job.createdBy}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Created date</f:facet>
+                <h:outputText value="#{_job.createdDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Description</f:facet>
+                <h:outputText value="#{_job.description}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Dispatched date</f:facet>
+                <h:outputText value="#{_job.dispatchedDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Earliest start</f:facet>
+                <h:outputText value="#{_job.earliestStart}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Est time</f:facet>
+                <h:outputText value="#{_job.estTime}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Job type</f:facet>
+                <h:outputText value="#{_job.jobType.label}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Latest start</f:facet>
+                <h:outputText value="#{_job.latestStart}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Note</f:facet>
+                <h:outputText value="#{_job.note}"/>
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">Priority</f:facet>
+                <h:outputText value="#{_job.priority.label}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Scheduled date</f:facet>
+                <h:outputText value="#{_job.scheduledDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Started date</f:facet>
+                <h:outputText value="#{_job.startedDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Status</f:facet>
+                <h:outputText value="#{_job.status.label}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Sticky</f:facet>
+                <h:outputText value="#{_job.sticky}"/>
+            </h:column>
+           
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewjob"
+                     value="View"
+                      view="/asset/Job.xhtml">
+                    <f:param name="jobJobId"
+                           value="#{_job.id}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

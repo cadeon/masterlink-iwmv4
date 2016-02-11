@@ -1,0 +1,165 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/template.xhtml">
+
+<ui:define name="body">
+
+    <rich:panel>
+        <f:facet name="header">Job action Details</f:facet>
+
+
+        <s:decorate id="fieldCondition" template="/layout/display.xhtml">
+            <ui:define name="label">Field condition</ui:define>
+            <h:outputText value="#{jobActionHome.instance.fieldCondition}"/>
+        </s:decorate>
+
+        <s:decorate id="modifier" template="/layout/display.xhtml">
+            <ui:define name="label">Modifier</ui:define>
+            <h:outputText value="#{jobActionHome.instance.modifier}"/>
+        </s:decorate>
+
+        <s:decorate id="name" template="/layout/display.xhtml">
+            <ui:define name="label">Name</ui:define>
+            <h:outputText value="#{jobActionHome.instance.name}"/>
+        </s:decorate>
+
+        <s:decorate id="note" template="/layout/display.xhtml">
+            <ui:define name="label">Note</ui:define>
+            <h:outputText value="#{jobActionHome.instance.note}"/>
+        </s:decorate>
+
+        <s:decorate id="sequence" template="/layout/display.xhtml">
+            <ui:define name="label">Sequence</ui:define>
+            <h:outputText value="#{jobActionHome.instance.sequence}"/>
+        </s:decorate>
+
+        <s:decorate id="verb" template="/layout/display.xhtml">
+            <ui:define name="label">Verb</ui:define>
+            <h:outputText value="#{jobActionHome.instance.verb}"/>
+        </s:decorate>
+
+        <div style="clear:both"/>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+
+        <s:button view="/job/JobActionEdit.xhtml"
+                    id="edit"
+                 value="Edit"/>
+
+        <s:button view="/job/#{empty jobActionFrom ? 'JobActionList' : jobActionFrom}.xhtml"
+                    id="done"
+                 value="Done"/>
+
+    </div>
+
+    <rich:tabPanel switchType="ajax">
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Action</h:panelGroup>
+        </f:facet>
+    <div class="association" id="actionParent">
+
+        <h:outputText value="There is no action associated with this jobAction."
+                   rendered="#{jobActionHome.instance.action == null}"/>
+
+        <rich:dataTable var="_action"
+                   value="#{jobActionHome.instance.action}"
+                rendered="#{jobActionHome.instance.action != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="actionTable">
+                  <h:column>
+                <f:facet name="header">Is custom</f:facet>
+                <h:outputText value="#{_action.isCustom}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Modifier</f:facet>
+                <h:outputText value="#{_action.modifier}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{_action.name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Sequence</f:facet>
+                <h:outputText value="#{_action.sequence}"/>
+            </h:column>
+     
+            <h:column>
+                <f:facet name="header">Verb</f:facet>
+                <h:outputText value="#{_action.verb}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewaction"
+                     value="View"
+                      view="/job/Action.xhtml">
+                    <f:param name="actionActionId"
+                           value="#{_action.id}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Job task</h:panelGroup>
+        </f:facet>
+    <div class="association" id="jobTaskParent">
+
+        <h:outputText value="There is no jobTask associated with this jobAction."
+                   rendered="#{jobActionHome.instance.jobTask == null}"/>
+
+        <rich:dataTable var="_jobTask"
+                   value="#{jobActionHome.instance.jobTask}"
+                rendered="#{jobActionHome.instance.jobTask != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="jobTaskTable">
+
+            <h:column>
+                <f:facet name="header">Actual time</f:facet>
+                <h:outputText value="#{_jobTask.actualTime}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Description</f:facet>
+                <h:outputText value="#{_jobTask.description}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Est time</f:facet>
+                <h:outputText value="#{_jobTask.estTime}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Job job id</f:facet>
+                <h:outputText value="#{_jobTask.job.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Task instance task instance id</f:facet>
+                <h:outputText value="#{_jobTask.taskInstance.id}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewjobTask"
+                     value="View"
+                      view="/job/JobTask.xhtml">
+                    <f:param name="jobTaskJobTaskId"
+                           value="#{_jobTask.id}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

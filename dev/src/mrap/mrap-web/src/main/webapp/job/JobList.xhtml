@@ -1,0 +1,324 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="jobSearch" styleClass="edit">
+
+        <rich:simpleTogglePanel label="Job Search Filter" switchType="ajax">
+
+            <s:decorate template="/layout/display.xhtml">
+                <ui:define name="label">Created by</ui:define>
+                <h:inputText id="createdBy" value="#{jobList.job.createdBy}"/>
+            </s:decorate>
+
+            <s:decorate template="/layout/display.xhtml">
+                <ui:define name="label">Description</ui:define>
+                <h:inputText id="description" value="#{jobList.job.description}"/>
+            </s:decorate>
+
+            <s:decorate template="/layout/display.xhtml">
+                <ui:define name="label">Note</ui:define>
+                <h:inputText id="note" value="#{jobList.job.note}"/>
+            </s:decorate>
+
+            <s:decorate template="/layout/display.xhtml">
+                <ui:define name="label">Match</ui:define>
+                <h:selectOneRadio id="logic" value="#{jobList.restrictionLogicOperator}" styleClass="radio">
+                    <f:selectItem itemLabel="All" itemValue="and"/>
+                    <f:selectItem itemLabel="Any" itemValue="or"/>
+                </h:selectOneRadio>
+            </s:decorate>
+
+        </rich:simpleTogglePanel>
+
+        <div class="actionButtons">
+            <h:commandButton id="search" value="Search" action="/job/JobList.xhtml"/>
+            <s:button id="reset" value="Reset" includePageParams="false"/>
+        </div>
+
+    </h:form>
+
+    <rich:panel>
+        <f:facet name="header">Job Search Results (#{empty jobList.resultList ? 0 : (jobList.paginated ? jobList.resultCount : jobList.resultList.size)})</f:facet>
+    <div class="results" id="jobList">
+
+    <h:outputText value="The job search returned no results."
+               rendered="#{empty jobList.resultList}"/>
+
+    <rich:dataTable id="jobList"
+                var="_job"
+              value="#{jobList.resultList}"
+           rendered="#{not empty jobList.resultList}">
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{jobList}"/>
+                    <ui:param name="propertyLabel" value="Job id"/>
+                    <ui:param name="propertyPath" value="job.id"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_job.id}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{jobList}"/>
+                    <ui:param name="propertyLabel" value="Completed date"/>
+                    <ui:param name="propertyPath" value="job.completedDate"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_job.completedDate}">
+                <s:convertDateTime type="date" dateStyle="short"/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{jobList}"/>
+                    <ui:param name="propertyLabel" value="Created by"/>
+                    <ui:param name="propertyPath" value="job.createdBy"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_job.createdBy}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{jobList}"/>
+                    <ui:param name="propertyLabel" value="Created date"/>
+                    <ui:param name="propertyPath" value="job.createdDate"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_job.createdDate}">
+                <s:convertDateTime type="date" dateStyle="short"/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{jobList}"/>
+                    <ui:param name="propertyLabel" value="Description"/>
+                    <ui:param name="propertyPath" value="job.description"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_job.description}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{jobList}"/>
+                    <ui:param name="propertyLabel" value="Dispatched date"/>
+                    <ui:param name="propertyPath" value="job.dispatchedDate"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_job.dispatchedDate}">
+                <s:convertDateTime type="date" dateStyle="short"/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{jobList}"/>
+                    <ui:param name="propertyLabel" value="Earliest start"/>
+                    <ui:param name="propertyPath" value="job.earliestStart"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_job.earliestStart}">
+                <s:convertDateTime type="date" dateStyle="short"/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{jobList}"/>
+                    <ui:param name="propertyLabel" value="Est time"/>
+                    <ui:param name="propertyPath" value="job.estTime"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_job.estTime}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{jobList}"/>
+                    <ui:param name="propertyLabel" value="Job type"/>
+                    <ui:param name="propertyPath" value="job.jobType"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_job.jobType.label}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{jobList}"/>
+                    <ui:param name="propertyLabel" value="Latest start"/>
+                    <ui:param name="propertyPath" value="job.latestStart"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_job.latestStart}">
+                <s:convertDateTime type="date" dateStyle="short"/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{jobList}"/>
+                    <ui:param name="propertyLabel" value="Note"/>
+                    <ui:param name="propertyPath" value="job.note"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_job.note}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{jobList}"/>
+                    <ui:param name="propertyLabel" value="Organization org id"/>
+                    <ui:param name="propertyPath" value="job.organization.id"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_job.organization.id}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{jobList}"/>
+                    <ui:param name="propertyLabel" value="Priority"/>
+                    <ui:param name="propertyPath" value="job.priority"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_job.priority.label}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{jobList}"/>
+                    <ui:param name="propertyLabel" value="Scheduled date"/>
+                    <ui:param name="propertyPath" value="job.scheduledDate"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_job.scheduledDate}">
+                <s:convertDateTime type="date" dateStyle="short"/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{jobList}"/>
+                    <ui:param name="propertyLabel" value="Started date"/>
+                    <ui:param name="propertyPath" value="job.startedDate"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_job.startedDate}">
+                <s:convertDateTime type="date" dateStyle="short"/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{jobList}"/>
+                    <ui:param name="propertyLabel" value="Status"/>
+                    <ui:param name="propertyPath" value="job.status"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_job.status.label}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{jobList}"/>
+                    <ui:param name="propertyLabel" value="Sticky"/>
+                    <ui:param name="propertyPath" value="job.sticky"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_job.sticky}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{jobList}"/>
+                    <ui:param name="propertyLabel" value="Task instance task instance id"/>
+                    <ui:param name="propertyPath" value="job.taskInstance.id"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_job.taskInstance.id}"/>
+        </h:column>
+        <rich:column styleClass="action">
+            <f:facet name="header">Action</f:facet>
+            <s:link view="/job/#{empty from ? 'Job' : from}.xhtml"
+                   value="#{empty from ? 'View' : 'Select'}"
+             propagation="#{empty from ? 'none' : 'default'}"
+                      id="jobViewId">
+                <f:param name="jobJobId"
+                        value="#{_job.id}"/>
+            </s:link>
+            #{' '}
+            <s:link view="/job/JobEdit.xhtml"
+                   value="Edit"
+             propagation="none"
+                      id="jobEdit"
+                rendered="#{empty from}">
+                <f:param name="jobJobId"
+                        value="#{_job.id}"/>
+            </s:link>
+        </rich:column>
+    </rich:dataTable>
+
+    </div>
+    </rich:panel>
+
+    <div class="tableControl">
+
+        <s:link view="/job/JobList.xhtml"
+            rendered="#{jobList.previousExists}"
+               value="#{messages.left}#{messages.left} First Page"
+                  id="firstPage">
+          <f:param name="firstResult" value="0"/>
+        </s:link>
+
+        <s:link view="/job/JobList.xhtml"
+            rendered="#{jobList.previousExists}"
+               value="#{messages.left} Previous Page"
+                  id="previousPage">
+            <f:param name="firstResult"
+                    value="#{jobList.previousFirstResult}"/>
+        </s:link>
+
+        <s:link view="/job/JobList.xhtml"
+            rendered="#{jobList.nextExists}"
+               value="Next Page #{messages.right}"
+                  id="nextPage">
+            <f:param name="firstResult"
+                    value="#{jobList.nextFirstResult}"/>
+        </s:link>
+
+        <s:link view="/job/JobList.xhtml"
+            rendered="#{jobList.nextExists}"
+               value="Last Page #{messages.right}#{messages.right}"
+                  id="lastPage">
+            <f:param name="firstResult"
+                    value="#{jobList.lastFirstResult}"/>
+        </s:link>
+
+    </div>
+
+    <s:div styleClass="actionButtons" rendered="#{empty from}">
+        <s:button view="/job/JobEdit.xhtml"
+                    id="create"
+           propagation="none"
+                 value="Create job">
+            <f:param name="jobJobId"/>
+        </s:button>
+    </s:div>
+
+</ui:define>
+
+</ui:composition>

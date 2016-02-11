@@ -1,0 +1,55 @@
+<rich:toolBar xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<rich:toolBarGroup>
+		<s:link id="menuHomeId" view="/home.xhtml" value="Dashboard"
+			propagation="none" />
+	</rich:toolBarGroup>
+
+
+	<rich:dropDownMenu showDelay="250" hideDelay="0" submitMode="none">
+		<f:facet name="label">Process Management</f:facet>
+		<!--rich:menuItem>
+    	<s:link view=""
+           	value="Task List"
+           	id="Id"
+			includePageParams="false"
+     		propagation="none"/>
+     </rich:menuItem-->
+	</rich:dropDownMenu>
+
+	<rich:dropDownMenu showDelay="250" hideDelay="0" submitMode="none">
+		<f:facet name="label">Data Import</f:facet>
+
+	</rich:dropDownMenu>
+
+	<rich:dropDownMenu showDelay="250" hideDelay="0" submitMode="none">
+		<f:facet name="label">User Management</f:facet>
+		<rich:menuItem>
+			<s:link view="/security/UserList.xhtml" value="User List" id="UserId"
+				includePageParams="false" propagation="none" />
+		</rich:menuItem>
+		<rich:menuItem>
+			<s:link view="/security/RoleList.xhtml" value="Role List" id="RoleId"
+				includePageParams="false" propagation="none" />
+		</rich:menuItem>
+	</rich:dropDownMenu>
+
+	<!-- @newMenuItem@ -->
+	<rich:toolBarGroup location="right">
+		<h:outputText id="menuWelcomeId"
+			value="signed in as: #{credentials.username}"
+			rendered="#{identity.loggedIn}" />
+		<s:link id="adminMenuLoginId" view="/login.xhtml" value="Login"
+			rendered="#{not identity.loggedIn}" propagation="none" />
+		<s:link id="adminMenuLogoutId" view="/home.xhtml"
+			action="#{authenticator.logout}" value="Logout"
+			rendered="#{identity.loggedIn}" propagation="none" />
+	</rich:toolBarGroup>
+
+</rich:toolBar>
+

@@ -1,0 +1,242 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/template.xhtml">
+
+<ui:define name="body">
+
+    <rich:panel>
+        <f:facet name="header">Asset resource Details</f:facet>
+
+
+        <s:decorate id="isManualAssign" template="/layout/display.xhtml">
+            <ui:define name="label">Is manual assign</ui:define>
+            <h:outputText value="#{assetResourceHome.instance.isManualAssign}"/>
+        </s:decorate>
+
+        <div style="clear:both"/>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+
+        <s:button view="/res/AssetResourceEdit.xhtml"
+                    id="edit"
+                 value="Edit"/>
+
+        <s:button view="/define/#{empty assetResourceFrom ? 'AssetResourceList' : assetResourceFrom}.xhtml"
+                    id="done"
+                 value="Done"/>
+
+    </div>
+
+    <rich:tabPanel switchType="ajax">
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Asset template</h:panelGroup>
+        </f:facet>
+    <div class="association" id="assetTemplateParent">
+
+        <h:outputText value="There is no assetTemplate associated with this assetResource."
+                   rendered="#{assetResourceHome.instance.assetTemplate == null}"/>
+
+        <rich:dataTable var="_assetTemplate"
+                   value="#{assetResourceHome.instance.assetTemplate}"
+                rendered="#{assetResourceHome.instance.assetTemplate != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="assetTemplateTable">
+    
+            <h:column>
+                <f:facet name="header">Asset kind</f:facet>
+                <h:outputText value="#{_assetTemplate.assetKind.label}"/>
+            </h:column>
+        
+            <h:column>
+                <f:facet name="header">Is parent</f:facet>
+                <h:outputText value="#{_assetTemplate.isParent}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{_assetTemplate.name}"/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Plan</f:facet>
+                <h:outputText value="#{_assetTemplate.plan}"/>
+            </h:column>
+       
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Sticky asset</h:panelGroup>
+        </f:facet>
+    <div class="association" id="stickyAssetParent">
+
+        <h:outputText value="There is no stickyAsset associated with this assetResource."
+                   rendered="#{assetResourceHome.instance.stickyAsset == null}"/>
+
+        <rich:dataTable var="_asset"
+                   value="#{assetResourceHome.instance.stickyAsset}"
+                rendered="#{assetResourceHome.instance.stickyAsset != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="stickyAssetTable">
+          
+            <h:column>
+                <f:facet name="header">Asset kind</f:facet>
+                <h:outputText value="#{_asset.assetKind.label}"/>
+            </h:column>
+          
+          
+            <h:column>
+                <f:facet name="header">Created date</f:facet>
+                <h:outputText value="#{_asset.createdDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Has custom data</f:facet>
+                <h:outputText value="#{_asset.hasCustomData}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Has custom task</f:facet>
+                <h:outputText value="#{_asset.hasCustomTask}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Is active</f:facet>
+                <h:outputText value="#{_asset.isActive}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Is custom</f:facet>
+                <h:outputText value="#{_asset.isCustom}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Is parent</f:facet>
+                <h:outputText value="#{_asset.isParent}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Is sticky resource</f:facet>
+                <h:outputText value="#{_asset.isStickyResource}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Organization</f:facet>
+                <h:outputText value="#{_asset.organization.name}"/>
+            </h:column>
+     
+            <h:column>
+                <f:facet name="header">Run hours</f:facet>
+                <h:outputText value="#{_asset.runHours}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Start date</f:facet>
+                <h:outputText value="#{_asset.startDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Sticky to task task id</f:facet>
+                <h:outputText value="#{_asset.stickyToTask.taskId}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Tag</f:facet>
+                <h:outputText value="#{_asset.tag}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewasset"
+                     value="View"
+                      view="/res/Asset.xhtml">
+                    <f:param name="assetAssetId"
+                           value="#{_asset.id}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Task template</h:panelGroup>
+        </f:facet>
+    <div class="association" id="taskTemplateParent">
+
+        <h:outputText value="There is no taskTemplate associated with this assetResource."
+                   rendered="#{assetResourceHome.instance.taskTemplate == null}"/>
+
+        <rich:dataTable var="_taskTemplate"
+                   value="#{assetResourceHome.instance.taskTemplate}"
+                rendered="#{assetResourceHome.instance.taskTemplate != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="taskTemplateTable">
+
+            <h:column>
+                <f:facet name="header">Est hours</f:facet>
+                <h:outputText value="#{_taskTemplate.estHours}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Est min</f:facet>
+                <h:outputText value="#{_taskTemplate.estMin}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Exp num days</f:facet>
+                <h:outputText value="#{_taskTemplate.expNumDays}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Expiry type</f:facet>
+                <h:outputText value="#{_taskTemplate.expiryType.label}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Freq days</f:facet>
+                <h:outputText value="#{_taskTemplate.freqDays}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Freq months</f:facet>
+                <h:outputText value="#{_taskTemplate.freqMonths}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Freq type</f:facet>
+                <h:outputText value="#{_taskTemplate.freqType.label}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Priority</f:facet>
+                <h:outputText value="#{_taskTemplate.priority}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Run hours thresh inc</f:facet>
+                <h:outputText value="#{_taskTemplate.runHoursThreshInc}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Task description</f:facet>
+                <h:outputText value="#{_taskTemplate.taskDescription}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Task type</f:facet>
+                <h:outputText value="#{_taskTemplate.taskType.label}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewtaskTemplate"
+                     value="View"
+                      view="/res/TaskTemplate.xhtml">
+                    <f:param name="taskTemplateTaskTemplateId"
+                           value="#{_taskTemplate.id}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

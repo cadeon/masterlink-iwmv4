@@ -1,0 +1,690 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:a4j="http://richfaces.org/a4j"
+    template="/mrap/layout/iwmtemplate.xhtml">
+
+<ui:param name="headingTitle" value="Manage Maintenance" />
+<ui:param name="currentView" value="jobs" />
+<ui:define name="body">
+<f:view>
+
+ <table border="1" rules="none" frame="box" cellpadding="7" cellspacing="0" width="100%">
+	<tr>
+		<td width="20%">&nbsp;</td>
+		<td align="center" width="60%"><h:outputText id="headingTitle" value="#{jobManager.headline}: #{maintjobedit.headline}" styleClass="Headline"/></td>
+		<td align="right" width="20%">
+			<h:outputText value="Today is #{jobManager.today}" style="font-style:italic"/> <span style="color: #FFFFFF">---</span> 
+		</td>
+	</tr>
+</table>
+
+<rich:tabPanel style="background-color:white;width:100%;height:100%" switchType = "ajax" contentClass="containerTabPanel">
+ 
+ <rich:tab id="detailsTab" label="Details" ontableave="return checkForRealChanges();">
+ 	<h:form id="det_PrintHelpForm">
+       <table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr align="right">
+ 				<td valign="middle">
+					<h:commandButton id="print"
+			                        value="Print"
+			                       action="#{jobManager.help}"/>
+					<h:commandButton id="help"
+			                        value="Help"
+			                       action="#{jobManager.help}"/>
+             	</td>
+			</tr>
+		</table>
+	</h:form>
+	<hr/><br/>
+	<h:form id="detailsForm">
+      <script type="text/javascript">//<![CDATA[
+		 function populateAssetFields(tam, eroid, model, owningorg, contact, phone, email, activitycode, suggestion){
+           tam.value=suggestion.getSelectedItems().pluck("tam");
+           eroid.value=suggestion.getSelectedItems().pluck("eroid");
+           model.value=suggestion.getSelectedItems().pluck("model");
+           owningorg.value=suggestion.getSelectedItems().pluck("owner");
+           contact.value=suggestion.getSelectedItems().pluck("ownerContact");
+           phone.value=suggestion.getSelectedItems().pluck("ownerPhone");
+           email.value=suggestion.getSelectedItems().pluck("ownerEmail");
+           activitycode.value=suggestion.getSelectedItems().pluck("ownerActivityCode");
+           return;
+         }
+		 
+		//]]></script>
+		
+	<table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+		<tr>
+	    	<td colspan="2" width="100%"><b>View or edit details as necessary. Then click Save, Cancel, or Back. Please note that ERO # or Serial number is required.</b></td>
+	  	</tr>
+	  	<tr>
+	  		<td colspan="2" height="10">&nbsp;</td>
+	  	</tr>
+		<tr>
+			<td valign="top">
+	
+				<!--  LEFT TABLE --> 
+			    <table border="0" cellpadding="2" cellspacing="0">
+				    <tr>
+				   		<td width="10" class="bglightblue">&nbsp;</td>
+				      	<td class="bglightblue">ERO # <span class="gray">.............................................</span></td>
+						<td class="bglightblue"><h:inputText id="i_eroNumber" value="#{maintjobedit.ero}"/></td>
+				    </tr>
+			     	<tr>     
+				   		 <td width="10" class="bglightblue">&nbsp;</td>
+					     <td class="bglightblue">Serial # <span class="gray">...........................................</span></td>
+					     <td class="bglightblue">
+					     	<h:inputText id="serialNum" value="#{maintjobedit.serial}"/> 
+					     	<rich:suggestionbox id="serialSuggestion" for="serialNum" 
+ 			            					suggestionAction="#{maintjobedit.autocompleteSerial}" 
+ 			            					var="ap"
+ 			            					usingSuggestObjects="true"
+ 			            					onselect="populateAssetFields(#{rich:element('tam')}, #{rich:element('eroid')}, #{rich:element('model')},#{rich:element('owningOrganization')}, #{rich:element('ownerContact')}, #{rich:element('ownerPhone')},#{rich:element('ownerEmail')}, #{rich:element('ownerActivityCode')},#{rich:component('serialSuggestion')});" >
+				          					<a4j:ajaxListener type="org.ajax4jsf.ajax.ForceRender"/>
+								          	<h:column>
+								          		<h:outputText value="#{ap.serial}"/>
+								          	</h:column>
+			            	</rich:suggestionbox>
+					     </td>
+			     	</tr>
+			        <tr>
+			        	<td colspan="3" height="10">&nbsp;</td>
+			        </tr>
+			        <tr>
+				          <td width="10">&nbsp;</td>
+				          <td >Date ERO was created <span class="gray">.........................</span></td>
+				          <td><h:outputText id="eroCreatedDate" value="#{maintjobedit.createdDate}"/></td>
+			        </tr>
+			        <tr>
+				          <td width="10">&nbsp;</td>
+				          <td>TAM <span class="gray">.................................................</span></td>
+				          <td><h:inputText id="tam" value="#{maintjobedit.tam}"/></td>
+			        </tr>
+			        <tr>
+				          <td width="10">&nbsp;</td>
+				          <td>ID <span class="gray">...................................................</span></td>
+				          <td><h:inputText id="eroid" value="#{maintjobedit.eroId}"/></td>
+			        </tr>
+			        <tr>
+				          <td width="10">&nbsp;</td>
+				          <td>Model <span class="gray">...............................................</span></td>
+				          <td><h:inputText id="model" value="#{maintjobedit.model}"/></td>
+			        </tr>
+			        <tr>
+			        	<td colspan="3" height="10">&nbsp;</td>
+			        </tr>
+			        <tr>
+				          <td width="10">&nbsp;</td>
+				          <td>Status <span class="gray">..............................................</span></td>
+				          <td>
+							<h:selectOneMenu value="#{maintjobedit.jobStatus}" >
+				 				<s:selectItems value="#{maintjobedit.jobStatuses}" var="status" label="#{status.label}"
+				 				 						noSelectionLabel="Select one..." />
+				 				<s:convertEnum />
+							</h:selectOneMenu></td>
+			        </tr>
+				    <tr>
+				          <td width="10">&nbsp;</td>
+				          <td>Echelon of maintenance <span class="gray">......................</span></td>
+				          <td>
+				          	<h:selectOneMenu value="#{maintjobedit.eom}" >
+				 				<s:selectItems value="#{maintjobedit.eoms}" var="eom" label="#{eom.label}"
+				 				 						noSelectionLabel="Select one..." />
+				 				<s:convertEnum />
+							</h:selectOneMenu></td>
+			        </tr>
+			        <tr>
+				          <td width="10">&nbsp;</td>
+				          <td>Category <span class="gray">...........................................</span></td>
+				          <td>
+				          	<h:selectOneMenu value="#{maintjobedit.category}" >
+				 				<s:selectItems value="#{maintjobedit.categories}" var="category" label="#{category.label}"
+				 				 						noSelectionLabel="Select one..." />
+				 				<s:convertEnum />
+							</h:selectOneMenu></td>
+			        </tr>
+			        <tr>
+				          <td width="10">&nbsp;</td>
+				          <td>Priority <span class="gray">.............................................</span></td>
+				          <td>
+				          	<rich:inputNumberSpinner value="#{maintjobedit.priorityLabel}"  minValue="1" maxValue="13">
+				 			
+							</rich:inputNumberSpinner></td>
+			        </tr>
+			        <tr>
+			       		<td colspan="3" height="10">&nbsp;</td>
+			        </tr>
+			        <tr>
+				          <td width="10">&nbsp;</td>
+				          <td>Total estimated time <span class="gray">..........................</span></td>
+				          <td><h:outputText value="#{maintjobedit.estTime} hrs"/></td>
+			        </tr>
+			        <tr>
+			        	<td colspan="3" height="10">&nbsp;</td>
+			        </tr>
+			        <tr>
+			          <td width="10">&nbsp;</td>
+			          <td colspan="2" rowspan="5" valign="top">
+					          <table border="0" width="100%">
+					          	<tr>
+					          		<th align="left">Qualifications</th>
+					          		<th># of technicians</th>
+					          	</tr>
+					          		<s:fragment rendered="#{maintjobedit.hasAssetResources}">
+							          	<ui:repeat value="#{maintjobedit.assetResources}" var="ar">
+							          	<tr>
+							          		<td><h:outputText value="#{ar.assetTemplate.name}"/></td>
+									        <td align="center">
+									          <rich:inputNumberSpinner value="#{ar.quantity}"></rich:inputNumberSpinner>
+											</td>
+							          	</tr>
+							          </ui:repeat>
+						         	</s:fragment>
+						         	<s:fragment rendered="#{not maintjobedit.hasAssetResources}">
+							          	<tr>
+							          		<td colspan="2"><rich:spacer height="10px"/></td>
+							          	</tr>
+							          	<tr>
+							          		<td colspan="2"><h:outputText value="Please add work items. Required qualifications will then be attached to this job"/></td>
+									      
+							          	</tr>
+						         	</s:fragment>
+					          </table>
+			           </td>
+			        </tr>
+			        <tr>
+			          <td width="10">&nbsp;</td>
+			          <td>&nbsp;</td>
+			          <td>&nbsp;</td>
+			        </tr>
+			        </table>
+			        <!--  END LEFT TABLE -->
+        
+        		</td>
+        		<td valign="top">
+        
+			        <!-- RIGHT TABLE -->
+				 	<table border="0" cellpadding="2" cellspacing="0">
+				 	<tr>
+			          <td>Owning organization <span class="gray">.................................</span></td>
+			          <td>
+			           	<h:inputText id="owningOrganization" value="#{maintjobedit.organizationName}" size="20" />
+					  </td>
+			        </tr>
+			        <tr>
+			          <td>Owner contact <span class="gray">.......................................</span></td>
+			          <td>
+						<h:inputText id="ownerContact" value="#{maintjobedit.contact.lname}" size="20" />
+			          </td>
+			        </tr>
+			        <tr>
+			          <td>Owner phone <span class="gray">..........................................</span></td>
+			          <td>
+						<h:inputText id="ownerPhone" value="#{maintjobedit.contact.phone}" size="20" />
+					  </td>
+			        </tr>
+				 	<tr>
+			          <td>Owner email <span class="gray">..........................................</span></td>
+			          <td>
+						<h:inputText id="ownerEmail" value="#{maintjobedit.contact.email}" size="20" />
+					  </td>
+			        </tr>
+				 	<tr>
+			          <td>Owner activity code <span class="gray">.................................</span></td>
+			          <td>
+						<h:inputText id="ownerActivityCode" value="#{maintjobedit.organizationActivityCode}" size="20" />
+					  </td>
+			        </tr>
+			        <tr>
+			        	<td colspan="2" height="10">&nbsp;</td>
+			        </tr>
+			        <tr>
+			          <td>Date received in shop <span class="gray">.............................</span></td>
+			          <td> 
+			          		<rich:calendar id="drisCalendar" value="#{maintjobedit.dris}" datePattern="#{maintjobedit.datePattern}">
+			  		 	    </rich:calendar>
+			          </td>
+			        </tr>
+				 	<tr>
+			          <td>Due date  <span class="gray">...............................................</span></td>
+					  <td>
+			               	<rich:calendar id="dueDateCalendar" value="#{maintjobedit.dueDate}" datePattern="#{maintjobedit.datePattern}">
+			  		 	    </rich:calendar>
+					  </td>
+			        </tr>
+			        <tr>
+			        	<td colspan="2" height="10"></td>
+			        </tr>
+				 	<tr>
+			          <td valign="top" colspan="2">Notes:<br/>
+			            <h:inputTextarea id="notes" value="#{maintjobedit.note}" maxlength="255" rows="5" cols="55"/></td>
+			        </tr>
+				 	<tr>
+			          <td>Date closed <span class="gray">............................................</span></td>
+			          <td><h:outputText id="dateClosedValue" value="#{maintjobedit.dateClosedString}"/></td>
+			        </tr>
+			        <tr>
+			          <td>Days in shop (DIS) <span class="gray">....................................</span></td>
+			          <td><h:outputText id="disValue" value="#{maintjobedit.dis}"/></td>
+			        </tr>
+			        </table>
+			        <!-- END RIGHT TABLE -->
+  				</td>
+  			</tr>
+  		</table>
+        <rich:spacer height="20px"/>
+     	<table>
+	        <tr>
+	          <td bgcolor="#FFFFFF" width="10">&nbsp;</td>
+	          <td>
+	            <table border="0" cellpadding="6" cellspacing="6" >
+	              <tr>
+	                <td width="20%" align="center" valign="middle">
+					<h:commandButton id="saveJob"
+	                          value="Save" onclick="formSubmitted()"
+	                         action="#{maintjobedit.saveJob}"/>
+	                </td>
+	                <td width="20%" align="center" valign="middle"></td>
+	                <td width="20%" align="center" valign="middle">
+					<a4j:commandButton id="cancel"
+	                          value="Cancel"
+	                         action="#{maintjobedit.cancel}"
+	                         reRender="detailsForm, ownerPhone"/>
+	                </td>
+	                <td width="20%" align="center" valign="middle"></td>
+	                <td width="20%" align="center" valign="middle">
+					<h:commandButton id="back"
+	                          value="Back to Manage Maintenance" onclick="checkForChanges()"
+	                         action="/mrap/ManageMaintenance.xhtml"/>
+	                </td>
+	              </tr>
+	            </table>
+	          </td>
+	          <td bgcolor="#FFFFFF" width="10">&nbsp;</td>
+	        </tr>
+      	</table>
+      </h:form>
+</rich:tab>
+
+ <rich:tab id="workItemsTab" label="Work items &amp; assignments" ontableave="return checkForRealChanges();">
+ 	<h:form id="wi_PrintHelpForm">
+       <table border="0" cellpadding="0" cellspacing="0" width="100%" id="fullheight">
+			<tr align="right">
+ 				<td valign="middle">
+					<h:commandButton id="print"
+			                        value="Print"
+			                       action="#{jobManager.help}"/>
+					<h:commandButton id="help"
+			                        value="Help"
+			                       action="#{jobManager.help}"/>
+             	</td>
+			</tr>
+		</table>
+	</h:form>
+	<hr/><br/>
+	<h:form id="workItemsForm">
+      <script type="text/javascript">//<![CDATA[
+		 function populateTaskRow(taskId, defectCode, estTime, suggestion){
+	       taskId.value=suggestion.getSelectedItems().pluck("taskId");
+           defectCode.value=suggestion.getSelectedItems().pluck("taskCode");
+           var estTimeInput = document.getElementById(estTime.id + "Edit").firstChild;
+           estTimeInput.value=suggestion.getSelectedItems().pluck("estTime");
+           return;
+         }
+		 
+		//]]></script>
+            
+   <table cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+  <tr>
+    <td width="100%" colspan="2">
+      
+	 <table border="0" cellpadding="10" cellspacing="0" width="100%">
+        <tr>
+          <td><b>View or edit details as necessary. Then click Save, Cancel or Back.</b></td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td valign="top" colspan="2">
+		           <table border="0" cellpadding="4" cellspacing="0">
+		              <tr>
+		                <td>ERO # &nbsp;<h:outputText id="wi_ero" value="#{maintjobedit.ero}" size="2"/></td>
+		                <td>Qualifications <span class="gray">............................</span></td>
+		                <td> 
+		                	<table border="0" cellpadding="0" cellspacing="0">
+				          	  	<s:fragment rendered="#{maintjobedit.hasAssetResources}">
+								<ui:repeat value="#{maintjobedit.assetResources}" var="ar">
+						          	<tr>
+						          		<td><h:outputText value="#{ar.assetTemplate.name}"/></td>
+						          	</tr>
+						        </ui:repeat>
+					         	</s:fragment>
+					         	<s:fragment rendered="#{not maintjobedit.hasAssetResources}">
+						          	<tr>
+						          		<td><h:outputText value="Please add work items. Required qualifications will then be attached to this job"/></td>
+						          	</tr>
+					         	</s:fragment>
+	         				</table>
+	         			</td>
+		              </tr>
+		              <tr>
+		                <td>&nbsp;</td>
+		                <td>Number of technicians needed <span class="gray">....</span></td>
+		                <td><h:outputText id="wi_num_technicians" value="#{maintjobedit.numResources}"/></td>
+		              </tr>
+		            </table>
+         	 </td>
+       	</tr>
+ 		<tr>
+ 			<td valign="top" width="60%">
+				<rich:dataTable value="#{maintjobedit.taskDataModel}" var="workItem" id="workItemTable"  rowClasses="evenRow">
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Work Item"/>
+						</f:facet>
+						<h:inputHidden value="#{workItem.taskId}" id="workItemTaskId"/>
+						<h:inputText value="#{workItem.description}" id="workItemDesc" size="50"/>
+ 			            <rich:suggestionbox id="workDescSuggestion" for="workItemDesc" 
+ 			            					suggestionAction="#{maintjobedit.autocomplete}" 
+ 			            					var="task" width="250"
+ 			            					usingSuggestObjects="true"
+ 			            					onselect="populateTaskRow(#{rich:element('workItemTaskId')}, #{rich:element('workItemCode')}, #{rich:element('workEstTime')}, #{rich:component('workDescSuggestion')});">
+				          	<a4j:ajaxListener type="org.ajax4jsf.ajax.ForceRender"/>
+				          	<h:column>
+				          		<h:outputText value="#{task.description}"/> 
+				          	</h:column>
+				          	<h:column>
+				          		<h:outputText value="(#{task.taskCode})"/>
+				          	</h:column>
+			            </rich:suggestionbox>
+				          		
+						<a4j:commandButton id="deleteWorkItem"
+		                          value="Delete"
+		                         actionListener="#{maintjobedit.deleteWorkItem}"
+		                         reRender="workItemTable"/>
+					</rich:column>				
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Defect Code"/>
+						</f:facet>
+						<h:inputText value="#{workItem.taskCode}" id="workItemCode"/>
+					</rich:column>				
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Estimated Time (hrs)"/>
+						</f:facet>
+						<rich:inputNumberSpinner value="#{workItem.estTime}" id="workEstTime" maxValue="10000" minValue="0"/>
+					</rich:column>				
+				</rich:dataTable>
+        	</td>
+        	<td align="center" valign="top">
+		       
+				<rich:dataTable value="#{maintjobedit.qualifiedTechnicians}" var="tech" id="technicianTable" rowClasses="bglightblue">
+					<rich:column width="250px">
+						<f:facet name="header">
+							<h:outputText value="Qualified Technicians"/>
+						</f:facet>
+						<h:outputText value="#{tech.rank.abbrv} #{tech.displayName}"/>
+					</rich:column>
+					<rich:column width="50px">
+						<f:facet name="header">
+							<h:outputText value="Assign?"/>
+						</f:facet>
+	          			<h:selectBooleanCheckbox value="#{tech.selected}"/>
+					</rich:column>
+				</rich:dataTable>
+					
+			</td>
+		</tr>
+        <tr>
+          <td valign="top">
+				<div id="container"> </div>
+		          	<table border="0" cellpadding="6" cellspacing="6" >
+		              <tr>
+		                <td align="center" valign="middle">
+							<a4j:commandButton id="addTaskItem"
+			                          value="Add Item"
+			                         action="#{maintjobedit.addTaskItem}"
+			                         reRender="workItemTable"/>
+		                </td>
+		                <td align="center" valign="middle">
+		                </td>
+		                <td align="center" valign="middle">
+							<h:commandButton id="saveWorkItems"
+			                          value="Save" onclick="formSubmitted()"
+			                         action="#{maintjobedit.saveWorkItemChanges}"/>
+		                </td>
+		                <td align="center" valign="middle">
+							<a4j:commandButton id="cancelWorkItemChanges"
+			                          value="Cancel"
+			                         action="#{maintjobedit.cancelWorkItemsForm}"
+			                         reRender="workItemTable"/>
+		                </td>
+		                <td align="center" valign="middle">
+							<h:commandButton id="backFromWorkItems"
+			                          value="Back to Manage Maintenance" onclick="checkForChanges()"
+			                         action="#{maintjobedit.back}"/>
+		                </td>
+		              </tr>
+		            </table>
+          	</td>
+          	<td valign="top" width="10">&nbsp;</td>
+        </tr>
+      
+      </table>
+    </td>
+  </tr>
+</table>
+</h:form>
+</rich:tab>
+   
+ <rich:tab id="partsTab" label="Parts" ontableave="return checkForRealChanges();">	
+ <rich:panel>
+ <h:form id="parts_PrintHelpForm">
+       <table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr align="right">
+ 				<td valign="middle">
+					<h:commandButton id="print"
+			                        value="Print"
+			                       action="#{jobManager.help}"/>
+					<h:commandButton id="help"
+			                        value="Help"
+			                       action="#{jobManager.help}"/>
+             	</td>
+			</tr>
+		</table>
+	</h:form>
+	<hr/><br/>
+   <h:form id="partsForm">     	
+       <table border="0" cellpadding="4" cellspacing="0">
+          <tr> 
+            <td align="right" valign="middle">ERO #</td>
+            <td align="left" valign="middle"><h:outputText value="#{maintjobedit.ero}"/></td>
+            <td>&nbsp;</td>
+            <td align="right" valign="middle">Qualifications..............</td>
+            <td align="left" valign="middle">
+       			<table border="0" cellpadding="0" cellspacing="0">
+          	  	<s:fragment rendered="#{maintjobedit.hasAssetResources}">
+				<ui:repeat value="#{maintjobedit.assetResources}" var="ar">
+		          	<tr>
+		          		<td><h:outputText value="#{ar.assetTemplate.name}"/></td>
+		          	</tr>
+		        </ui:repeat>
+	         	</s:fragment>
+	         	<s:fragment rendered="#{not maintjobedit.hasAssetResources}">
+		          	<tr>
+		          		<td><h:outputText value="Please add work items. Required qualifications will then be attached to this job"/></td>
+		          	</tr>
+	         	</s:fragment>
+	         	</table>
+	         </td>
+          </tr>
+        </table>
+        <br/><br/>
+	 	<table border="1" cellpadding="4" cellspacing="0" width="80%">
+	        <tr>
+	          <th valign="top" class="bglightblue">Work Item (Defect code)</th>
+	          <th valign="top" class="bglightblue">Parts needed</th>
+	          <th valign="top" class="bglightblue">Quantity</th>
+	          <th valign="top" class="bglightblue">Stock number</th>
+	          <th valign="top" class="bglightblue">Status</th>
+	          <th valign="top" class="bglightblue">Anticipated Receive date</th>
+	          <th valign="top" class="bglightblue">Current location</th>
+	        </tr>
+	        <ui:repeat id="itemList" value="#{maintjobedit.taskDataModel}"	var="item">
+	        
+	        <ui:repeat id="partList" value="#{item.taskInstance.task.nonAssetResourceList}" var="part">
+	        <tr>
+	          <td valign="top" ><h:outputText value="#{item.description}"/> 
+	          	(<h:outputText value="#{item.taskCode}"/>)</td>
+	          <td valign="top" ><h:outputText value="#{part.desc}"/></td>
+	          <td valign="top" ><h:outputText value="#{part.quantity}"/></td>
+	          <td valign="top" ><h:outputText value="#{part.tag}"/></td>
+	          <td valign="top" ><h:outputText value="#{part.status}"/></td>
+	          <td valign="top" ><h:outputText value="#{part.recDateStr}"/></td> 
+	          <td valign="top" ><h:outputText value="#{part.currentLoc}"/></td>
+	        </tr>                                              
+	        </ui:repeat>
+	        </ui:repeat>
+	      </table>
+	      <rich:spacer height="10px"/>
+		<table cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+		    <tr>
+	        	<td>
+					<h:commandButton id="backFromParts"
+	                       value="Back to Manage Maintenance"
+	                      action="/mrap/ManageMaintenance.xhtml"/>
+	        	</td>
+		  	</tr>
+		</table>
+   </h:form>
+   </rich:panel>
+   </rich:tab>
+   
+ <rich:tab id="recordWorkTab" label="Record work" ontableave="return checkForRealChanges();">
+	<h:form id="rw_PrintHelpForm">
+       <table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr align="right">
+ 				<td valign="middle">
+					<h:commandButton id="print"
+			                        value="Print"
+			                       action="#{jobManager.help}"/>
+					<h:commandButton id="help"
+			                        value="Help"
+			                       action="#{jobManager.help}"/>
+             	</td>
+			</tr>
+		</table>
+	</h:form>
+	<hr/><br/>
+ <h:form id="recordWorkForm">
+   <table cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+  <tr>
+    <td width="100%" colspan="2">
+      
+	 <table border="0" cellpadding="10" cellspacing="0" width="100%">
+        <tr>
+          <td><b>View or edit details as necessary. Then click Record, Cancel or Back.</b></td>
+        </tr>
+        <tr>
+            <td valign="top">
+		           <table border="0" cellpadding="4" cellspacing="0">
+		              <tr>
+		                <td>ERO # &nbsp;<h:outputText id="rw_ero" value="#{maintjobedit.ero}" size="2"/></td>
+		                <td>Qualifications <span class="gray">............................</span></td>
+		                <td>
+		                	<table border="0" cellpadding="0" cellspacing="0">
+				          	  	<s:fragment rendered="#{maintjobedit.hasAssetResources}">
+								<ui:repeat value="#{maintjobedit.assetResources}" var="ar">
+						          	<tr>
+						          		<td><h:outputText value="#{ar.assetTemplate.name}"/></td>
+						          	</tr>
+						        </ui:repeat>
+					         	</s:fragment>
+					         	<s:fragment rendered="#{not maintjobedit.hasAssetResources}">
+						          	<tr>
+						          		<td><h:outputText value="Please add work items. Required qualifications will then be attached to this job"/></td>
+						          	</tr>
+					         	</s:fragment>
+				         	</table>
+						</td>
+		              </tr>
+		            </table>
+         	 </td>
+       	</tr>
+ 		<tr>
+ 			<td valign="top" width="100%">
+				<rich:dataTable value="#{maintjobedit.taskDataModel}" var="workItem" id="recordWorkTable"  rowClasses="evenRow">
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Work Item" id="rw_workItems"/>
+						</f:facet>
+						<h:outputText value="#{workItem.description} (#{workItem.taskCode})" id="rw_workItemDesc" size="50"/>
+					</rich:column>				
+					<rich:column align="center">
+						<f:facet name="header">
+							<h:outputText value="Estimated hours"/>
+						</f:facet>
+						<h:outputText value="#{workItem.estTime}" id="rw_workEstTime"/>
+					</rich:column>
+					<rich:column width="250px">
+						<f:facet name="header">
+							<h:outputText value="Technician(s)"/>
+						</f:facet>
+						<h:outputText value="#{maintjobedit.assignedTechnicians}" id="rw_assignedTechs" escape="false"/>
+					</rich:column>				
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Actual hours"/>
+						</f:facet>
+						<rich:inputNumberSpinner value="#{workItem.actualTime}" id="rw_actualTime" inputSize="4" maxValue="1000" minValue="0"/>
+					</rich:column>		
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Technician comments"/>
+						</f:facet>
+						<h:inputText value="#{workItem.comments}" id="rw_comments" size="50"/>
+					</rich:column>				
+				</rich:dataTable>
+        	</td>
+		</tr>
+        <tr>
+          <td valign="top">
+		          	<table border="0" cellpadding="6" cellspacing="6" >
+		              <tr>
+		                <td align="center" valign="middle">
+							<h:commandButton id="saveRecordWork"
+			                          value="Record work" onclick="formSubmitted()"
+			                         action="#{maintjobedit.saveRecordWork}"/>
+		                </td>
+		                <td align="center" valign="middle">
+							<a4j:commandButton id="cancelRecordWork"
+			                          value="Cancel changes"
+			                         action="#{maintjobedit.cancel}" type="button"
+			                         reRender="recordWorkTable"/>
+		                </td>
+		                <td align="center" valign="middle">
+							<a4j:commandButton id="backFromRecordWork"
+			                          value="Back to Manage Maintenance" type="button"
+			                         action="#{maintjobedit.back}"/>
+		                </td>
+		              </tr>
+		            </table>
+          	</td>
+        </tr>
+      
+      </table>
+    </td>
+  </tr>
+</table>
+</h:form>
+ </rich:tab>
+</rich:tabPanel>
+</f:view>
+</ui:define>
+</ui:composition>
+

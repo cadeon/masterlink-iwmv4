@@ -1,0 +1,140 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="organization" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{organizationHome.managed ? 'Edit' : 'Add'} Organization</f:facet>
+
+
+            <s:decorate id="nameField" template="/layout/edit.xhtml">
+                <ui:define name="label">Name</ui:define>
+                <h:inputText id="name"
+                       required="true"
+                           size="25"
+                      maxlength="50"
+                          value="#{organizationHome.instance.name}">
+                    <a:support event="onblur" reRender="addressField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+            
+
+
+
+            <s:decorate id="orgTypeField" template="/layout/edit.xhtml">
+                <ui:define name="label">Org type</ui:define>
+                
+                <h:selectOneMenu value="#{organizationHome.instance.orgType}" required="true">
+ 				 <s:selectItems value="#{orgTypes}" var="orgType" label="#{orgType.label}"
+ 				 						noSelectionLabel="Select one..." />
+ 					<s:convertEnum />
+				</h:selectOneMenu>
+                
+            </s:decorate>
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{organizationHome.persist}"
+                       disabled="#{!organizationHome.wired}"
+                       rendered="#{!organizationHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{organizationHome.update}"
+                       rendered="#{organizationHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{organizationHome.remove}"
+                      immediate="true"
+                       rendered="#{organizationHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/contact/Organization.xhtml"
+                rendered="#{organizationHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/contact/#{empty organizationFrom ? 'OrganizationList' : organizationFrom}.xhtml"
+                rendered="#{!organizationHome.managed}"/>
+
+        </div>
+    </h:form>
+
+<rich:tabPanel switchType="ajax">
+
+    <rich:tab label="Contacts">
+        <h:form styleClass="association" id="contactsChildren">
+
+            <h:outputText value="There are no contacts associated with this organization."
+                       rendered="#{empty organizationHome.contacts}"/>
+
+            <rich:dataTable value="#{organizationHome.contacts}"
+                           var="_contact"
+                      rendered="#{not empty organizationHome.contacts}"
+                    rowClasses="rvgRowOne,rvgRowTwo"
+                            id="contactsTable">
+       
+                <rich:column sortBy="#{_contact.fname}">
+                    <f:facet name="header">Fname</f:facet>
+                    <h:outputText value="#{_contact.fname}"/>
+                </rich:column>
+                <rich:column sortBy="#{_contact.jobTitle}">
+                    <f:facet name="header">Job title</f:facet>
+                    <h:outputText value="#{_contact.jobTitle}"/>
+                </rich:column>
+                <rich:column sortBy="#{_contact.lname}">
+                    <f:facet name="header">Lname</f:facet>
+                    <h:outputText value="#{_contact.lname}"/>
+                </rich:column>
+                <rich:column sortBy="#{_contact.middle}">
+                    <f:facet name="header">Middle</f:facet>
+                    <h:outputText value="#{_contact.middle}"/>
+                </rich:column>
+                <rich:column sortBy="#{_contact.suffix}">
+                    <f:facet name="header">Suffix</f:facet>
+                    <h:outputText value="#{_contact.suffix}"/>
+                </rich:column>
+            </rich:dataTable>
+
+        </h:form>
+
+        <f:subview rendered="#{organizationHome.managed}" id="contacts">
+        <div class="actionButtons">
+            <s:button id="addcontact"
+                   value="Add contact"
+                    view="/contact/ContactEdit.xhtml"
+             propagation="none">
+                 <f:param name="organizationOrgId"
+                         value="#{organizationHome.instance.orgId}"/>
+                 <f:param name="contactFrom" value="Organization"/>
+            </s:button>
+        </div>
+        </f:subview>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

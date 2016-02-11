@@ -1,0 +1,423 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="taskInstance" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{taskInstanceHome.managed ? 'Edit' : 'Add'} Task instance</f:facet>
+
+
+
+            <s:decorate id="estTimeField" template="/layout/edit.xhtml">
+                <ui:define name="label">Est time</ui:define>
+                <h:inputText id="estTime"
+                       required="true"
+                          value="#{taskInstanceHome.instance.estTime}">
+                    <a:support event="onblur" reRender="estTimeField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="isStandAloneTaskField" template="/layout/edit.xhtml">
+                <ui:define name="label">Is stand alone task</ui:define>
+                <h:selectBooleanCheckbox id="isStandAloneTask"
+                                   required="true"
+                                      value="#{taskInstanceHome.instance.isStandAloneTask}"/>
+            </s:decorate>
+
+
+
+
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{taskInstanceHome.persist}"
+                       disabled="#{!taskInstanceHome.wired}"
+                       rendered="#{!taskInstanceHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{taskInstanceHome.update}"
+                       rendered="#{taskInstanceHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{taskInstanceHome.remove}"
+                      immediate="true"
+                       rendered="#{taskInstanceHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/job/TaskInstance.xhtml"
+                rendered="#{taskInstanceHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/job/#{empty taskInstanceFrom ? 'TaskInstanceList' : taskInstanceFrom}.xhtml"
+                rendered="#{!taskInstanceHome.managed}"/>
+
+        </div>
+    </h:form>
+
+<rich:tabPanel switchType="ajax">
+
+    <rich:tab label="Job tasks">
+        <h:form styleClass="association" id="jobTasksChildren">
+
+            <h:outputText value="There are no jobTasks associated with this taskInstance."
+                       rendered="#{empty taskInstanceHome.jobTasks}"/>
+
+            <rich:dataTable value="#{taskInstanceHome.jobTasks}"
+                           var="_jobTask"
+                      rendered="#{not empty taskInstanceHome.jobTasks}"
+                    rowClasses="rvgRowOne,rvgRowTwo"
+                            id="jobTasksTable">
+                <rich:column sortBy="#{_jobTask.id}">
+                    <f:facet name="header">Job task id</f:facet>
+                    <h:outputText value="#{_jobTask.id}"/>
+                </rich:column>
+                <rich:column sortBy="#{_jobTask.actualTime}">
+                    <f:facet name="header">Actual time</f:facet>
+                    <h:outputText value="#{_jobTask.actualTime}"/>
+                </rich:column>
+                <rich:column sortBy="#{_jobTask.description}">
+                    <f:facet name="header">Description</f:facet>
+                    <h:outputText value="#{_jobTask.description}"/>
+                </rich:column>
+                <rich:column sortBy="#{_jobTask.estTime}">
+                    <f:facet name="header">Est time</f:facet>
+                    <h:outputText value="#{_jobTask.estTime}"/>
+                </rich:column>
+            </rich:dataTable>
+
+        </h:form>
+
+        <f:subview rendered="#{taskInstanceHome.managed}" id="jobTasks">
+        <div class="actionButtons">
+            <s:button id="addjobTask"
+                   value="Add jobTask"
+                    view="/job/JobTaskEdit.xhtml"
+             propagation="none">
+                 <f:param name="taskInstanceTaskInstanceId"
+                         value="#{taskInstanceHome.instance.id}"/>
+                 <f:param name="jobTaskFrom" value="TaskInstance"/>
+            </s:button>
+        </div>
+        </f:subview>
+    </rich:tab>
+
+    <rich:tab label="Task">
+    <div class="association" id="taskParent">
+
+        <h:outputText value="There is no task associated with this taskInstance."
+                   rendered="#{taskInstanceHome.instance.task == null}"/>
+
+        <rich:dataTable var="_task"
+                   value="#{taskInstanceHome.instance.task}"
+                rendered="#{taskInstanceHome.instance.task != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="taskTable">
+            <h:column>
+                <f:facet name="header">Task id</f:facet>
+                <h:outputText value="#{_task.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Archive date</f:facet>
+                <h:outputText value="#{_task.archiveDate}">
+                    <s:convertDateTime type="both" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Description</f:facet>
+                <h:outputText value="#{_task.description}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Est time</f:facet>
+                <h:outputText value="#{_task.estTime}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Expiry days</f:facet>
+                <h:outputText value="#{_task.expiryDays}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Expiry type</f:facet>
+                <h:outputText value="#{_task.expiryType.label}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Freq days</f:facet>
+                <h:outputText value="#{_task.freqDays}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Freq months</f:facet>
+                <h:outputText value="#{_task.freqMonths}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Freq type</f:facet>
+                <h:outputText value="#{_task.freqType.label}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Is active</f:facet>
+                <h:outputText value="#{_task.isActive}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Is stand alone</f:facet>
+                <h:outputText value="#{_task.isStandAlone}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Last planned date</f:facet>
+                <h:outputText value="#{_task.lastPlannedDate}">
+                    <s:convertDateTime type="both" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Last serviced date</f:facet>
+                <h:outputText value="#{_task.lastServicedDate}">
+                    <s:convertDateTime type="both" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Priority</f:facet>
+                <h:outputText value="#{_task.priority}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Run hours thresh</f:facet>
+                <h:outputText value="#{_task.runHoursThresh}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Run hours thresh inc</f:facet>
+                <h:outputText value="#{_task.runHoursThreshInc}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Start date</f:facet>
+                <h:outputText value="#{_task.startDate}">
+                    <s:convertDateTime type="both" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Task template task template id</f:facet>
+                <h:outputText value="#{_task.taskTemplate.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Task type</f:facet>
+                <h:outputText value="#{_task.taskType.label}"/>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{taskInstanceHome.instance.task != null ? 'changeParent' : 'selectParent'}" value="#{taskInstanceHome.instance.task != null ? 'Change' : 'Select'} task"
+                       view="/job/TaskList.xhtml">
+                <f:param name="from" value="TaskInstanceEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab label="Task template">
+    <div class="association" id="taskTemplateParent">
+
+        <h:outputText value="There is no taskTemplate associated with this taskInstance."
+                   rendered="#{taskInstanceHome.instance.taskTemplate == null}"/>
+
+        <rich:dataTable var="_taskTemplate"
+                   value="#{taskInstanceHome.instance.taskTemplate}"
+                rendered="#{taskInstanceHome.instance.taskTemplate != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="taskTemplateTable">
+            <h:column>
+                <f:facet name="header">Task template id</f:facet>
+                <h:outputText value="#{_taskTemplate.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Asset template asset template id</f:facet>
+                <h:outputText value="#{_taskTemplate.assetTemplate.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Est hours</f:facet>
+                <h:outputText value="#{_taskTemplate.estHours}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Est min</f:facet>
+                <h:outputText value="#{_taskTemplate.estMin}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Exp num days</f:facet>
+                <h:outputText value="#{_taskTemplate.expNumDays}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Expiry type</f:facet>
+                <h:outputText value="#{_taskTemplate.expiryType.label}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Freq days</f:facet>
+                <h:outputText value="#{_taskTemplate.freqDays}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Freq months</f:facet>
+                <h:outputText value="#{_taskTemplate.freqMonths}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Freq type</f:facet>
+                <h:outputText value="#{_taskTemplate.freqType.label}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Priority</f:facet>
+                <h:outputText value="#{_taskTemplate.priority}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Run hours thresh inc</f:facet>
+                <h:outputText value="#{_taskTemplate.runHoursThreshInc}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Task description</f:facet>
+                <h:outputText value="#{_taskTemplate.taskDescription}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Task type</f:facet>
+                <h:outputText value="#{_taskTemplate.taskType.label}"/>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{taskInstanceHome.instance.taskTemplate != null ? 'changeParent' : 'selectParent'}" value="#{taskInstanceHome.instance.taskTemplate != null ? 'Change' : 'Select'} taskTemplate"
+                       view="/job/TaskTemplateList.xhtml">
+                <f:param name="from" value="TaskInstanceEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab label="Job">
+    <div class="association" id="jobParent">
+
+        <h:outputText value="There is no job associated with this taskInstance."
+                   rendered="#{taskInstanceHome.instance.job == null}"/>
+
+        <rich:dataTable var="_job"
+                   value="#{taskInstanceHome.instance.job}"
+                rendered="#{taskInstanceHome.instance.job != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="jobTable">
+            <h:column>
+                <f:facet name="header">Job id</f:facet>
+                <h:outputText value="#{_job.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Completed date</f:facet>
+                <h:outputText value="#{_job.completedDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Created by</f:facet>
+                <h:outputText value="#{_job.createdBy}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Created date</f:facet>
+                <h:outputText value="#{_job.createdDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Description</f:facet>
+                <h:outputText value="#{_job.description}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Dispatched date</f:facet>
+                <h:outputText value="#{_job.dispatchedDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Earliest start</f:facet>
+                <h:outputText value="#{_job.earliestStart}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Est time</f:facet>
+                <h:outputText value="#{_job.estTime}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Job type</f:facet>
+                <h:outputText value="#{_job.jobType.label}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Latest start</f:facet>
+                <h:outputText value="#{_job.latestStart}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Note</f:facet>
+                <h:outputText value="#{_job.note}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Organization org id</f:facet>
+                <h:outputText value="#{_job.organization.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Priority</f:facet>
+                <h:outputText value="#{_job.priority.label}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Scheduled date</f:facet>
+                <h:outputText value="#{_job.scheduledDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Started date</f:facet>
+                <h:outputText value="#{_job.startedDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Status</f:facet>
+                <h:outputText value="#{_job.status.label}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Sticky</f:facet>
+                <h:outputText value="#{_job.sticky}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Task instance task instance id</f:facet>
+                <h:outputText value="#{_job.taskInstance.id}"/>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{taskInstanceHome.instance.job != null ? 'changeParent' : 'selectParent'}" value="#{taskInstanceHome.instance.job != null ? 'Change' : 'Select'} job"
+                       view="/job/JobList.xhtml">
+                <f:param name="from" value="TaskInstanceEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

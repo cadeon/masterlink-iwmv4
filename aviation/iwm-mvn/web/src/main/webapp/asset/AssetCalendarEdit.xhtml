@@ -1,0 +1,194 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="assetCalendar" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{assetCalendarHome.managed ? 'Edit' : 'Add'} Asset calendar</f:facet>
+
+
+
+
+            <s:decorate id="dayField" template="/layout/edit.xhtml">
+                <ui:define name="label">Day</ui:define>
+                <h:inputText id="day"
+                          value="#{assetCalendarHome.instance.day}">
+                    <a:support event="onblur" reRender="dayField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="monthField" template="/layout/edit.xhtml">
+                <ui:define name="label">Month</ui:define>
+                <h:inputText id="month"
+                          value="#{assetCalendarHome.instance.month}">
+                    <a:support event="onblur" reRender="monthField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="yearField" template="/layout/edit.xhtml">
+                <ui:define name="label">Year</ui:define>
+                <h:inputText id="year"
+                          value="#{assetCalendarHome.instance.year}">
+                    <a:support event="onblur" reRender="yearField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{assetCalendarHome.persist}"
+                       disabled="#{!assetCalendarHome.wired}"
+                       rendered="#{!assetCalendarHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{assetCalendarHome.update}"
+                       rendered="#{assetCalendarHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{assetCalendarHome.remove}"
+                      immediate="true"
+                       rendered="#{assetCalendarHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/asset/AssetCalendar.xhtml"
+                rendered="#{assetCalendarHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/asset/#{empty assetCalendarFrom ? 'AssetCalendarList' : assetCalendarFrom}.xhtml"
+                rendered="#{!assetCalendarHome.managed}"/>
+
+        </div>
+    </h:form>
+
+<rich:tabPanel switchType="ajax">
+
+    <rich:tab label="Asset">
+    <div class="association" id="assetParent">
+
+        <h:outputText value="There is no asset associated with this assetCalendar."
+                   rendered="#{assetCalendarHome.instance.asset == null}"/>
+
+        <rich:dataTable var="_asset"
+                   value="#{assetCalendarHome.instance.asset}"
+                rendered="#{assetCalendarHome.instance.asset != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="assetTable">
+            <h:column>
+                <f:facet name="header">Asset id</f:facet>
+                <h:outputText value="#{_asset.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Archived date</f:facet>
+                <h:outputText value="#{_asset.archivedDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Asset kind</f:facet>
+                <h:outputText value="#{_asset.assetKind.label}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Asset template asset template id</f:facet>
+                <h:outputText value="#{_asset.assetTemplate.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Asset type asset type id</f:facet>
+                <h:outputText value="#{_asset.assetType.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Created date</f:facet>
+                <h:outputText value="#{_asset.createdDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Has custom data</f:facet>
+                <h:outputText value="#{_asset.hasCustomData}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Has custom task</f:facet>
+                <h:outputText value="#{_asset.hasCustomTask}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Is active</f:facet>
+                <h:outputText value="#{_asset.isActive}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Is custom</f:facet>
+                <h:outputText value="#{_asset.isCustom}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Is parent</f:facet>
+                <h:outputText value="#{_asset.isParent}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Is sticky resource</f:facet>
+                <h:outputText value="#{_asset.isStickyResource}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Organization</f:facet>
+                <h:outputText value="#{_asset.organization}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Parent asset id</f:facet>
+                <h:outputText value="#{_asset.parent.assetId}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Run hours</f:facet>
+                <h:outputText value="#{_asset.runHours}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Start date</f:facet>
+                <h:outputText value="#{_asset.startDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Sticky to task task id</f:facet>
+                <h:outputText value="#{_asset.stickyToTask.taskId}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Tag</f:facet>
+                <h:outputText value="#{_asset.tag}"/>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{assetCalendarHome.instance.asset != null ? 'changeParent' : 'selectParent'}" value="#{assetCalendarHome.instance.asset != null ? 'Change' : 'Select'} asset"
+                       view="/asset/AssetList.xhtml">
+                <f:param name="from" value="AssetCalendarEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

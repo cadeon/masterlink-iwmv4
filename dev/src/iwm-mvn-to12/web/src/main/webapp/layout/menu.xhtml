@@ -1,0 +1,170 @@
+<rich:toolBar xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<rich:toolBarGroup>
+		<s:link id="menuHomeId" view="/home.xhtml" value="Dashboard"
+			propagation="none" />
+	</rich:toolBarGroup>
+
+	<!--  define -->
+	<rich:dropDownMenu showDelay="250" hideDelay="0" submitMode="none">
+		<f:facet name="label">Templates</f:facet>
+
+		<rich:menuItem>
+			<s:link view="/define/AssetTemplateList.xhtml"
+				value="AssetTemplate List" id="AssetTemplateId"
+				includePageParams="false" propagation="none" />
+		</rich:menuItem>
+		<!--rich:menuItem>
+    	<s:link view="/define/ActionTemplateList.xhtml"
+           	value="ActionTemplate List"
+           	id="ActionTemplateId"
+			includePageParams="false"
+     		propagation="none"/>
+     </rich:menuItem>
+	<rich:menuItem>
+    	<s:link view="/define/AssetAttributeTemplateList.xhtml"
+           	value="AssetAttributeTemplate List"
+           	id="AssetAttributeTemplateId"
+			includePageParams="false"
+     		propagation="none"/>
+     </rich:menuItem-->
+		<rich:menuItem>
+			<s:link view="/define/AssetTypeList.xhtml" value="AssetType List"
+				id="AssetTypeId" includePageParams="false" propagation="none" />
+		</rich:menuItem>
+		<rich:menuItem>
+			<s:link view="/define/TaskTemplateList.xhtml"
+				value="TaskTemplate List" id="TaskTemplateId"
+				includePageParams="false" propagation="none" />
+		</rich:menuItem>
+
+	</rich:dropDownMenu>
+
+	<!-- Assets -->
+
+	<rich:dropDownMenu showDelay="250" hideDelay="0" submitMode="none">
+		<f:facet name="label">Assets</f:facet>
+
+		<rich:menuItem>
+			<s:link view="/asset/AssetTimeShareList.xhtml"
+				value="AssetTimeShare List" id="AssetTimeShareId"
+				includePageParams="false" propagation="none" />
+		</rich:menuItem>
+
+		<rich:menuItem>
+			<s:link view="/asset/AssetCalendarList.xhtml"
+				value="AssetCalendar List" id="AssetCalendarId"
+				includePageParams="false" propagation="none" />
+		</rich:menuItem>
+
+		<rich:menuItem>
+			<s:link view="/asset/AssetAssignementList.xhtml"
+				value="AssetAssignement List" id="AssetAssignementId"
+				includePageParams="false" propagation="none" />
+		</rich:menuItem>
+
+		<rich:menuItem>
+			<s:link view="/asset/AssetList.xhtml" value="Asset List" id="AssetId"
+				includePageParams="false" propagation="none" />
+		</rich:menuItem>
+
+	</rich:dropDownMenu>
+
+
+
+	<!-- Resource     
+	<rich:dropDownMenu showDelay="250" hideDelay="0" submitMode="none">
+        <f:facet name="label">Resources</f:facet>
+	
+	<rich:menuItem>
+    	<s:link view="/res/AssetResourceList.xhtml"
+           	value="AssetResource List"
+           	id="AssetResourceId"
+			includePageParams="false"
+     		propagation="none"/>
+     </rich:menuItem>
+	<rich:menuItem>
+    	<s:link view="/res/NonAssetResourceList.xhtml"
+           	value="NonAssetResource List"
+           	id="NonAssetResourceId"
+			includePageParams="false"
+     		propagation="none"/>
+     </rich:menuItem>
+	
+    </rich:dropDownMenu>
+    -->
+
+	<!-- Jobs -->
+	<rich:dropDownMenu showDelay="250" hideDelay="0" submitMode="none">
+		<f:facet name="label">JobTasks</f:facet>
+
+		<rich:menuItem>
+			<s:link view="/job/JobList.xhtml" value="Job List" id="JobId"
+				includePageParams="false" propagation="none" />
+		</rich:menuItem>
+
+		<rich:menuItem>
+			<s:link view="/job/TenantRequestList.xhtml"
+				value="Tenant Request List" id="TenantRequestId"
+				includePageParams="false" propagation="none" />
+		</rich:menuItem>
+
+		<rich:menuItem>
+			<s:link view="/job/JobTaskList.xhtml" value="Job Task List"
+				id="JobTaskId" includePageParams="false" propagation="none" />
+		</rich:menuItem>
+
+	</rich:dropDownMenu>
+
+	<!--  contact -->
+	<rich:dropDownMenu showDelay="250" hideDelay="0" submitMode="none">
+		<f:facet name="label">Contact</f:facet>
+
+		<rich:menuItem>
+			<s:link view="/contact/OrganizationList.xhtml"
+				value="Organization List" id="OrganizationId"
+				includePageParams="false" propagation="none" />
+		</rich:menuItem>
+		<rich:menuItem>
+			<s:link view="/contact/ContactList.xhtml" value="Contact List"
+				id="ContactId" includePageParams="false" propagation="none" />
+		</rich:menuItem>
+
+	</rich:dropDownMenu>
+	
+	<!--  Manage Maintenance test pages -->
+	<s:link view="/mrap/ManageMaintenance.xhtml" value="Manage Maintenance" id="mngMaint"
+		includePageParams="false" propagation="none" />
+
+	<!-- @newMenuItem@ -->
+	<rich:toolBarGroup location="right">
+		<s:link id="adminHomeId" rendered="#{s:hasRole('admin')}"
+			view="/security/home.xhtml" value="Administration" propagation="none" />
+
+		<rich:dropDownMenu showDelay="250" hideDelay="0" submitMode="none">
+			<f:facet name="label" rendered="#{identity.loggedIn}">#{credentials.username}</f:facet>
+			<rich:menuItem>
+				<s:link view="/security/UserSelfEdit.xhtml" value="Edit User Info"
+					id="userSelfEditId" includePageParams="false" propagation="none" />
+			</rich:menuItem>
+
+			<rich:menuItem>
+				<s:link view="/security/ChangePassword.xhtml"
+					value="Change Password" id="changePasswordId"
+					includePageParams="false" propagation="none" />
+			</rich:menuItem>
+		</rich:dropDownMenu>
+
+		<s:link id="menuLoginId" view="/login.xhtml" value="Login"
+			rendered="#{not identity.loggedIn}" propagation="none" />
+		<s:link id="menuLogoutId" view="/home.xhtml"
+			action="#{authenticator.logout}" value="Logout"
+			rendered="#{identity.loggedIn}" propagation="none" />
+	</rich:toolBarGroup>
+</rich:toolBar>
+

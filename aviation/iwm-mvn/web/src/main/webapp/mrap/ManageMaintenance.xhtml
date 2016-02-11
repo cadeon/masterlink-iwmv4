@@ -1,0 +1,207 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:a4j="http://richfaces.org/a4j"
+    template="/mrap/layout/iwmtemplate.xhtml">
+
+<ui:define name="body">
+    
+<f:view>
+      <table border="0" cellpadding="2" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+        <tr>
+        	<td width="100%">
+	          	<table border="1" rules="none" frame="box" cellpadding="2" cellspacing="0" width="100%">
+					<tr>
+						<td width="33%">&nbsp;</td>
+						<td align="center" width="33%"><h:outputText value="Manage maintenance" /></td>
+						<td align="right" width="33%">
+							<h:outputText value="Today is " style="font-style:italic"/> 
+							<h:outputText value="#{jobManager.today}" style="font-style:italic"/>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+        <tr>
+          <td width="100%">
+          	<h:form id="addRescheduleForm">
+	          <table border="1" rules="none" frame="box" cellpadding="0" cellspacing="0" width="100%">
+	  			<tr>
+					<td width="8%" align="center">
+						<h:commandButton id="addJob"
+                          value="Add Job"
+                         action="#{jobManager.addJob}"/>
+	            	</td>
+					<td width="8%" align="center">
+						<h:commandButton id="reschedule"
+                          value="Reschedule"
+                         action="#{jobManager.reschedule}"/>
+	            	</td>
+					<td width="8%">&nbsp;</td>
+					<td width="16%" align="center"><b>View maintenance by: &nbsp;&nbsp;</b></td>
+	    			<td width="8%" align="center">
+						<s:link action="#{jobManager.setScopeDay}" id="setScopeDay" styleClass="#{(jobManager.isDayScope==true)?'tablinkselected':'tablink'}">Day</s:link>
+	            	</td>
+	    			<td width="8%" align="center">
+						<s:link action="#{jobManager.setScopeWeek}" id="setScopeWeek" styleClass="#{(jobManager.isWeekScope==true)?'tablinkselected':'tablink'}">Week</s:link>
+	            	</td>
+	    			<td width="8%" align="center">
+						<s:link action="#{jobManager.setScopeMonth}" id="setScopeMonth" styleClass="#{(jobManager.isMonthScope==true)?'tablinkselected':'tablink'}">Month</s:link>
+	            	</td>
+	    			<td width="9%" align="center">
+						<s:link action="#{jobManager.setScopeYear}" id="setScopeYear" styleClass="#{(jobManager.isYearScope==true)?'tablinkselected':'tablink'}">Year</s:link>
+		            </td>
+		    		<td width="9%" align="center">&nbsp;</td>
+		   		 	<td width="9%">&nbsp;
+					</td>
+	    			<td width="9%">
+						<h:commandButton id="help"
+		                          value="Help"
+		                         action="#{jobManager.help}"/>
+	                </td>
+	  			 </tr>
+				</table>
+				</h:form>
+			</td>
+       	</tr>
+       	<tr> 
+        	<td width="100%">
+        	<h:form id="calendarForm">
+        		<table width="100%" border="1" rules="none" frame="box" cellpadding="4" cellspacing="0">
+	                <tr>
+		                <td colspan="2"> 		 		
+		                	<p align="left">Click on any row to view or edit a job. Click on column headings to sort jobs by that heading. </p>
+						</td>
+					</tr>
+	        		<tr>
+		        		<td align="right">
+		                	<span class="Headline">
+		                	Manage maintenance for 
+		                	<h:outputText id="displayScope" value="#{jobManager.displayScope}"/></span>
+		                </td>
+		                <td align="left">
+		                	<rich:calendar id="calendar" value="#{jobManager.selectedDate}" datePattern="#{jobManager.datePattern}">
+		                	 	<a4j:support event="onchanged" action="#{jobManager.update}" ajaxSingle="true"/>
+		   		 			</rich:calendar>
+		                </td>
+	                </tr>
+					<tr>
+						<td colspan="2">
+							<s:link action="#{jobManager.sortByIP}">
+								<h:outputText value="#{jobManager.numInProgress} jobs in progress"/>
+							</s:link>
+							&nbsp;&nbsp; <span style="color: #FFFFFF">---</span> &nbsp;&nbsp; 
+							<s:link action="#{jobManager.sortByPastDue}">
+								<h:outputText value="#{jobManager.numPastDue} jobs past due date"/> 
+							</s:link>
+							&nbsp;&nbsp; <span style="color: #FFFFFF">---</span> &nbsp;&nbsp; 
+							<s:link action="#{jobManager.sortByMissingData}">
+								<h:outputText value="#{jobManager.numMissingData} jobs missing data"/> 
+							</s:link>
+						</td>
+					</tr>
+				</table>
+			    </h:form>
+			</td>
+		</tr>
+       	<tr> 
+        	<td width="100%">
+				<h:form id="jobsTableForm">  
+				    <rich:dataTable id="jobsTable"
+				 		rowClasses="evenRow, oddRow"
+				    	value="#{jobManager.jobs}" var="mjob" width="100%" columnClasses="center"
+				        rows="50" > 
+				        
+				            <rich:column sortBy="#{mjob.ero}"> 
+				                <f:facet name="header">
+				                    <h:outputText value="Job#"/>
+				                </f:facet>
+				                <h:outputText value="#{mjob.ero}"/>
+				            </rich:column> 
+				            <rich:column sortBy="#{mjob.estTime}">
+				                <f:facet name="header">
+				                    <h:outputText value="Est. time"/>
+				                </f:facet>
+				                <h:outputText value="#{mjob.estTime}"/> 
+				            </rich:column>
+				
+				            
+				            <rich:column sortBy="#{mjob.serial}">
+				                <f:facet name="header">
+				                    <h:outputText value="Tail #"/>
+				                </f:facet>
+				                <h:outputText value="#{mjob.serial}"/> 
+				            </rich:column>
+				            <rich:column sortBy="#{mjob.model}">
+				                <f:facet name="header">
+				                    <h:outputText value="Type"/>
+				                </f:facet>
+				                <h:outputText value="#{mjob.model}"/> 
+				            </rich:column>
+				            <rich:column sortBy="#{mjob.workItems}">
+				                <f:facet name="header">
+				                    <h:outputText value="Work Item(s)"/>
+				                </f:facet>
+				                <h:outputText value="#{mjob.workItems}" escape="false"/> 
+				            </rich:column>
+				            <rich:column sortBy="#{mjob.dris}">
+				                <f:facet name="header">
+				                    <h:outputText value="Date Received"/>
+				                </f:facet>
+				                <h:outputText value="#{mjob.dris}"/> 
+				            </rich:column>
+				            <rich:column sortBy="#{mjob.dis}">
+				                <f:facet name="header">
+				                    <h:outputText value="DIS"/>
+				                </f:facet>
+				                <h:outputText value="#{mjob.dis}"/> 
+				            </rich:column>
+	
+				            <rich:column sortBy="#{mjob.priority}">
+				                <f:facet name="header">
+				                    <h:outputText value="Priority"/>
+				                </f:facet>
+				                <h:outputText value="#{mjob.priority}"/> 
+				            </rich:column>
+				            <rich:column sortBy="#{mjob.jobStatus}">
+				                <f:facet name="header">
+				                    <h:outputText value="Job status"/>
+				                </f:facet>
+				                <h:outputText value="#{mjob.jobStatus}"/> 
+				            </rich:column>
+				            <rich:column sortBy="#{mjob.technicians}">
+				                <f:facet name="header">
+				                    <h:outputText value="Technician(s)"/>
+				                </f:facet>
+				                <h:outputText value="#{mjob.technicians}" escape="false"/> 
+				            </rich:column>
+				            <rich:column sortBy="#{mjob.dueDate}">
+				                <f:facet name="header">
+				                    <h:outputText value="Due Date"/>
+				                </f:facet>
+				                <h:outputText value="#{mjob.dueDate}"/> 
+				            </rich:column>
+					        <rich:column styleClass="action">
+					            <f:facet name="header">Action</f:facet>
+					            <s:link view="/mrap/EditMaintenanceJob.xhtml"
+					                   value="Edit"
+					             propagation="none"
+					                      id="jobEdit">
+					                <f:param name="jobJobId"
+					                        value="#{mjob.jobId}"/>
+					            </s:link>
+					        </rich:column>
+				        </rich:dataTable>
+			     </h:form>
+      		  </td>
+       	</tr>
+      </table>
+
+</f:view>
+</ui:define>
+</ui:composition>

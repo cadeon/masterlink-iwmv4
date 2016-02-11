@@ -1,0 +1,235 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:a4j="http://richfaces.org/a4j"
+    template="/mrap/layout/iwmtemplate.xhtml">
+
+<ui:param name="headingTitle" value="Manage Maintenance" />
+<ui:param name="currentView" value="jobs" />
+<ui:define name="body">
+    
+<f:view>
+      <script type="text/javascript">//<![CDATA[
+		 function showSchedulerStats(){
+	        alert("")
+         }
+		 
+		//]]></script>
+		
+	<rich:modalPanel id="metricsModalPanel" autosized="true" zindex="2000">
+		<s:div id="modalBodyDiv">
+			<h:panelGrid id="gridPanel" columns="2" border="1">
+				<f:facet name="header">
+					<h:outputText id="modalTitle" value="Scheduler Run Metrics"/>
+				</f:facet>
+				<h:outputText id="modalRunTimeText" value="Scheduler run time" />
+				<h:outputText id="modalRunTimeValue" value="#{jobManager.schedulerRunTime} seconds" />
+				<h:outputText id="modalUtilityText" value="Schedule utility" />
+				<h:outputText id="modalUtilityValue" value="#{jobManager.schedulerUtility}" />
+				<h:outputText id="modalTotalSchedulesText" value="Total schedules processed" />
+				<h:outputText id="modalTotalSchedulesValue" value="#{jobManager.schedulerTotalSchedules}" />
+				<h:outputText id="modalTotalLegalSchedulesText" value="Total legal schedules examined" />
+				<h:outputText id="modalTotalLegalSchedulesValue" value="#{jobManager.schedulerTotalLegalSchedules}" />
+			</h:panelGrid><br/>
+      		<a onclick="Richfaces.hideModalPanel('metricsModalPanel');" href="#">Close</a>
+		</s:div>
+	</rich:modalPanel>
+		
+    <table border="1" rules="none" frame="box" cellpadding="7" cellspacing="0" width="100%">
+		<tr>
+			<td width="20%">&nbsp;</td>
+			<td align="center" width="60%"><h:outputText id="headingTitle" value="#{jobManager.headline}" styleClass="Headline"/></td>
+			<td align="right" width="20%">
+				<h:outputText value="Today is #{jobManager.today}" style="font-style:italic"/> <span style="color: #FFFFFF">---</span> 
+			</td>
+		</tr>
+	</table>
+      <table border="0" cellpadding="2" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+        <tr>
+          <td width="100%">
+          	<h:form id="addRescheduleForm">
+	          <table border="1" rules="none" frame="box" cellpadding="0" cellspacing="0" width="100%">
+	  			<tr>
+					<td width="8%" align="center">
+						<a4j:commandButton id="addJob" value="Add Job" action="#{jobManager.addJob}"/>
+	            	</td>
+					<td width="8%" align="center">
+						<a4j:commandButton id="reschedule" value="Reschedule" action="#{jobManager.reschedule}" oncomplete="Richfaces.showModalPanel('metricsModalPanel',{width:300, top:200});" reRender="jobsTable, metricsModalPanel"/>
+	            	</td>
+					<td width="8%">&nbsp;</td>
+					<td width="16%" align="center"><b>View maintenance by: &nbsp;&nbsp;</b></td>
+	    			<td width="8%" align="center">
+						<a4j:commandLink action="#{jobManager.setScopeDay}" id="setScopeDay" reRender="addRescheduleForm, calendarForm, jobsTable" styleClass="#{(jobManager.isDayScope==true)?'tablinkselected':'tablink'}">Day</a4j:commandLink>
+	            	</td>
+	    			<td width="8%" align="center">
+						<a4j:commandLink action="#{jobManager.setScopeWeek}" id="setScopeWeek" reRender="addRescheduleForm, calendarForm, jobsTable" styleClass="#{(jobManager.isWeekScope==true)?'tablinkselected':'tablink'}">Week</a4j:commandLink>
+	            	</td>
+	    			<td width="8%" align="center">
+						<a4j:commandLink action="#{jobManager.setScopeMonth}" id="setScopeMonth" reRender="addRescheduleForm, calendarForm, jobsTable" styleClass="#{(jobManager.isMonthScope==true)?'tablinkselected':'tablink'}">Month</a4j:commandLink>
+	            	</td>
+	    			<td width="9%" align="center">
+						<a4j:commandLink action="#{jobManager.setScopeYear}" id="setScopeYear" reRender="addRescheduleForm, calendarForm, jobsTable" styleClass="#{(jobManager.isYearScope==true)?'tablinkselected':'tablink'}">Year</a4j:commandLink>
+		            </td>
+		    		<td width="9%" align="center">&nbsp;</td>
+		   		 	<td width="9%">&nbsp;</td>
+	    			<td width="9%">
+	    				<h:commandButton id="print" value="Print" action="#{jobManager.help}"/>
+						<h:commandButton id="help" value="Help" action="#{jobManager.help}"/>
+	                </td>
+	  			 </tr>
+				</table>
+				</h:form>
+			</td>
+       	</tr>
+       	<tr> 
+        	<td width="100%">
+        	<h:form id="calendarForm">
+        		<table width="100%" border="1" rules="none" frame="box" cellpadding="4" cellspacing="0">
+	                <tr>
+		                <td colspan="2"> 		 		
+		                	<p align="left">Double click on any row to view or edit a job. Click on column headings to sort jobs by that heading. </p>
+						</td>
+					</tr>
+	        		<tr>
+		        		<td align="right">
+		                	<span class="SmallHeadline">
+			                	<h:outputText id="displayScope" value="#{jobManager.displayScope}"/>
+		                	</span>
+		                </td>
+		                <td align="left">
+		                	<rich:calendar id="calendar" value="#{jobManager.selectedDate}" datePattern="#{jobManager.datePattern}">
+		                	 	<a4j:support event="onchanged" action="#{jobManager.update}" ajaxSingle="true" 
+		                	 				 reRender="displayScope, jobsTable, calendarForm"/>
+		   		 			</rich:calendar>
+		                </td>
+	                </tr>
+					<tr>
+						<td colspan="2">
+							<a4j:commandLink action="#{jobManager.sortByIPStatus}" reRender="jobsTable">
+								<h:outputText value="#{jobManager.numInProgress} jobs in progress"/>
+							</a4j:commandLink>
+							&nbsp;&nbsp; <span style="color: #FFFFFF">------</span> &nbsp;&nbsp; 
+							<a4j:commandLink action="#{jobManager.sortByShortStatus}" reRender="jobsTable">
+								<h:outputText value="#{jobManager.numShort} jobs short"/> 
+							</a4j:commandLink>
+							&nbsp;&nbsp; <span style="color: #FFFFFF">------</span> &nbsp;&nbsp; 
+							<a4j:commandLink action="#{jobManager.sortByPastDue}" reRender="jobsTable">
+								<h:outputText value="#{jobManager.numPastDue} jobs past due date"/> 
+							</a4j:commandLink>
+							&nbsp;&nbsp; <span style="color: #FFFFFF">------</span> &nbsp;&nbsp; 
+							<a4j:commandLink action="#{jobManager.sortByMissingData}" reRender="jobsTable">
+								<h:outputText value="#{jobManager.numMissingData} jobs missing data"/> 
+							</a4j:commandLink>
+						</td>
+					</tr>
+				</table>
+			    </h:form>
+			</td>
+		</tr>
+       	</table>
+       	<div style="autoflow">
+				<h:form id="jobsTableForm">  
+				    <rich:dataTable id="jobsTable" width="100%"
+						onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
+   		                onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"
+   				 		rowClasses="evenRow"
+				    	value="#{jobManager.jobs}" var="mjob" columnClasses="center"> 
+						<a4j:support event="onRowDblClick" action="#{jobManager.onJobRowClicked}">	
+							<a4j:actionparam name="userSelectedJobId" value="#{mjob.jobId}" assignTo="#{jobManager.userSelectedJobId}"/>
+						</a4j:support>			        
+				            <rich:column id="columnEro" sortBy="#{mjob.ero}" style="text-align:center"> 
+				                <f:facet name="header">
+				                    <h:outputText value="ERO#"/>
+				                </f:facet>
+				                <h:outputText value="#{mjob.ero}"/>
+				            </rich:column> 
+				            <rich:column id="columnEstTime" sortBy="#{mjob.estTime}" style="text-align:center">
+				                <f:facet name="header">
+				                    <h:outputText value="Est. time (hrs)"/>
+				                </f:facet>
+				                <h:outputText value="#{mjob.estTime}"/> 
+				            </rich:column>
+				            <rich:column id="columnTam" sortBy="#{mjob.tam}" width="60px">
+				                <f:facet name="header">
+				                    <h:outputText value="TAM"/>
+				                </f:facet>
+				                <h:outputText value="#{mjob.tam}"/> 
+				            </rich:column>
+				            <rich:column id="columnId" sortBy="#{mjob.eroId}" width="60px">
+				                <f:facet name="header">
+				                    <h:outputText value="ID"/>
+				                </f:facet>
+				                <h:outputText value="#{mjob.eroId}"/> 
+				            </rich:column>
+				            <rich:column id="columnSerial" sortBy="#{mjob.serial}" width="80px" style="text-align:center" >
+				                <f:facet name="header">
+				                    <h:outputText value="Serial #"/>
+				                </f:facet>
+				                <h:outputText value="#{mjob.serial}"/> 
+				            </rich:column>
+				            <rich:column id="columnModel" sortBy="#{mjob.model}" width="80px">
+				                <f:facet name="header">
+				                    <h:outputText value="Model"/>
+				                </f:facet>
+				                <h:outputText value="#{mjob.model}"/> 
+				            </rich:column>
+				            <rich:column id="columnWorkItems" sortBy="#{mjob.workItems}" width="220px">
+				                <f:facet name="header">
+				                    <h:outputText value="Work Item(s)"/>
+				                </f:facet>
+				                <h:outputText value="#{mjob.workItems}" escape="false"/> 
+				            </rich:column>
+				            <rich:column id="columnDris" sortBy="#{mjob.dris}" width="50px" style="text-align:center" >
+				                <f:facet name="header">
+				                    <h:outputText value="DRIS"/>
+				                </f:facet>
+				                <h:outputText value="#{mjob.dris}"/> 
+				            </rich:column>
+				            <rich:column id="columnDis" sortBy="#{mjob.dis}" width="40px" style="text-align:center" >
+				                <f:facet name="header">
+				                    <h:outputText value="DIS"/>
+				                </f:facet>
+				                <h:outputText value="#{mjob.dis}"/> 
+				            </rich:column>
+				            <rich:column id="columnCategory" sortBy="#{mjob.category}" width="80px" style="text-align:center" >
+				                <f:facet name="header">
+				                    <h:outputText value="Category"/>
+				                </f:facet>
+				                <h:outputText value="#{mjob.category}"/> 
+				            </rich:column>
+				            <rich:column id="columnPriority" sortBy="#{mjob.priority}" width="60px" style="text-align:center" >
+				                <f:facet name="header">
+				                    <h:outputText value="Priority"/>
+				                </f:facet>
+				                <h:outputText value="#{mjob.priority}"/> 
+				            </rich:column>
+				            <rich:column id="columnJobStatus" sortBy="#{mjob.jobStatus}" style="text-align:center" >
+				                <f:facet name="header">
+				                    <h:outputText value="Job status"/>
+				                </f:facet>
+				                <h:outputText value="#{mjob.jobStatus}"/> 
+				            </rich:column>
+				            <rich:column id="columnTechnicians" sortBy="#{mjob.technicians}" width="110px">
+				                <f:facet name="header">
+				                    <h:outputText value="Technician(s)"/>
+				                </f:facet>
+				                <h:outputText value="#{mjob.technicians}" escape="false"/> 
+				            </rich:column>
+				            <rich:column id="columnDueDate" sortBy="#{mjob.dueDate}" style="text-align:center" >
+				                <f:facet name="header">
+				                    <h:outputText value="Due Date"/>
+				                </f:facet>
+				                <h:outputText value="#{mjob.dueDate}"/> 
+				            </rich:column>
+				        </rich:dataTable>
+			     </h:form>
+      		  </div>
+
+</f:view>
+</ui:define>
+</ui:composition>

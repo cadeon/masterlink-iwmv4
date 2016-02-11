@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.mlink</groupId>
+	<artifactId>iwm-mvn</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+	<name>iwm-mvn</name>
+
+	<parent>
+		<groupId>org.jboss.seam</groupId>
+		<artifactId>root</artifactId>
+		<version>2.2.0.GA</version>
+	</parent>
+
+	<!-- properties -->
+	<properties>
+		<version.seam>2.2.0.GA</version.seam>
+		<resource.encoding>UTF-8</resource.encoding>
+		<catVer>6.0.32</catVer>
+		<jdk.version>1.6</jdk.version>
+	</properties>
+
+	<!-- modules -->
+	<modules>
+		<module>logic</module>
+		<module>web</module>
+		<module>services</module>
+		<!--  
+		<module>ddl</module>
+		-->
+	</modules>
+
+	<!-- profiles -->
+
+	<profiles>
+		<profile>
+			<id>dev-mike</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+
+			<properties>
+				<tomcat.webappsDir>/Applications/apache-tomcat-6.0.32/webapps</tomcat.webappsDir> 
+				<tomcat.home>/Applications/apache-tomcat-6.0.32/</tomcat.home>
+			</properties>
+		</profile>
+		
+		<profile>
+			<id>justin</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+
+			<properties>
+				<tomcat.webappsDir>/apps/apache-tomcat-6.0.32/webapps</tomcat.webappsDir> 
+				<tomcat.home>/apps/apache-tomcat-6.0.32/</tomcat.home>
+			</properties>
+		</profile>
+		
+		<profile>
+			<id>dev-nadia</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+
+			<properties>
+				<tomcat.webappsDir>/Users/nadiaboumaza/apps/apache-tomcat-${catVer}/webapps</tomcat.webappsDir>
+			    <tomcat.home>/Users/nadiaboumaza/apps/apache-tomcat-${catVer}/</tomcat.home>
+			</properties>
+			<!-- test env -->
+		</profile>
+		
+		<profile>
+			<id>chris-hex</id>
+			<properties>
+				<tomcat.webappsDir>/Users/chrisduffy/tomcat/tomcat/webapps</tomcat.webappsDir>
+			    <tomcat.home>/Users/chrisduffy/tomcat/tomcat/</tomcat.home>
+			</properties>
+			
+		</profile>
+		<profile>
+			<id>chris-samus</id>
+			<properties>
+				<tomcat.webappsDir>/Users/caduffy/mlink/tomcat/webapps</tomcat.webappsDir>
+			    <tomcat.home>/Users/caduffy/mlink/tomcat/</tomcat.home>
+			</properties>
+			
+		</profile>
+		<!-- test env -->
+		<profile>
+			<id>sid.iwm</id>
+			<properties>
+				<tomcat.webappsDir>/home/tomcat/tomcat/webapps</tomcat.webappsDir>
+			</properties>
+		</profile>
+
+
+	</profiles>
+
+    
+	<!-- repositories -->
+	<repositories>
+
+		<repository>
+			<id>repository.jboss.org</id>
+			<name>JBoss Maven Repository</name>
+			<url>http://repository.jboss.org/maven2</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+
+		<repository>
+			<id>java.net2</id>
+			<name>Java.Net Maven2 Repository</name>
+			<url>http://download.java.net/maven/2</url>
+		</repository>
+		
+	</repositories>
+
+	<!-- build -->
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.0.2</version>
+					<configuration>
+						<source>${jdk.version}</source>
+						<target>${jdk.version}</target>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.5</version>
+					<configuration>		
+						<encoding>${resource.encoding}</encoding>
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.5</version>
+					<configuration>
+						<forkMode>once</forkMode>
+						<argLine>-enableassertions</argLine>
+						<skipTests>true</skipTests>
+					</configuration>
+				</plugin>
+
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<!-- reporting -->
+	<reporting>
+		<plugins>
+
+			<plugin>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.6.1</version>
+				<configuration>
+					<aggregate>true</aggregate>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-report-plugin
+				</artifactId>
+				<version>2.5</version>
+			</plugin>
+		</plugins>
+	</reporting>
+
+
+	<!-- dependencyManagement -->
+	<dependencyManagement>
+
+		<dependencies>
+
+			<dependency>
+				<groupId>com.mlink</groupId>
+				<artifactId>logic</artifactId>
+				<version>1.0</version>
+				<type>jar</type>
+			</dependency>
+
+			<dependency>
+				<groupId>com.mlink</groupId>
+				<artifactId>web</artifactId>
+				<version>1.0</version>
+				<type>war</type>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.seam</groupId>
+				<artifactId>jboss-seam</artifactId>
+				<version>${version.seam}</version>
+				<type>jar</type>
+				<exclusions>
+					<exclusion>
+						<groupId>xstream</groupId>
+						<artifactId>xstream</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>xpp3</groupId>
+						<artifactId>xpp3_min</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>javax.el</groupId>
+						<artifactId>el-api</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+		</dependencies>
+
+	</dependencyManagement>
+
+
+	<!-- dependencies -->
+	<dependencies>
+
+		<!-- Seam, JPA (provided by Hibernate), Hibernate Validator JSF -->
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.6.0-RC0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>persistence-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+		</dependency>
+
+
+		<!-- JSF, SLF4J, JSTL : dependency shared by logic & web modules -->
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.6.0-RC0</version>
+		</dependency>
+
+		<dependency>
+			<!-- needs to be explicit for version matching with other dependencies 
+				on slf4j-sdk14 defaults to 1.5.9.RC1 -->
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-jdk14</artifactId>
+			<version>1.6.0-RC0</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>javax.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.faces</groupId>
+			<artifactId>jsf-impl</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<!-- version required -->
+			<version>2.1</version>
+		</dependency>
+
+		<!-- jta, dom4j, javasist -->
+		<dependency>
+			<groupId>javax.transaction</groupId>
+			<artifactId>jta</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.1</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+
+</project>

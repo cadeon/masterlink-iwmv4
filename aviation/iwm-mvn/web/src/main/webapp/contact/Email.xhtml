@@ -1,0 +1,129 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/template.xhtml">
+
+<ui:define name="body">
+
+    <rich:panel>
+        <f:facet name="header">Email Details</f:facet>
+
+
+        <s:decorate id="archiveDate" template="/layout/display.xhtml">
+            <ui:define name="label">Archive date</ui:define>
+            <h:outputText value="#{emailHome.instance.archiveDate}">
+                <s:convertDateTime type="both" dateStyle="short"/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="lastChange" template="/layout/display.xhtml">
+            <ui:define name="label">Last change</ui:define>
+            <h:outputText value="#{emailHome.instance.lastChange}">
+                <s:convertDateTime type="both" dateStyle="short"/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="addrType" template="/layout/display.xhtml">
+            <ui:define name="label">Addr type</ui:define>
+            <h:outputText value="#{emailHome.instance.addrType}"/>
+        </s:decorate>
+
+        <s:decorate id="address" template="/layout/display.xhtml">
+            <ui:define name="label">Address</ui:define>
+            <h:outputText value="#{emailHome.instance.address}"/>
+        </s:decorate>
+
+        <div style="clear:both"/>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+
+        <s:button view="/contact/EmailEdit.xhtml"
+                    id="edit"
+                 value="Edit"/>
+
+        <s:button view="/contact/#{empty emailFrom ? 'EmailList' : emailFrom}.xhtml"
+                    id="done"
+                 value="Done"/>
+
+    </div>
+
+    <rich:tabPanel switchType="ajax">
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Contact</h:panelGroup>
+        </f:facet>
+    <div class="association" id="contactParent">
+
+        <h:outputText value="There is no contact associated with this email."
+                   rendered="#{emailHome.instance.contact == null}"/>
+
+        <rich:dataTable var="_contact"
+                   value="#{emailHome.instance.contact}"
+                rendered="#{emailHome.instance.contact != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="contactTable">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{_contact.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Archive date</f:facet>
+                <h:outputText value="#{_contact.archiveDate}">
+                    <s:convertDateTime type="both" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Last change</f:facet>
+                <h:outputText value="#{_contact.lastChange}">
+                    <s:convertDateTime type="both" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Fname</f:facet>
+                <h:outputText value="#{_contact.fname}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Job title</f:facet>
+                <h:outputText value="#{_contact.jobTitle}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Lname</f:facet>
+                <h:outputText value="#{_contact.lname}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Middle</f:facet>
+                <h:outputText value="#{_contact.middle}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Organization id</f:facet>
+                <h:outputText value="#{_contact.organization.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Suffix</f:facet>
+                <h:outputText value="#{_contact.suffix}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewcontact"
+                     value="View"
+                      view="/contact/Contact.xhtml">
+                    <f:param name="contactId"
+                           value="#{_contact.id}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

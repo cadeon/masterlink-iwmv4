@@ -1,0 +1,81 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:a4j="http://richfaces.org/a4j"
+    template="/mrap/layout/iwmtemplate.xhtml">
+
+<ui:param name="headingTitle" value="Add/edit Vehicles for 20000 H" />
+<ui:param name="currentView" value="assets" />
+<ui:define name="body">
+
+<script type="text/javascript">//<![CDATA[
+ function changeTitle(pageName){
+	document.getElementById('headingTitle').innerHTML = 'Add/edit ' + pageName + 's for 20000 H';
+	document.getElementById("instructions").innerHTML = 'Edit the current ' + pageName.toLowerCase() + ' information or add a new ' + pageName.toLowerCase() + ' by choosing the Add a ' + pageName.toLowerCase() + ' button. Click on column headings to sort by that heading.'
+    return;
+  }
+ 
+//]]></script>
+    
+<f:view>
+    <table border="1" rules="none" frame="box" cellpadding="7" cellspacing="0" width="100%">
+		<tr>
+			<td width="20%">&nbsp;</td>
+			<td align="center" width="60%"><h:outputText id="headingTitle" value="Add/edit Vehicles for 20000 H" styleClass="Headline"/></td>
+			<td align="right" width="20%">
+				<h:outputText value="Today is #{jobManager.today}" style="font-style:italic"/> <span style="color: #FFFFFF">---</span> 
+			</td>
+		</tr>
+	</table>
+      <table border="0" cellpadding="2" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+        <tr>
+          <td width="100%">
+          	<h:form id="addRescheduleForm">
+	          <table border="1" rules="none" frame="box" cellpadding="0" cellspacing="0" width="100%">
+	  			<tr align="right">
+	    			<td>
+						<h:commandButton id="print"
+		                          value="Print"
+		                         action="#{jobManager.help}"/>
+						<h:commandButton id="help"
+		                          value="Help"
+		                         action="#{jobManager.help}"/>
+	                </td>
+	  			 </tr>
+				</table>
+				</h:form>
+			</td>
+       	</tr>
+       	<tr> 
+        	<td width="100%">
+        		<table width="100%" border="1" rules="none" frame="box" cellpadding="4" cellspacing="0">
+	                <tr>
+		                <td colspan="2"> 		 		
+		                	<p align="left"><span id="instructions">Edit the current vehicle information or add a new vehicle by choosing the Add a vehicle button. Click on column headings to sort by that heading. </span></p>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+       	<tr> 
+        	<td width="100%">
+				<rich:tabPanel style="background-color:white;" switchType = "ajax">
+					<rich:tab id="vehiclesTab" label="Vehicles" ontabenter="changeTitle('Vehicle')" ontableave="return checkForRealChanges();">
+						<ui:include src="ManageVehicles.xhtml" />
+					</rich:tab>
+					<rich:tab id="techniciansTab" label="Technicians" ontabenter="changeTitle('Technician')">
+						<ui:include src="ManageTechnicians.xhtml" />
+					</rich:tab>
+				</rich:tabPanel>
+      		</td>
+       	</tr>
+      </table>
+
+</f:view>
+</ui:define>
+</ui:composition>

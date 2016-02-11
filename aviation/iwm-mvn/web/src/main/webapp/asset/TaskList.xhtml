@@ -1,0 +1,318 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="taskSearch" styleClass="edit">
+
+        <rich:simpleTogglePanel label="Task Search Filter" switchType="ajax">
+
+            <s:decorate template="/layout/display.xhtml">
+                <ui:define name="label">Description</ui:define>
+                <h:inputText id="description" value="#{taskList.task.description}"/>
+            </s:decorate>
+
+            <s:decorate template="/layout/display.xhtml">
+                <ui:define name="label">Match</ui:define>
+                <h:selectOneRadio id="logic" value="#{taskList.restrictionLogicOperator}" styleClass="radio">
+                    <f:selectItem itemLabel="All" itemValue="and"/>
+                    <f:selectItem itemLabel="Any" itemValue="or"/>
+                </h:selectOneRadio>
+            </s:decorate>
+
+        </rich:simpleTogglePanel>
+
+        <div class="actionButtons">
+            <h:commandButton id="search" value="Search" action="/asset/TaskList.xhtml"/>
+            <s:button id="reset" value="Reset" includePageParams="false"/>
+        </div>
+
+    </h:form>
+
+    <rich:panel>
+        <f:facet name="header">Task Search Results (#{empty taskList.resultList ? 0 : (taskList.paginated ? taskList.resultCount : taskList.resultList.size)})</f:facet>
+    <div class="results" id="taskList">
+
+    <h:outputText value="The task search returned no results."
+               rendered="#{empty taskList.resultList}"/>
+
+    <rich:dataTable id="taskList"
+                var="_task"
+              value="#{taskList.resultList}"
+           rendered="#{not empty taskList.resultList}">
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{taskList}"/>
+                    <ui:param name="propertyLabel" value="Task id"/>
+                    <ui:param name="propertyPath" value="task.taskId"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_task.id}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{taskList}"/>
+                    <ui:param name="propertyLabel" value="Archive date"/>
+                    <ui:param name="propertyPath" value="task.archiveDate"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_task.archiveDate}">
+                <s:convertDateTime type="both" dateStyle="short"/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{taskList}"/>
+                    <ui:param name="propertyLabel" value="Description"/>
+                    <ui:param name="propertyPath" value="task.description"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_task.description}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{taskList}"/>
+                    <ui:param name="propertyLabel" value="Est time"/>
+                    <ui:param name="propertyPath" value="task.estTime"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_task.estTime}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{taskList}"/>
+                    <ui:param name="propertyLabel" value="Expiry days"/>
+                    <ui:param name="propertyPath" value="task.expiryDays"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_task.expiryDays}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{taskList}"/>
+                    <ui:param name="propertyLabel" value="Expiry type"/>
+                    <ui:param name="propertyPath" value="task.expiryType"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_task.expiryType.label}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{taskList}"/>
+                    <ui:param name="propertyLabel" value="Freq days"/>
+                    <ui:param name="propertyPath" value="task.freqDays"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_task.freqDays}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{taskList}"/>
+                    <ui:param name="propertyLabel" value="Freq months"/>
+                    <ui:param name="propertyPath" value="task.freqMonths"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_task.freqMonths}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{taskList}"/>
+                    <ui:param name="propertyLabel" value="Freq type"/>
+                    <ui:param name="propertyPath" value="task.freqType"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_task.freqType.label}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{taskList}"/>
+                    <ui:param name="propertyLabel" value="Is active"/>
+                    <ui:param name="propertyPath" value="task.isActive"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_task.isActive}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{taskList}"/>
+                    <ui:param name="propertyLabel" value="Is stand alone"/>
+                    <ui:param name="propertyPath" value="task.isStandAlone"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_task.isStandAlone}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{taskList}"/>
+                    <ui:param name="propertyLabel" value="Last planned date"/>
+                    <ui:param name="propertyPath" value="task.lastPlannedDate"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_task.lastPlannedDate}">
+                <s:convertDateTime type="both" dateStyle="short"/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{taskList}"/>
+                    <ui:param name="propertyLabel" value="Last serviced date"/>
+                    <ui:param name="propertyPath" value="task.lastServicedDate"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_task.lastServicedDate}">
+                <s:convertDateTime type="both" dateStyle="short"/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{taskList}"/>
+                    <ui:param name="propertyLabel" value="Priority"/>
+                    <ui:param name="propertyPath" value="task.priority"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_task.priority}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{taskList}"/>
+                    <ui:param name="propertyLabel" value="Run hours thresh"/>
+                    <ui:param name="propertyPath" value="task.runHoursThresh"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_task.runHoursThresh}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{taskList}"/>
+                    <ui:param name="propertyLabel" value="Run hours thresh inc"/>
+                    <ui:param name="propertyPath" value="task.runHoursThreshInc"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_task.runHoursThreshInc}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{taskList}"/>
+                    <ui:param name="propertyLabel" value="Start date"/>
+                    <ui:param name="propertyPath" value="task.startDate"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_task.startDate}">
+                <s:convertDateTime type="both" dateStyle="short"/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{taskList}"/>
+                    <ui:param name="propertyLabel" value="Task template task template id"/>
+                    <ui:param name="propertyPath" value="task.taskTemplate.id"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_task.taskTemplate.id}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{taskList}"/>
+                    <ui:param name="propertyLabel" value="Task type"/>
+                    <ui:param name="propertyPath" value="task.taskType"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_task.taskType.label}"/>
+        </h:column>
+        <rich:column styleClass="action">
+            <f:facet name="header">Action</f:facet>
+            <s:link view="/asset/#{empty from ? 'Task' : from}.xhtml"
+                   value="#{empty from ? 'View' : 'Select'}"
+             propagation="#{empty from ? 'none' : 'default'}"
+                      id="taskViewId">
+                <f:param name="taskTaskId"
+                        value="#{_task.id}"/>
+            </s:link>
+            #{' '}
+            <s:link view="/asset/TaskEdit.xhtml"
+                   value="Edit"
+             propagation="none"
+                      id="taskEdit"
+                rendered="#{empty from}">
+                <f:param name="taskTaskId"
+                        value="#{_task.id}"/>
+            </s:link>
+        </rich:column>
+    </rich:dataTable>
+
+    </div>
+    </rich:panel>
+
+    <div class="tableControl">
+
+        <s:link view="/asset/TaskList.xhtml"
+            rendered="#{taskList.previousExists}"
+               value="#{messages.left}#{messages.left} First Page"
+                  id="firstPage">
+          <f:param name="firstResult" value="0"/>
+        </s:link>
+
+        <s:link view="/asset/TaskList.xhtml"
+            rendered="#{taskList.previousExists}"
+               value="#{messages.left} Previous Page"
+                  id="previousPage">
+            <f:param name="firstResult"
+                    value="#{taskList.previousFirstResult}"/>
+        </s:link>
+
+        <s:link view="/asset/TaskList.xhtml"
+            rendered="#{taskList.nextExists}"
+               value="Next Page #{messages.right}"
+                  id="nextPage">
+            <f:param name="firstResult"
+                    value="#{taskList.nextFirstResult}"/>
+        </s:link>
+
+        <s:link view="/asset/TaskList.xhtml"
+            rendered="#{taskList.nextExists}"
+               value="Last Page #{messages.right}#{messages.right}"
+                  id="lastPage">
+            <f:param name="firstResult"
+                    value="#{taskList.lastFirstResult}"/>
+        </s:link>
+
+    </div>
+
+    <s:div styleClass="actionButtons" rendered="#{empty from}">
+        <s:button view="/asset/TaskEdit.xhtml"
+                    id="create"
+           propagation="none"
+                 value="Create task">
+            <f:param name="taskTaskId"/>
+        </s:button>
+    </s:div>
+
+</ui:define>
+
+</ui:composition>

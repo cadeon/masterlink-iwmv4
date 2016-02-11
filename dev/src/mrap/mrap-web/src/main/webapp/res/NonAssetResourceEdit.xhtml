@@ -1,0 +1,171 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="nonAssetResource" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{nonAssetResourceHome.managed ? 'Edit' : 'Add'} Non asset resource</f:facet>
+
+
+
+            <s:decorate id="quantityField" template="/layout/edit.xhtml">
+                <ui:define name="label">Quantity</ui:define>
+                <h:inputText id="quantity" required= "true"
+                          value="#{nonAssetResourceHome.instance.quantity}">
+                    <a:support event="onblur" reRender="quantityField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+       <s:decorate id="tagField" template="/layout/edit.xhtml">
+                <ui:define name="label">Tag</ui:define>
+                <h:inputText id="tag" required= "true"
+                   value="#{nonAssetResourceHome.instance.tag}"/>
+                    <a:support event="onblur" reRender="tagField" bypassUpdates="true" ajaxSingle="true"/>
+                
+            </s:decorate>
+
+
+
+            <s:decorate id="typeField" template="/layout/edit.xhtml">
+                <ui:define name="label">Type</ui:define>
+              <h:selectOneMenu value="#{nonAssetResourceHome.instance.type}" required="true">
+ 				 <s:selectItems value="#{nonAssetTypes}" var="nonAssetType" label="#{nonAssetType.label}"
+ 				 						noSelectionLabel="Select one..." />
+ 					<s:convertEnum />
+				</h:selectOneMenu>
+            </s:decorate>
+
+
+            <s:decorate id="unitRefIdField" template="/layout/edit.xhtml">
+                <ui:define name="label">Unit ref id</ui:define>
+                <h:inputText id="unitRefId"
+                          value="#{nonAssetResourceHome.instance.unitRefId}">
+                    <a:support event="onblur" reRender="unitRefIdField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{nonAssetResourceHome.persist}"
+                       disabled="#{!nonAssetResourceHome.wired}"
+                       rendered="#{!nonAssetResourceHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{nonAssetResourceHome.update}"
+                       rendered="#{nonAssetResourceHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{nonAssetResourceHome.remove}"
+                      immediate="true"
+                       rendered="#{nonAssetResourceHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/res/NonAssetResource.xhtml"
+                rendered="#{nonAssetResourceHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/res/#{empty nonAssetResourceFrom ? 'NonAssetResourceList' : nonAssetResourceFrom}.xhtml"
+                rendered="#{!nonAssetResourceHome.managed}"/>
+
+        </div>
+    </h:form>
+
+<rich:tabPanel switchType="ajax">
+
+    <rich:tab label="Task template">
+    <div class="association" id="taskTemplateParent">
+
+        <h:outputText value="There is no taskTemplate associated with this nonAssetResource."
+                   rendered="#{nonAssetResourceHome.instance.taskTemplate == null}"/>
+
+        <rich:dataTable var="_taskTemplate"
+                   value="#{nonAssetResourceHome.instance.taskTemplate}"
+                rendered="#{nonAssetResourceHome.instance.taskTemplate != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="taskTemplateTable">
+
+            <h:column>
+                <f:facet name="header">Est hours</f:facet>
+                <h:outputText value="#{_taskTemplate.estHours}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Est min</f:facet>
+                <h:outputText value="#{_taskTemplate.estMin}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Exp num days</f:facet>
+                <h:outputText value="#{_taskTemplate.expNumDays}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Expiry type</f:facet>
+                <h:outputText value="#{_taskTemplate.expiryType.label}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Freq days</f:facet>
+                <h:outputText value="#{_taskTemplate.freqDays}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Freq months</f:facet>
+                <h:outputText value="#{_taskTemplate.freqMonths}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Freq type</f:facet>
+                <h:outputText value="#{_taskTemplate.freqType.label}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Priority</f:facet>
+                <h:outputText value="#{_taskTemplate.priority.label}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Run hours thresh inc</f:facet>
+                <h:outputText value="#{_taskTemplate.runHoursThreshInc}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Task description</f:facet>
+                <h:outputText value="#{_taskTemplate.taskDescription}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Task type</f:facet>
+                <h:outputText value="#{_taskTemplate.taskType.label}"/>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{nonAssetResourceHome.instance.taskTemplate != null ? 'changeParent' : 'selectParent'}" value="#{nonAssetResourceHome.instance.taskTemplate != null ? 'Change' : 'Select'} taskTemplate"
+                       view="/define/TaskTemplateList.xhtml">
+                <f:param name="from" value="NonAssetResourceEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

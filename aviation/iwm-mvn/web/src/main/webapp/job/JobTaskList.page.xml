@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.com/products/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.2.xsd">
+
+   <param name="firstResult" value="#{jobTaskList.firstResult}"/>
+   <param name="sort" value="#{jobTaskList.orderColumn}"/>
+   <param name="dir" value="#{jobTaskList.orderDirection}"/>
+   <param name="logic" value="#{jobTaskList.restrictionLogicOperator}"/>
+
+   <param name="from"/>
+   <param name="description" value="#{jobTaskList.jobTask.description}"/>
+   <param name="taskCode" value="#{jobTaskList.jobTask.taskCode}"/>
+
+</page>

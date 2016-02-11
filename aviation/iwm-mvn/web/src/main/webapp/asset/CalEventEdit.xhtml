@@ -1,0 +1,134 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="calEvent" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{calEventHome.managed ? 'Edit' : 'Add'} Cal event</f:facet>
+
+
+
+
+            <s:decorate id="endTimeField" template="/layout/edit.xhtml">
+                <ui:define name="label">End time</ui:define>
+                <rich:calendar id="endTime"
+                          value="#{calEventHome.instance.endTime}" datePattern="MM/dd/yyyy hh:mm a"/>
+            </s:decorate>
+
+
+            <s:decorate id="nameField" template="/layout/edit.xhtml">
+                <ui:define name="label">Name</ui:define>
+                <h:inputText id="name"
+                           size="50"
+                      maxlength="50"
+                          value="#{calEventHome.instance.name}">
+                    <a:support event="onblur" reRender="nameField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="startTimeField" template="/layout/edit.xhtml">
+                <ui:define name="label">Start time</ui:define>
+                <rich:calendar id="startTime"
+                          value="#{calEventHome.instance.startTime}" datePattern="MM/dd/yyyy hh:mm a"/>
+            </s:decorate>
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{calEventHome.persist}"
+                       disabled="#{!calEventHome.wired}"
+                       rendered="#{!calEventHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{calEventHome.update}"
+                       rendered="#{calEventHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{calEventHome.remove}"
+                      immediate="true"
+                       rendered="#{calEventHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/asset/CalEvent.xhtml"
+                rendered="#{calEventHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/asset/#{empty calEventFrom ? 'CalEventList' : calEventFrom}.xhtml"
+                rendered="#{!calEventHome.managed}"/>
+
+        </div>
+    </h:form>
+
+<rich:tabPanel switchType="ajax">
+
+    <rich:tab label="Asset calendar">
+    <div class="association" id="assetCalendarParent">
+
+        <h:outputText value="There is no assetCalendar associated with this calEvent."
+                   rendered="#{calEventHome.instance.assetCalendar == null}"/>
+
+        <rich:dataTable var="_assetCalendar"
+                   value="#{calEventHome.instance.assetCalendar}"
+                rendered="#{calEventHome.instance.assetCalendar != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="assetCalendarTable">
+            <h:column>
+                <f:facet name="header">Asset calendar id</f:facet>
+                <h:outputText value="#{_assetCalendar.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Asset asset id</f:facet>
+                <h:outputText value="#{_assetCalendar.asset.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Day</f:facet>
+                <h:outputText value="#{_assetCalendar.day}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Month</f:facet>
+                <h:outputText value="#{_assetCalendar.month}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Year</f:facet>
+                <h:outputText value="#{_assetCalendar.year}"/>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{calEventHome.instance.assetCalendar != null ? 'changeParent' : 'selectParent'}" value="#{calEventHome.instance.assetCalendar != null ? 'Change' : 'Select'} assetCalendar"
+                       view="/asset/AssetCalendarList.xhtml">
+                <f:param name="from" value="CalEventEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

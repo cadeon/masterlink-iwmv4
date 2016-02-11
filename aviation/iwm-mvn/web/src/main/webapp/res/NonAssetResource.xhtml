@@ -1,0 +1,130 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/template.xhtml">
+
+<ui:define name="body">
+
+    <rich:panel>
+        <f:facet name="header">Non asset resource Details</f:facet>
+
+
+        <s:decorate id="quantity" template="/layout/display.xhtml">
+            <ui:define name="label">Quantity</ui:define>
+            <h:outputText value="#{nonAssetResourceHome.instance.quantity}"/>
+        </s:decorate>
+
+        <s:decorate id="tag" template="/layout/display.xhtml">
+            <ui:define name="label">Serial</ui:define>
+            <h:outputText value="#{nonAssetResourceHome.instance.tag}"/>
+        </s:decorate>
+
+        <s:decorate id="type" template="/layout/display.xhtml">
+            <ui:define name="label">Type</ui:define>
+            <h:outputText value="#{nonAssetResourceHome.instance.type.label}"/>
+        </s:decorate>
+
+        <s:decorate id="unitRefId" template="/layout/display.xhtml">
+            <ui:define name="label">Unit ref id</ui:define>
+            <h:outputText value="#{nonAssetResourceHome.instance.unitRefId}"/>
+        </s:decorate>
+
+        <div style="clear:both"/>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+
+        <s:button view="/res/NonAssetResourceEdit.xhtml"
+                    id="edit"
+                 value="Edit"/>
+
+        <s:button view="/res/#{empty nonAssetResourceFrom ? 'NonAssetResourceList' : nonAssetResourceFrom}.xhtml"
+                    id="done"
+                 value="Done"/>
+
+    </div>
+
+    <rich:tabPanel switchType="ajax">
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Task template</h:panelGroup>
+        </f:facet>
+    <div class="association" id="taskTemplateParent">
+
+        <h:outputText value="There is no taskTemplate associated with this nonAssetResource."
+                   rendered="#{nonAssetResourceHome.instance.taskTemplate == null}"/>
+
+        <rich:dataTable var="_taskTemplate"
+                   value="#{nonAssetResourceHome.instance.taskTemplate}"
+                rendered="#{nonAssetResourceHome.instance.taskTemplate != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="taskTemplateTable">
+    
+            <h:column>
+                <f:facet name="header">Est hours</f:facet>
+                <h:outputText value="#{_taskTemplate.estHours}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Est min</f:facet>
+                <h:outputText value="#{_taskTemplate.estMin}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Exp num days</f:facet>
+                <h:outputText value="#{_taskTemplate.expNumDays}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Expiry type</f:facet>
+                <h:outputText value="#{_taskTemplate.expiryType.label}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Freq days</f:facet>
+                <h:outputText value="#{_taskTemplate.freqDays}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Freq months</f:facet>
+                <h:outputText value="#{_taskTemplate.freqMonths}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Freq type</f:facet>
+                <h:outputText value="#{_taskTemplate.freqType.label}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Priority</f:facet>
+                <h:outputText value="#{_taskTemplate.priority}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Run hours thresh inc</f:facet>
+                <h:outputText value="#{_taskTemplate.runHoursThreshInc}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Task description</f:facet>
+                <h:outputText value="#{_taskTemplate.taskDescription}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Task type</f:facet>
+                <h:outputText value="#{_taskTemplate.taskType.label}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewtaskTemplate"
+                     value="View"
+                      view="/res/TaskTemplate.xhtml">
+                    <f:param name="taskTemplateTaskTemplateId"
+                           value="#{_taskTemplate.id}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

@@ -1,0 +1,165 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/template.xhtml">
+
+<ui:define name="body">
+
+    <rich:panel>
+        <f:facet name="header">Action Details</f:facet>
+
+
+  
+
+        <s:decorate id="isCustom" template="/layout/display.xhtml">
+            <ui:define name="label">Is custom</ui:define>
+            <h:outputText value="#{actionHome.instance.isCustom}"/>
+        </s:decorate>
+
+        <s:decorate id="modifier" template="/layout/display.xhtml">
+            <ui:define name="label">Modifier</ui:define>
+            <h:outputText value="#{actionHome.instance.modifier}"/>
+        </s:decorate>
+
+        <s:decorate id="name" template="/layout/display.xhtml">
+            <ui:define name="label">Name</ui:define>
+            <h:outputText value="#{actionHome.instance.name}"/>
+        </s:decorate>
+
+        <s:decorate id="sequence" template="/layout/display.xhtml">
+            <ui:define name="label">Sequence</ui:define>
+            <h:outputText value="#{actionHome.instance.sequence}"/>
+        </s:decorate>
+
+        <s:decorate id="verb" template="/layout/display.xhtml">
+            <ui:define name="label">Verb</ui:define>
+            <h:outputText value="#{actionHome.instance.verb}"/>
+        </s:decorate>
+
+        <div style="clear:both"/>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+
+        <s:button view="/asset/ActionEdit.xhtml"
+                    id="edit"
+                 value="Edit"/>
+
+        <s:button view="/asset/#{empty actionFrom ? 'ActionList' : actionFrom}.xhtml"
+                    id="done"
+                 value="Done"/>
+
+    </div>
+
+    <rich:tabPanel switchType="ajax">
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Task</h:panelGroup>
+        </f:facet>
+    <div class="association" id="taskParent">
+
+        <h:outputText value="There is no task associated with this action."
+                   rendered="#{actionHome.instance.task == null}"/>
+
+        <rich:dataTable var="_task"
+                   value="#{actionHome.instance.task}"
+                rendered="#{actionHome.instance.task != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="taskTable">
+ 
+      
+            <h:column>
+                <f:facet name="header">Description</f:facet>
+                <h:outputText value="#{_task.description}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Est time</f:facet>
+                <h:outputText value="#{_task.estTime}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Expiry days</f:facet>
+                <h:outputText value="#{_task.expiryDays}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Expiry type</f:facet>
+                <h:outputText value="#{_task.expiryType.label}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Freq days</f:facet>
+                <h:outputText value="#{_task.freqDays}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Freq months</f:facet>
+                <h:outputText value="#{_task.freqMonths}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Freq type</f:facet>
+                <h:outputText value="#{_task.freqType.label}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Is active</f:facet>
+                <h:outputText value="#{_task.isActive}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Is stand alone</f:facet>
+                <h:outputText value="#{_task.isStandAlone}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Last planned date</f:facet>
+                <h:outputText value="#{_task.lastPlannedDate}">
+                    <s:convertDateTime type="both" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Last serviced date</f:facet>
+                <h:outputText value="#{_task.lastServicedDate}">
+                    <s:convertDateTime type="both" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Priority</f:facet>
+                <h:outputText value="#{_task.priority}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Run hours thresh</f:facet>
+                <h:outputText value="#{_task.runHoursThresh}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Run hours thresh inc</f:facet>
+                <h:outputText value="#{_task.runHoursThreshInc}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Start date</f:facet>
+                <h:outputText value="#{_task.startDate}">
+                    <s:convertDateTime type="both" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+          
+            <h:column>
+                <f:facet name="header">Task type</f:facet>
+                <h:outputText value="#{_task.taskType.label}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewtask"
+                     value="View"
+                      view="/asset/Task.xhtml">
+                    <f:param name="taskTaskId"
+                           value="#{_task.id}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

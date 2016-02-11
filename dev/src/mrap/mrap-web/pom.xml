@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>mrap</artifactId>
+		<groupId>com.mlink</groupId>
+		<version>0.0.1</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<groupId>com.mlink</groupId>
+	<artifactId>mrap-web</artifactId>
+	<version>0.0.1</version>
+	<packaging>war</packaging>
+	<name>web Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+
+	<!-- plugin repos 
+	<pluginRepositories>
+		<pluginRepository>
+			<id>google-build-force-m2-releases</id>
+			<name>Hosted Releases Repository for M2 plugins</name>
+			<url>https://build-force.googlecode.com/svn/maven2/releases</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+-->
+
+	<dependencies>
+
+		<!-- logic module -->
+		<dependency>
+			<groupId>com.mlink</groupId>
+			<artifactId>mrap-logic</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+
+		<!-- JBoss Seam core -->
+		<dependency>
+			<groupId>org.jboss.seam</groupId>
+			<artifactId>jboss-seam-ui</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>jboss-seam</artifactId>
+					<groupId>org.jboss.seam</groupId>
+				</exclusion>
+				<exclusion>
+					<groupId>javax.el</groupId>
+					<artifactId>el-api</artifactId>
+				</exclusion>
+			</exclusions>
+
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.seam</groupId>
+			<artifactId>jboss-seam-debug</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.el</groupId>
+					<artifactId>el-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+
+		<!-- Richfaces -->
+		<dependency>
+			<groupId>org.richfaces.ui</groupId>
+			<artifactId>richfaces-ui</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.richfaces.framework</groupId>
+			<artifactId>richfaces-impl</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-beanutils</groupId>
+					<artifactId>commons-beanutils</artifactId>
+				</exclusion>
+
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.facelets</groupId>
+			<artifactId>jsf-facelets</artifactId>
+		</dependency>
+
+	</dependencies>
+
+
+	<build>
+		<finalName>mrap</finalName>
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.1.1</version>
+				<configuration>
+
+					<webResources>
+						<resource>
+							<directory>target/${project.build.finalName}</directory>
+							<filtering>true</filtering>
+						</resource>
+						<!-- filtering needs to be set to false -->
+						<resource>
+							<directory>../mrap-logic/target/classes/</directory>
+							<filtering>false</filtering>							
+							<targetPath>WEB-INF/classes</targetPath>													
+						</resource>
+					</webResources>
+				
+			
+				</configuration>
+			</plugin>
+
+			<!-- tomcat plugin -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>tomcat-maven-plugin</artifactId>
+				<version>1.1</version>
+				<configuration>
+					<username>admin</username>
+					<password>admin</password>
+					<warFile>target/mrap.war</warFile>
+					<path>/mrap</path>
+					<update>true</update>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
+</project>

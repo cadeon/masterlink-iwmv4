@@ -1,0 +1,110 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/adminTemplate.xhtml">
+
+<ui:define name="body">
+
+    <rich:panel>
+        <f:facet name="header">User Details</f:facet>
+
+
+        <s:decorate id="email" template="/layout/display.xhtml">
+            <ui:define name="label">Email</ui:define>
+            <h:outputText value="#{userHome.instance.email}"/>
+        </s:decorate>
+
+
+        <s:decorate id="fname" template="/layout/display.xhtml">
+            <ui:define name="label">Fname</ui:define>
+            <h:outputText value="#{userHome.instance.fname}"/>
+        </s:decorate>
+
+        <s:decorate id="lname" template="/layout/display.xhtml">
+            <ui:define name="label">Lname</ui:define>
+            <h:outputText value="#{userHome.instance.lname}"/>
+        </s:decorate>
+
+        <s:decorate id="uid" template="/layout/display.xhtml">
+            <ui:define name="label">Uid</ui:define>
+            <h:outputText value="#{userHome.instance.uid}"/>
+        </s:decorate>
+        
+        <s:decorate id="rolesField" template="/layout/display.xhtml">
+					<ui:define name="label">Role Membership</ui:define>
+					<h:outputText value="#{userHome.instance.rolesString}" />			
+		 </s:decorate>
+
+         <s:decorate id="enabledField" template="/layout/display.xhtml"
+                rendered="#{s:hasRole('admin')}">
+                <ui:define name="label">Account Active</ui:define>
+				<h:outputText value="#{userHome.instance.enabled}" />
+          </s:decorate>
+          
+        <div style="clear:both"/>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+
+        <s:button view="/security/UserEdit.xhtml"
+                    id="edit"
+                 value="Edit"/>
+
+        <s:button view="/security/#{empty userFrom ? 'UserList' : userFrom}.xhtml"
+                    id="done"
+                 value="Done"/>
+
+    </div>
+
+    <rich:tabPanel switchType="ajax">
+
+    <rich:tab >
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Login Activity for: #{userHome.instance.uid}</h:panelGroup>
+        </f:facet>
+    <h:form styleClass="association" id="loginactivitiesChildren">
+
+        <h:outputText value="There are no loginactivities associated with this user."
+                   rendered="#{empty userHome.loginactivities}"/>
+
+        <rich:dataTable value="#{userHome.loginactivities}"
+                       var="_loginactivity"
+                  rendered="#{not empty userHome.loginactivities}"
+                rowClasses="rvgRowOne,rvgRowTwo"
+                        id="loginactivitiesTable">
+            
+            <rich:column sortBy="#{_loginactivity.date}">
+                <f:facet name="header">Date</f:facet>
+                <h:outputText value="#{_loginactivity.date}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </rich:column>
+            <rich:column sortBy="#{_loginactivity.loginTime}">
+                <f:facet name="header">Login time</f:facet>
+                <h:outputText value="#{_loginactivity.loginTime}">
+                    <s:convertDateTime type="both" dateStyle="short"/>
+                </h:outputText>
+            </rich:column>
+            <rich:column sortBy="#{_loginactivity.logoutTime}">
+                <f:facet name="header">Logout time</f:facet>
+                <h:outputText value="#{_loginactivity.logoutTime}">
+                    <s:convertDateTime type="both" dateStyle="short"/>
+                </h:outputText>
+            </rich:column>
+           
+        </rich:dataTable>
+
+    </h:form>
+
+    
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

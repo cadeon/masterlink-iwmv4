@@ -1,0 +1,91 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/adminTemplate.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="user" styleClass="edit">
+
+        <rich:panel>
+        <f:facet name="header">#{userHome.managed ? 'Edit' : 'Add'} User</f:facet>
+ 		<s:decorate id="fname" template="/layout/display.xhtml">
+            <ui:define name="label">First Name</ui:define>
+            <h:outputText value="#{userHome.instance.fname}"/>
+        </s:decorate>
+
+        <s:decorate id="lname" template="/layout/display.xhtml">
+            <ui:define name="label">Last Name</ui:define>
+            <h:outputText value="#{userHome.instance.lname}"/>
+        </s:decorate>
+
+        <s:decorate id="email" template="../layout/display.xhtml">
+            <ui:define name="label">Email</ui:define>
+            <h:outputText value="#{userHome.instance.email}"/>
+        </s:decorate>
+
+		<s:decorate id="uid" template="/layout/display.xhtml">
+            <ui:define name="label">UID</ui:define>
+            <h:outputText value="#{userHome.instance.uid}"/>
+        </s:decorate>
+
+		<s:decorate id="rolesField" template="/layout/edit.xhtml">
+					<ui:define name="label">Role Membership</ui:define>
+					<h:selectManyCheckbox  value="#{userHome.instance.roles}">
+						<s:selectItems  value="#{roleList.resultList}" var="role" label="#{role.name}"/>
+						<s:convertEntity/>
+					</h:selectManyCheckbox>					
+		 </s:decorate>
+
+            <s:decorate id="enabledField" template="/layout/edit.xhtml"
+                rendered="#{s:hasRole('admin')}">
+                <ui:define name="label">Account Active</ui:define>
+                <h:selectBooleanCheckbox id="enabled"
+                                      value="#{userHome.instance.enabled}"/>
+            </s:decorate>
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{userHome.persist}"
+                       disabled="#{!userHome.wired}"
+                       rendered="#{!userHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{userHome.update}"
+                       rendered="#{userHome.managed}"/>
+
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/security/User.xhtml"
+                rendered="#{userHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/security/#{empty userFrom ? 'UserList' : userFrom}.xhtml"
+                rendered="#{!userHome.managed}"/>
+
+        </div>
+    </h:form>
+
+
+</ui:define>
+
+</ui:composition>

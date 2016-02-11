@@ -1,0 +1,11 @@
+<Context path="/mrap" docBase="mrap" reloadable="true"
+	crossContext="true">
+
+	<Resource 
+	auth="Container" 
+	name="jdbc/mrapDS" type="javax.sql.DataSource"
+	driverClassName="com.mysql.jdbc.Driver" 
+	url="jdbc:mysql://localhost:3306/mrap"
+	username="root" password="mlinkdb" maxActive="100" maxIdle="30" maxWait="10000" />
+
+</Context>

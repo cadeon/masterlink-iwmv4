@@ -1,0 +1,189 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="assetTimeShareSearch" styleClass="edit">
+
+        <rich:simpleTogglePanel label="AssetTimeShare Search Filter" switchType="ajax">
+
+            <s:decorate template="/layout/display.xhtml">
+                <ui:define name="label">Match</ui:define>
+                <h:selectOneRadio id="logic" value="#{assetTimeShareList.restrictionLogicOperator}" styleClass="radio">
+                    <f:selectItem itemLabel="All" itemValue="and"/>
+                    <f:selectItem itemLabel="Any" itemValue="or"/>
+                </h:selectOneRadio>
+            </s:decorate>
+
+        </rich:simpleTogglePanel>
+
+        <div class="actionButtons">
+            <h:commandButton id="search" value="Search" action="/asset/AssetTimeShareList.xhtml"/>
+            <s:button id="reset" value="Reset" includePageParams="false"/>
+        </div>
+
+    </h:form>
+
+    <rich:panel>
+        <f:facet name="header">AssetTimeShare Search Results (#{empty assetTimeShareList.resultList ? 0 : (assetTimeShareList.paginated ? assetTimeShareList.resultCount : assetTimeShareList.resultList.size)})</f:facet>
+    <div class="results" id="assetTimeShareList">
+
+    <h:outputText value="The assetTimeShare search returned no results."
+               rendered="#{empty assetTimeShareList.resultList}"/>
+
+    <rich:dataTable id="assetTimeShareList"
+                var="_assetTimeShare"
+              value="#{assetTimeShareList.resultList}"
+           rendered="#{not empty assetTimeShareList.resultList}">
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{assetTimeShareList}"/>
+                    <ui:param name="propertyLabel" value="Asset time share id"/>
+                    <ui:param name="propertyPath" value="assetTimeShare.id"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_assetTimeShare.id}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{assetTimeShareList}"/>
+                    <ui:param name="propertyLabel" value="As resource"/>
+                    <ui:param name="propertyPath" value="assetTimeShare.asResource"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_assetTimeShare.asResource}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{assetTimeShareList}"/>
+                    <ui:param name="propertyLabel" value="Asset asset id"/>
+                    <ui:param name="propertyPath" value="assetTimeShare.asset.id"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_assetTimeShare.asset.id}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{assetTimeShareList}"/>
+                    <ui:param name="propertyLabel" value="Assigned"/>
+                    <ui:param name="propertyPath" value="assetTimeShare.assigned"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_assetTimeShare.assigned}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{assetTimeShareList}"/>
+                    <ui:param name="propertyLabel" value="End date"/>
+                    <ui:param name="propertyPath" value="assetTimeShare.endDate"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_assetTimeShare.endDate}">
+                <s:convertDateTime type="both" dateStyle="short"/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{assetTimeShareList}"/>
+                    <ui:param name="propertyLabel" value="Job allocated to job id"/>
+                    <ui:param name="propertyPath" value="assetTimeShare.jobAllocatedTo.jobId"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_assetTimeShare.jobAllocatedTo.jobId}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{assetTimeShareList}"/>
+                    <ui:param name="propertyLabel" value="Start date"/>
+                    <ui:param name="propertyPath" value="assetTimeShare.startDate"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_assetTimeShare.startDate}">
+                <s:convertDateTime type="both" dateStyle="short"/>
+            </h:outputText>
+        </h:column>
+        <rich:column styleClass="action">
+            <f:facet name="header">Action</f:facet>
+            <s:link view="/asset/#{empty from ? 'AssetTimeShare' : from}.xhtml"
+                   value="#{empty from ? 'View' : 'Select'}"
+             propagation="#{empty from ? 'none' : 'default'}"
+                      id="assetTimeShareViewId">
+                <f:param name="assetTimeShareAssetTimeShareId"
+                        value="#{_assetTimeShare.id}"/>
+            </s:link>
+            #{' '}
+            <s:link view="/asset/AssetTimeShareEdit.xhtml"
+                   value="Edit"
+             propagation="none"
+                      id="assetTimeShareEdit"
+                rendered="#{empty from}">
+                <f:param name="assetTimeShareAssetTimeShareId"
+                        value="#{_assetTimeShare.id}"/>
+            </s:link>
+        </rich:column>
+    </rich:dataTable>
+
+    </div>
+    </rich:panel>
+
+    <div class="tableControl">
+
+        <s:link view="/asset/AssetTimeShareList.xhtml"
+            rendered="#{assetTimeShareList.previousExists}"
+               value="#{messages.left}#{messages.left} First Page"
+                  id="firstPage">
+          <f:param name="firstResult" value="0"/>
+        </s:link>
+
+        <s:link view="/asset/AssetTimeShareList.xhtml"
+            rendered="#{assetTimeShareList.previousExists}"
+               value="#{messages.left} Previous Page"
+                  id="previousPage">
+            <f:param name="firstResult"
+                    value="#{assetTimeShareList.previousFirstResult}"/>
+        </s:link>
+
+        <s:link view="/asset/AssetTimeShareList.xhtml"
+            rendered="#{assetTimeShareList.nextExists}"
+               value="Next Page #{messages.right}"
+                  id="nextPage">
+            <f:param name="firstResult"
+                    value="#{assetTimeShareList.nextFirstResult}"/>
+        </s:link>
+
+        <s:link view="/asset/AssetTimeShareList.xhtml"
+            rendered="#{assetTimeShareList.nextExists}"
+               value="Last Page #{messages.right}#{messages.right}"
+                  id="lastPage">
+            <f:param name="firstResult"
+                    value="#{assetTimeShareList.lastFirstResult}"/>
+        </s:link>
+
+    </div>
+
+    <s:div styleClass="actionButtons" rendered="#{empty from}">
+        <s:button view="/asset/AssetTimeShareEdit.xhtml"
+                    id="create"
+           propagation="none"
+                 value="Create assetTimeShare">
+            <f:param name="assetTimeShareAssetTimeShareId"/>
+        </s:button>
+    </s:div>
+
+</ui:define>
+
+</ui:composition>

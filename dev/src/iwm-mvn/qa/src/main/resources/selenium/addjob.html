@@ -1,0 +1,165 @@
+<html>
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://sid.iwm:8080/iwm/" />
+<title>addjob</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">addjob</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>http://sid.iwm:8080/iwm/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=loginForm:username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=loginForm:username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=loginForm:password</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=loginForm:submit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=mngMaint</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=mngMaint</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=addRescheduleForm:addJob</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=addRescheduleForm:addJob</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=detailsForm:dateClosedValue</td>
+	<td></td>
+</tr>
+<tr>
+	<td>typeKeys</td>
+	<td>id=detailsForm:i_eroNumber</td>
+	<td>0T35T</td>
+</tr>
+<tr>
+	<td>typeKeys</td>
+	<td>id=detailsForm:serialNum</td>
+	<td>619910</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>css=td.rich-sb-cell-padding.richfaces_suggestionSelectValue</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=td.rich-sb-cell-padding.richfaces_suggestionSelectValue</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForValue</td>
+	<td>id=detailsForm:tam</td>
+	<td>D0022</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=detailsForm:eroid</td>
+	<td>II285A</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=detailsForm:model</td>
+	<td>M1152</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=detailsForm:j_id26</td>
+	<td>label=EOM 2</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=detailsForm:j_id29</td>
+	<td>label=X</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=detailsForm:j_id32</td>
+	<td>label=13</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=detailsForm:ownerContact</td>
+	<td>Jeffery Hudson</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=detailsForm:ownerPhone</td>
+	<td>8675309</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=detailsForm:ownerEmail</td>
+	<td>j.h@gmail.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=detailsForm:ownerActivityCode</td>
+	<td>1500 Y</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=detailsForm:dris</td>
+	<td>1100</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=detailsForm:calendarInputDate</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=detailsForm:calendarDayCell9</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=detailsForm:notes</td>
+	<td>Please wash when done.</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=detailsForm:saveJob</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>JBoss Seam Debug Page</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/template.xhtml">
+
+<ui:define name="body">
+
+    <rich:panel>
+        <f:facet name="header">Task template Details</f:facet>
+
+
+        <s:decorate id="estHours" template="/layout/display.xhtml">
+            <ui:define name="label">Est hours</ui:define>
+            <h:outputText value="#{taskTemplateHome.instance.estHours}"/>
+        </s:decorate>
+
+        <s:decorate id="estMin" template="/layout/display.xhtml">
+            <ui:define name="label">Est min</ui:define>
+            <h:outputText value="#{taskTemplateHome.instance.estMin}"/>
+        </s:decorate>
+
+        <s:decorate id="expNumDays" template="/layout/display.xhtml">
+            <ui:define name="label">Exp num days</ui:define>
+            <h:outputText value="#{taskTemplateHome.instance.expNumDays}"/>
+        </s:decorate>
+
+        <s:decorate id="expiryType" template="/layout/display.xhtml">
+            <ui:define name="label">Expiry type</ui:define>
+            <h:outputText value="#{taskTemplateHome.instance.expiryType.label}"/>
+        </s:decorate>
+
+        <s:decorate id="freqDays" template="/layout/display.xhtml">
+            <ui:define name="label">Freq days</ui:define>
+            <h:outputText value="#{taskTemplateHome.instance.freqDays}"/>
+        </s:decorate>
+
+        <s:decorate id="freqMonths" template="/layout/display.xhtml">
+            <ui:define name="label">Freq months</ui:define>
+            <h:outputText value="#{taskTemplateHome.instance.freqMonths}"/>
+        </s:decorate>
+
+        <s:decorate id="freqType" template="/layout/display.xhtml">
+            <ui:define name="label">Freq type</ui:define>
+            <h:outputText value="#{taskTemplateHome.instance.freqType.label}"/>
+        </s:decorate>
+
+        <s:decorate id="priority" template="/layout/display.xhtml">
+            <ui:define name="label">Priority</ui:define>
+            <h:outputText value="#{taskTemplateHome.instance.priority}"/>
+        </s:decorate>
+
+        <s:decorate id="runHoursThreshInc" template="/layout/display.xhtml">
+            <ui:define name="label">Run hours thresh inc</ui:define>
+            <h:outputText value="#{taskTemplateHome.instance.runHoursThreshInc}"/>
+        </s:decorate>
+
+        <s:decorate id="taskDescription" template="/layout/display.xhtml">
+            <ui:define name="label">Task description</ui:define>
+            <h:outputText value="#{taskTemplateHome.instance.taskDescription}"/>
+        </s:decorate>
+
+        <s:decorate id="taskType" template="/layout/display.xhtml">
+            <ui:define name="label">Task type</ui:define>
+            <h:outputText value="#{taskTemplateHome.instance.taskType.label}"/>
+        </s:decorate>
+
+        <div style="clear:both"/>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+
+        <s:button view="/define/TaskTemplateEdit.xhtml"
+                    id="edit"
+                 value="Edit"/>
+
+        <s:button view="/define/#{empty taskTemplateFrom ? 'TaskTemplateList' : taskTemplateFrom}.xhtml"
+                    id="done"
+                 value="Done"/>
+
+    </div>
+
+    <rich:tabPanel switchType="ajax">
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Action templates</h:panelGroup>
+        </f:facet>
+    <h:form styleClass="association" id="actionTemplatesChildren">
+
+        <h:outputText value="There are no actionTemplates associated with this taskTemplate."
+                   rendered="#{empty taskTemplateHome.actionTemplates}"/>
+
+        <rich:dataTable value="#{taskTemplateHome.actionTemplates}"
+                       var="_actionTemplate"
+                  rendered="#{not empty taskTemplateHome.actionTemplates}"
+                rowClasses="rvgRowOne,rvgRowTwo"
+                        id="actionTemplatesTable">
+
+            <rich:column sortBy="#{_actionTemplate.modifier}">
+                <f:facet name="header">Modifier</f:facet>
+                <h:outputText value="#{_actionTemplate.modifier}"/>
+            </rich:column>
+            <rich:column sortBy="#{_actionTemplate.name}">
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{_actionTemplate.name}"/>
+            </rich:column>
+            <rich:column sortBy="#{_actionTemplate.sequence}">
+                <f:facet name="header">Sequence</f:facet>
+                <h:outputText value="#{_actionTemplate.sequence}"/>
+            </rich:column>
+            <rich:column sortBy="#{_actionTemplate.verb}">
+                <f:facet name="header">Verb</f:facet>
+                <h:outputText value="#{_actionTemplate.verb}"/>
+            </rich:column>
+            <h:column>
+                <f:facet name="header">Action</f:facet>
+                <s:link id="selectactionTemplate"
+                     value="Select"
+                      view="/define/ActionTemplate.xhtml">
+                    <f:param name="actionTemplateActionTemplateId"
+                            value="#{_actionTemplate.actionTemplateId}"/>
+                    <f:param name="actionTemplateFrom" value="TaskTemplate"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </h:form>
+
+    <div class="actionButtons">
+        <s:button
+               value="Add actionTemplate"
+                view="/define/ActionTemplateEdit.xhtml">
+            <f:param name="taskTemplateTaskTemplateId"
+                    value="#{taskTemplateHome.instance.taskTemplateId}"/>
+            <f:param name="actionTemplateFrom" value="TaskTemplate"/>
+        </s:button>
+    </div>
+    </rich:tab>
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Required Asset resources</h:panelGroup>
+        </f:facet>
+    <h:form styleClass="association" id="assetResourcesChildren">
+
+        <h:outputText value="There are no assetResources associated with this taskTemplate."
+                   rendered="#{empty taskTemplateHome.assetResources}"/>
+
+        <rich:dataTable value="#{taskTemplateHome.assetResources}"
+                       var="_assetResource"
+                  rendered="#{not empty taskTemplateHome.assetResources}"
+                rowClasses="rvgRowOne,rvgRowTwo"
+                        id="assetResourcesTable">
+            <rich:column sortBy="#{_assetResource.id}">
+                <f:facet name="header">Asset resource id</f:facet>
+                <h:outputText value="#{_assetResource.id}"/>
+            </rich:column>
+            <rich:column sortBy="#{_assetResource.isManualAssign}">
+                <f:facet name="header">Is manual assign</f:facet>
+                <h:outputText value="#{_assetResource.isManualAssign}"/>
+            </rich:column>
+            <h:column>
+                <f:facet name="header">Action</f:facet>
+                <s:link id="selectassetResource"
+                     value="Select"
+                      view="/define/AssetResource.xhtml">
+                    <f:param name="assetResourceAssetResourceId"
+                            value="#{_assetResource.id}"/>
+                    <f:param name="assetResourceFrom" value="TaskTemplate"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </h:form>
+
+    <div class="actionButtons">
+        <s:button
+               value="Add assetResource"
+                view="/res/AssetResourceEdit.xhtml">
+            <f:param name="taskTemplateTaskTemplateId"
+                    value="#{taskTemplateHome.instance.taskTemplateId}"/>
+            <f:param name="assetResourceFrom" value="TaskTemplate"/>
+        </s:button>
+    </div>
+    </rich:tab>
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Asset template</h:panelGroup>
+        </f:facet>
+    <div class="association" id="assetTemplateParent">
+
+        <h:outputText value="There is no assetTemplate associated with this taskTemplate."
+                   rendered="#{taskTemplateHome.instance.assetTemplate == null}"/>
+
+        <rich:dataTable var="_assetTemplate"
+                   value="#{taskTemplateHome.instance.assetTemplate}"
+                rendered="#{taskTemplateHome.instance.assetTemplate != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="assetTemplateTable">
+
+            <h:column>
+                <f:facet name="header">Asset kind</f:facet>
+                <h:outputText value="#{_assetTemplate.assetKind.label}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Asset type asset type id</f:facet>
+                <h:outputText value="#{_assetTemplate.assetType.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Is parent</f:facet>
+                <h:outputText value="#{_assetTemplate.isParent}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{_assetTemplate.name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Parent asset template id</f:facet>
+                <h:outputText value="#{_assetTemplate.parent.assetTemplateId}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Plan</f:facet>
+                <h:outputText value="#{_assetTemplate.plan}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewassetTemplate"
+                     value="View"
+                      view="/define/AssetTemplate.xhtml">
+                    <f:param name="assetTemplateAssetTemplateId"
+                           value="#{_assetTemplate.id}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Reuired Parts/Consumable</h:panelGroup>
+        </f:facet>
+    <h:form styleClass="association" id="nonAssetResourcesChildren">
+
+        <h:outputText value="There are no nonAssetResources associated with this taskTemplate."
+                   rendered="#{empty taskTemplateHome.nonAssetResources}"/>
+
+        <rich:dataTable value="#{taskTemplateHome.nonAssetResources}"
+                       var="_nonAssetResource"
+                  rendered="#{not empty taskTemplateHome.nonAssetResources}"
+                rowClasses="rvgRowOne,rvgRowTwo"
+                        id="nonAssetResourcesTable">
+            <rich:column sortBy="#{_nonAssetResource.id}">
+                <f:facet name="header">Non asset resource id</f:facet>
+                <h:outputText value="#{_nonAssetResource.id}"/>
+            </rich:column>
+            <rich:column sortBy="#{_nonAssetResource.quantity}">
+                <f:facet name="header">Quantity</f:facet>
+                <h:outputText value="#{_nonAssetResource.quantity}"/>
+            </rich:column>
+            <rich:column sortBy="#{_nonAssetResource.tag}">
+                <f:facet name="header">Tag</f:facet>
+                <h:outputText value="#{_nonAssetResource.tag}"/>
+            </rich:column>
+            <rich:column sortBy="#{_nonAssetResource.type}">
+                <f:facet name="header">Type</f:facet>
+                <h:outputText value="#{_nonAssetResource.type}"/>
+            </rich:column>
+            <rich:column sortBy="#{_nonAssetResource.unitRefId}">
+                <f:facet name="header">Unit ref id</f:facet>
+                <h:outputText value="#{_nonAssetResource.unitRefId}"/>
+            </rich:column>
+            <h:column>
+                <f:facet name="header">Action</f:facet>
+                <s:link id="selectnonAssetResource"
+                     value="Select"
+                      view="/define/NonAssetResource.xhtml">
+                    <f:param name="nonAssetResourceNonAssetResourceId"
+                            value="#{_nonAssetResource.id}"/>
+                    <f:param name="nonAssetResourceFrom" value="TaskTemplate"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </h:form>
+
+    <div class="actionButtons">
+        <s:button
+               value="Add nonAssetResource"
+                view="/res/NonAssetResourceEdit.xhtml">
+            <f:param name="taskTemplateTaskTemplateId"
+                    value="#{taskTemplateHome.instance.taskTemplateId}"/>
+            <f:param name="nonAssetResourceFrom" value="TaskTemplate"/>
+        </s:button>
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

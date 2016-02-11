@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.com/products/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.2.xsd">
+
+   <param name="addressFrom"/>
+   <param name="addressAddressId" value="#{addressHome.id}"/>
+   <param name="contactFrom"/>
+   <param name="contactContactId" value="#{contactHome.id}"/>
+   <param name="organizationFrom"/>
+   <param name="organizationOrgId" value="#{organizationHome.id}"/>
+
+
+
+
+</page>

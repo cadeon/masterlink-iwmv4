@@ -1,0 +1,61 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/layout/loginTemplate.xhtml">
+
+	<ui:define name="body">
+		<rich:panel>
+
+			<f:facet name="header">Frequently Asked Questions</f:facet>
+			<rich:simpleTogglePanel label="How do I login to IWM the first time?"
+				switchType="ajax" style="background-color:#E4E7ED;" opened="false">
+
+
+				<div>The very first time you access IWM you will need to
+					create you user account by clicking on Create Account located on
+					the login dialog form. Once you have filled in your user info
+					(including others a user and password ) You can then use your newly
+					created user credentials to login into IWM release 4.0</div>
+				<div style="height: 24px;"></div>
+			</rich:simpleTogglePanel>
+
+			<rich:simpleTogglePanel label="How do I edit my user account info?"
+				switchType="ajax" style="background-color:#CCCFDB;" opened="false">
+				<div>
+					Once you login you will notice on the far right a label entitled
+					sined in as <i><u>userX</u>
+					</i> userX being your user account ID.
+				</div>
+				<div></div>
+				1-Click on menu item <i>userX-Edit Account</i> to
+				change your account info. 
+				<div></div>
+				2- Click on menu item <i>userX-Change Password</i> to change your password
+				
+			</rich:simpleTogglePanel>
+
+			<rich:simpleTogglePanel
+				label="How will IWM application evolve over
+				time?"
+				switchType="ajax" style="background-color:#CCCFDB;" opened="false">
+
+				<div>As IWM modules are implemented, unit tested they will be
+					deployed to Butler server</div>
+				<div style="height: 24px;"></div>
+			</rich:simpleTogglePanel>
+
+		</rich:panel>
+
+		<div class="actionButtons">
+			<s:button view="/login.xhtml" id="done" value="Done" />
+		</div>
+
+
+	</ui:define>
+
+</ui:composition>

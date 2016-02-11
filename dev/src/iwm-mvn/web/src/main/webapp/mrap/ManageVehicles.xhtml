@@ -1,0 +1,112 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:param name="headingTitle" value="Add/Edit Vehicles for 20000 H" />
+
+<h:form id="vehiclesTableForm">  
+    <rich:dataTable id="vehicleTable"
+					onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
+	                onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"
+			 		rowClasses="evenRow"
+    	value="#{vehiclesManager.vehicleDataModel}" var="vehicle" width="100%" columnClasses="center"
+        rows="50" > 
+            <rich:column id="vehicleSerialCol" sortBy="#{vehicle.serialNumber}" > 
+                <f:facet name="header">
+                    <h:outputText value="Serial #"/>
+                </f:facet>
+                <table>
+                	<tr>
+                		<td>
+			                <h:inputText id="serialNumber" value="#{vehicle.serialNumber}"/>
+                		</td>
+                	</tr>
+                	<tr>
+                		<td style="text-align: center">
+							<a4j:commandButton id="deleteVehicle"
+			                         value="Delete"
+			                         actionListener="#{vehiclesManager.deleteVehicle}"
+			                         reRender="vehicleTable"/>
+                		</td>
+                	</tr>
+                </table>
+            </rich:column>
+            <rich:column id="vehicleTamCol" sortBy="#{vehicle.tam}" > 
+                <f:facet name="header">
+                    <h:outputText value="TAM"/>
+                </f:facet>
+                <h:inputText id="vehicleTam" value="#{vehicle.tam}"/>
+            </rich:column>
+            <rich:column id="vehicleIdCol" sortBy="#{vehicle.vehicleId}" > 
+                <f:facet name="header">
+                    <h:outputText value="ID"/>
+                </f:facet>
+                <h:inputText id="vehicleId" value="#{vehicle.vehicleId}"/>
+            </rich:column>
+            <rich:column id="vehicleModelCol" sortBy="#{vehicle.model}" > 
+                <f:facet name="header">
+                    <h:outputText value="Model"/>
+                </f:facet>
+                <h:inputText id="model" value="#{vehicle.model}"/>
+            </rich:column>
+            <rich:column id="vehicleActivityCodeCol" sortBy="#{vehicle.activityCode}" > 
+                <f:facet name="header">
+                    <h:outputText value="Owner Activity Code"/>
+                </f:facet>
+                 <h:inputText id="actCode" value="#{vehicle.activityCode}"/>
+            </rich:column>
+            <rich:column id="vehicleOrgNameCol" sortBy="#{vehicle.organizationName}" > 
+                <f:facet name="header">
+                    <h:outputText value="Owning Organization"/>
+                </f:facet>
+                <h:inputText id="organziation" value="#{vehicle.organizationName}"/>
+            </rich:column>
+            <rich:column id="vehicleOwnerNameCol" sortBy="#{vehicle.ownerName}" > 
+                <f:facet name="header">
+                    <h:outputText value="Owner Name"/>
+                </f:facet>
+                <h:inputText id="ownerName" value="#{vehicle.ownerName}"/>
+            </rich:column> 
+            <rich:column id="vehiclePhoneCol" sortBy="#{vehicle.phone}" > 
+                <f:facet name="header">
+                    <h:outputText value="Phone"/>
+                </f:facet>
+                <h:inputText id="phone" value="#{vehicle.phone}"/>
+            </rich:column>
+            <rich:column id="vehicleEmailCol" sortBy="#{vehicle.email}"> 
+                <f:facet name="header">
+                    <h:outputText value="Email"/>
+                </f:facet>
+                <h:inputText id="email" value="#{vehicle.email}"/>
+            </rich:column>
+        </rich:dataTable>
+        <table border="0" cellpadding="6" cellspacing="6" >
+	        <tr>
+	          <td width="20%" align="center" valign="middle">
+				<a4j:commandButton id="saveVehicles"
+                         value="Save"
+                         action="#{vehiclesManager.saveVehicles}"
+                         reRender="vehicleTable, messages"/>
+	          </td>
+	          <td width="20%" align="center" valign="middle">
+				<a4j:commandButton id="cancelEditVehs" 
+									value="Cancel" 
+									action="#{vehiclesManager.initVehiclesData()}"
+									reRender="vehicleTable" immediate="true"/>
+	          </td>
+	          <td width="20%" align="center" valign="middle">
+				<a4j:commandButton id="addVehicle"
+                         value="Add a Vehicle"
+                         action="#{vehiclesManager.addNewVehicle}"
+                         reRender="vehicleTable"/>
+	          </td>
+	        </tr>
+	    </table>
+    </h:form>
+</ui:composition>

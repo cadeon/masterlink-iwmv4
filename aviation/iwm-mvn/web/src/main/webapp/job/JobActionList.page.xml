@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.com/products/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.2.xsd">
+
+   <param name="firstResult" value="#{jobActionList.firstResult}"/>
+   <param name="sort" value="#{jobActionList.orderColumn}"/>
+   <param name="dir" value="#{jobActionList.orderDirection}"/>
+   <param name="logic" value="#{jobActionList.restrictionLogicOperator}"/>
+
+   <param name="from"/>
+   <param name="fieldCondition" value="#{jobActionList.jobAction.fieldCondition}"/>
+   <param name="modifier" value="#{jobActionList.jobAction.modifier}"/>
+   <param name="name" value="#{jobActionList.jobAction.name}"/>
+   <param name="note" value="#{jobActionList.jobAction.note}"/>
+   <param name="sequence" value="#{jobActionList.jobAction.sequence}"/>
+   <param name="verb" value="#{jobActionList.jobAction.verb}"/>
+
+</page>

@@ -1,0 +1,17 @@
+#Mon Feb 14 11:22:54 CST 2011
+action.package=com.mlink.iwm.session
+action.sources=/iwm/src/hot
+eclipse.preferences.version=1
+model.package=com.mlink.iwm.entity
+model.sources=/iwm/src/main
+seam.ejb.project=iwm
+seam.project.connection.profile=mysqlCon
+seam.project.deployment.type=war
+seam.project.settings.version=1.1
+seam.project.web.root.folder=/iwm/web
+seam.runtime.name=jboss-seam-2.2.1.Final
+seam.settings.changed.by.user=true
+seam.test.creating=false
+seam.test.project=iwm-test
+test.package=org.domain.iwm.test
+test.sources=/iwm-test/test-src

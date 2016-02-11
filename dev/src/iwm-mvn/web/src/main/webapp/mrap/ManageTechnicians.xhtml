@@ -1,0 +1,173 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:a4j="http://richfaces.org/a4j">
+
+<h:form id="techniciansTableForm">  
+    <rich:dataTable id="techniciansTable"
+			 		rowClasses="technicianDataTable"
+    				value="#{techsManager.techDataModel}" 
+    				var="tech" width="100%" columnClasses="center"> 
+            <rich:column id="techRankCol" sortBy="#{tech.rank}" width="1%">
+                <f:facet name="header">
+                    <h:outputText value="Rank"/>
+                </f:facet>
+	          	<h:selectOneMenu id="techRankMenu" value="#{tech.rank}" >
+	 				<s:selectItems id="techRankMenuItem" value="#{techsManager.militaryRank}" var="rank" label="#{rank.abbrv}"
+	 				 						noSelectionLabel="Select one..." />
+	 				<s:convertEnum />
+				</h:selectOneMenu>
+            </rich:column>
+            <rich:column id="techNameCol" sortBy="#{tech.techName}" width="1%"> 
+                <f:facet name="header">
+                    <h:outputText value="Technician Name"/>
+                </f:facet>
+                <table>
+                	<tr>
+                		<td>
+			                <h:inputText id="techName" value="#{tech.techName}"/>
+                		</td>
+                	</tr>
+                	<tr>
+                		<td style="text-align: center">
+							<a4j:commandButton id="deleteTech"
+			                         value="Delete"
+			                         actionListener="#{techsManager.deleteTechnician}"
+			                         reRender="techniciansTable"/>
+                		</td>
+                	</tr>
+                </table>
+            </rich:column> 
+            <rich:column id="techPhoneCol" style="text-align: center">
+                <f:facet name="header" width="1%">
+                    <h:outputText value="Phone"/>
+                </f:facet>
+                <h:inputText id="techPhone" value="#{tech.phone}" size="15"/>
+            </rich:column>
+            <rich:column id="techEmailCol" style="text-align: center">
+                <f:facet name="header" width="1%">
+                    <h:outputText value="Email"/>
+                </f:facet>
+                <h:inputText id="techEmail" value="#{tech.email}"/>
+            </rich:column>
+            <rich:column id="techQualCol" style="text-align: center">
+                <f:facet name="header">
+                    <h:outputText value="Qualifications"/>
+                </f:facet>
+                <table cellpadding="0" cellspacing="0" border="0">
+                	<tr><td style="white-space: nowrap"><rich:dataDefinitionList id="qualDataGrid" value="#{tech.qualificationsDataModel}" var="techQual">
+	                		<span style="position: relative; top: 0; left: 0;">
+					          	<h:selectOneMenu id="qualNameMenu" value="#{techQual.name}">
+					 				<s:selectItems id="qualNameMenuItem" value="#{techsManager.qualificationConstants}" var="qual" itemValue="#{qual}" label="#{qual}"
+					 				 						noSelectionLabel="Select one..." />
+		 						</h:selectOneMenu>
+				 			</span>
+	                		<span style="position: relative; top: 0; left: 0;">
+		                		<a4j:commandButton id="deleteQual" value="-"
+		                						   actionListener="#{techsManager.deleteQualification}"
+		                						   reRender="qualDataGrid"/>
+				            </span></rich:dataDefinitionList></td></tr>
+                	<tr>
+                	<td align="right">
+               		<span style="position: relative; bottom: 0; right: 0;">
+						<a4j:commandButton id="addQual"
+		                         value="+"
+		                         actionListener="#{techsManager.addNewQualification}"
+		                         reRender="qualDataGrid"/>
+		            </span>
+		            </td>
+		            </tr>
+		        </table>
+            </rich:column>
+            <rich:column id="techLeaveTimeCol">
+                <f:facet name="header">
+                    <h:outputText value="Leave Time"/>
+                </f:facet>
+                <table cellpadding="0" cellspacing="0" border="0">
+                	<tr>
+                		<td style="white-space: nowrap">
+			               	<rich:dataDefinitionList id="leaveTimeDataGrid" value="#{tech.leaveTimeDataModel}" var="leaveTime">
+		                		<div style="position: relative; top: 0px; left: 0;">
+			                		<span style="position: relative; top: 0; left: 0;">
+						            	from
+						            </span>
+			                		<span style="position: relative; top: 0; left: 0;">
+						               	<rich:calendar id="calendarFrom" direction="bottom-center" datePattern="#{jobManager.datePattern}" value="#{leaveTime.startDate}" inputSize="11"/>
+						            </span>
+			                		<span style="position: relative; top: 0; left: 0;">
+					            		to
+						            </span>
+			                		<span style="position: relative; top: 0; left: 0;">
+						               	<rich:calendar id="calendarTo" direction="bottom-left" datePattern="#{jobManager.datePattern}" value="#{leaveTime.endDate}" inputSize="11"/>
+						            </span>
+			                		<span style="position: relative; top: 2px; left: 0px;">
+										<a4j:commandButton id="deleteLeaveTime"
+						                         value="-"
+						                         actionListener="#{techsManager.deleteLeaveTime}"
+						                         reRender="leaveTimeDataGrid"/>
+						            </span>
+					            </div>
+							</rich:dataDefinitionList>
+			            </td>
+			        </tr>
+			        <tr>
+			        	<td align="right">
+							<a4j:commandButton id="addLeave"
+			                         value="+"
+			                         actionListener="#{techsManager.addNewLeaveTime}"
+			                         reRender="leaveTimeDataGrid"/>
+			            </td>
+			        </tr>
+			    </table>
+            </rich:column>
+            <rich:column id="techStatusCol">
+                <f:facet name="header">
+                    <h:outputText value="Status Today #{jobManager.today}"/>
+                </f:facet>
+       			<h:selectOneRadio id="techStatusRadio" value="#{tech.statusToday}" class="statusRadio">
+       				<f:selectItem id="inStatus" itemValue="#{tech.inStatus}" itemLabel="In" />
+       				<f:selectItem id="absentStatus" itemValue="#{tech.absentStatus}" itemLabel="Absent" />
+       			</h:selectOneRadio>
+            </rich:column>
+        </rich:dataTable>
+        <table border="0" cellpadding="6" cellspacing="6" >
+        	<tr><td>&nbsp;</td></tr>
+        	<tr><td>&nbsp;</td></tr>
+        	<tr><td>&nbsp;</td></tr>
+        	<tr><td>&nbsp;</td></tr>
+        	<tr><td>&nbsp;</td></tr>
+        	<tr><td>&nbsp;</td></tr>
+        	<tr><td>&nbsp;</td></tr>
+        	<tr><td>&nbsp;</td></tr>
+        	<tr><td>&nbsp;</td></tr>
+        	<tr><td>&nbsp;</td></tr>
+        	<tr><td>&nbsp;</td></tr>
+        	<tr><td>&nbsp;</td></tr>
+	        <tr>
+	          <td width="20%" align="center" valign="middle">
+				<a4j:commandButton id="saveTechs"
+                         value="Save"
+                         action="#{techsManager.saveTechnicians}"
+                         reRender="techniciansTable, messages"/>
+	          </td>
+	          <td width="20%" align="center" valign="middle">
+				<a4j:commandButton id="cancelEditTechs" 
+								value="Cancel" 
+								action="#{techsManager.initTechniciansData()}"
+								reRender="techniciansTable" immediate="true"/>
+	          </td>
+	          <td width="20%" align="center" valign="middle">
+				<a4j:commandButton id="addTech"
+                         value="Add a Technician"
+                         action="#{techsManager.addNewTechnician}"
+                         reRender="techniciansTable"/>
+	          </td>
+	        </tr>
+	    </table>
+    </h:form>
+</ui:composition>

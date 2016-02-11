@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://sid.iwm:8080/iwm" />
+<title>navigation</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">navigation</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>http://sid.iwm:8080/iwm/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=loginForm:username</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=loginForm:username</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=loginForm:password</td>
+	<td>admin</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=loginForm:submit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=mngMaint</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=mngMaint</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=calendarForm:calendarInputDate</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTitle</td>
+	<td>IWM</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>day</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=addRescheduleForm:setScopeWeek</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Manage maintenance for the week of</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=addRescheduleForm:setScopeMonth</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Manage maintenance for the month of</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=addRescheduleForm:setScopeYear</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Manage maintenance for 2011.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//div[@id='container']/table/tbody/tr[2]/td/table/tbody/tr/td[3]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Add/Edit Vehicles and Technicians</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=j_id55_lbl</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Model</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=jobsTableForm:jobsTable:0:j_id80</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>View or edit details as necessary. Then click Save, Cancel or Back.</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=j_id57_lbl</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Number of technicians needed ....</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=j_id84_lbl</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Work Item (Defect code)</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=j_id109_lbl</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>http://sid.iwm:8080/iwm/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForTextPresent</td>
+	<td>Logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=menuLogoutId</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>id=loginForm:username</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

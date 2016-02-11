@@ -1,0 +1,231 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="taskTemplateSearch" styleClass="edit">
+
+        <rich:simpleTogglePanel label="TaskTemplate Search Filter" switchType="ajax">
+
+            <s:decorate template="/layout/display.xhtml">
+                <ui:define name="label">Task description</ui:define>
+                <h:inputText id="taskDescription" value="#{taskTemplateList.taskTemplate.taskDescription}"/>
+            </s:decorate>
+
+            <s:decorate template="/layout/display.xhtml">
+                <ui:define name="label">Match</ui:define>
+                <h:selectOneRadio id="logic" value="#{taskTemplateList.restrictionLogicOperator}" styleClass="radio">
+                    <f:selectItem itemLabel="All" itemValue="and"/>
+                    <f:selectItem itemLabel="Any" itemValue="or"/>
+                </h:selectOneRadio>
+            </s:decorate>
+
+        </rich:simpleTogglePanel>
+
+        <div class="actionButtons">
+            <h:commandButton id="search" value="Search" action="/define/TaskTemplateList.xhtml"/>
+            <s:button id="reset" value="Reset" includePageParams="false"/>
+        </div>
+
+    </h:form>
+
+    <rich:panel>
+        <f:facet name="header">TaskTemplate Search Results (#{empty taskTemplateList.resultList ? 0 : (taskTemplateList.paginated ? taskTemplateList.resultCount : taskTemplateList.resultList.size)})</f:facet>
+    <div class="results" id="taskTemplateList">
+
+    <h:outputText value="The taskTemplate search returned no results."
+               rendered="#{empty taskTemplateList.resultList}"/>
+
+    <rich:dataTable id="taskTemplateList"
+                var="_taskTemplate"
+              value="#{taskTemplateList.resultList}"
+           rendered="#{not empty taskTemplateList.resultList}">
+
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{taskTemplateList}"/>
+                    <ui:param name="propertyLabel" value="Est hours"/>
+                    <ui:param name="propertyPath" value="taskTemplate.estHours"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_taskTemplate.estHours}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{taskTemplateList}"/>
+                    <ui:param name="propertyLabel" value="Est min"/>
+                    <ui:param name="propertyPath" value="taskTemplate.estMin"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_taskTemplate.estMin}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{taskTemplateList}"/>
+                    <ui:param name="propertyLabel" value="Exp num days"/>
+                    <ui:param name="propertyPath" value="taskTemplate.expNumDays"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_taskTemplate.expNumDays}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{taskTemplateList}"/>
+                    <ui:param name="propertyLabel" value="Expiry type"/>
+                    <ui:param name="propertyPath" value="taskTemplate.expiryType.label"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_taskTemplate.expiryType.label}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{taskTemplateList}"/>
+                    <ui:param name="propertyLabel" value="Freq days"/>
+                    <ui:param name="propertyPath" value="taskTemplate.freqDays"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_taskTemplate.freqDays}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{taskTemplateList}"/>
+                    <ui:param name="propertyLabel" value="Freq months"/>
+                    <ui:param name="propertyPath" value="taskTemplate.freqMonths"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_taskTemplate.freqMonths}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{taskTemplateList}"/>
+                    <ui:param name="propertyLabel" value="Freq type"/>
+                    <ui:param name="propertyPath" value="taskTemplate.freqType.label"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_taskTemplate.freqType.label}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{taskTemplateList}"/>
+                    <ui:param name="propertyLabel" value="Priority"/>
+                    <ui:param name="propertyPath" value="taskTemplate.priority.label"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_taskTemplate.priority}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{taskTemplateList}"/>
+                    <ui:param name="propertyLabel" value="R.I.T.I"/>
+                    <ui:param name="propertyPath" value="taskTemplate.runHoursThreshInc"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_taskTemplate.runHoursThreshInc}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{taskTemplateList}"/>
+                    <ui:param name="propertyLabel" value="Description"/>
+                    <ui:param name="propertyPath" value="taskTemplate.taskDescription"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_taskTemplate.taskDescription}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{taskTemplateList}"/>
+                    <ui:param name="propertyLabel" value="Task type"/>
+                    <ui:param name="propertyPath" value="taskTemplate.taskType.label"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_taskTemplate.taskType.label}"/>
+        </h:column>
+        <rich:column styleClass="action">
+            <f:facet name="header">Action</f:facet>
+            <s:link view="/define/#{empty from ? 'TaskTemplate' : from}.xhtml"
+                   value="#{empty from ? 'View' : 'Select'}"
+             propagation="#{empty from ? 'none' : 'default'}"
+                      id="taskTemplateViewId">
+                <f:param name="taskTemplateTaskTemplateId"
+                        value="#{_taskTemplate.id}"/>
+            </s:link>
+            #{' '}
+            <s:link view="/define/TaskTemplateEdit.xhtml"
+                   value="Edit"
+             propagation="none"
+                      id="taskTemplateEdit"
+                rendered="#{empty from}">
+                <f:param name="taskTemplateTaskTemplateId"
+                        value="#{_taskTemplate.id}"/>
+            </s:link>
+        </rich:column>
+    </rich:dataTable>
+
+    </div>
+    </rich:panel>
+
+    <div class="tableControl">
+
+        <s:link view="/define/TaskTemplateList.xhtml"
+            rendered="#{taskTemplateList.previousExists}"
+               value="#{messages.left}#{messages.left} First Page"
+                  id="firstPage">
+          <f:param name="firstResult" value="0"/>
+        </s:link>
+
+        <s:link view="/define/TaskTemplateList.xhtml"
+            rendered="#{taskTemplateList.previousExists}"
+               value="#{messages.left} Previous Page"
+                  id="previousPage">
+            <f:param name="firstResult"
+                    value="#{taskTemplateList.previousFirstResult}"/>
+        </s:link>
+
+        <s:link view="/define/TaskTemplateList.xhtml"
+            rendered="#{taskTemplateList.nextExists}"
+               value="Next Page #{messages.right}"
+                  id="nextPage">
+            <f:param name="firstResult"
+                    value="#{taskTemplateList.nextFirstResult}"/>
+        </s:link>
+
+        <s:link view="/define/TaskTemplateList.xhtml"
+            rendered="#{taskTemplateList.nextExists}"
+               value="Last Page #{messages.right}#{messages.right}"
+                  id="lastPage">
+            <f:param name="firstResult"
+                    value="#{taskTemplateList.lastFirstResult}"/>
+        </s:link>
+
+    </div>
+
+    <s:div styleClass="actionButtons" rendered="#{empty from}">
+        <s:button view="/define/TaskTemplateEdit.xhtml"
+                    id="create"
+           propagation="none"
+                 value="Create taskTemplate">
+            <f:param name="taskTemplateTaskTemplateId"/>
+        </s:button>
+    </s:div>
+
+</ui:define>
+
+</ui:composition>

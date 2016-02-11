@@ -1,0 +1,261 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <rich:panel>
+        <f:facet name="header">Work item Details</f:facet>
+
+
+        <s:decorate id="actualTime" template="layout/display.xhtml">
+            <ui:define name="label">Actual time</ui:define>
+            <h:outputText value="#{workItemHome.instance.actualTime}"/>
+        </s:decorate>
+
+        <s:decorate id="description" template="layout/display.xhtml">
+            <ui:define name="label">Description</ui:define>
+            <h:outputText value="#{workItemHome.instance.description}"/>
+        </s:decorate>
+
+        <s:decorate id="estTime" template="layout/display.xhtml">
+            <ui:define name="label">Est time</ui:define>
+            <h:outputText value="#{workItemHome.instance.estTime}"/>
+        </s:decorate>
+
+        <div style="clear:both"/>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+
+        <s:button view="/WorkItemEdit.xhtml"
+                    id="edit"
+                 value="Edit"/>
+
+        <s:button view="/#{empty workItemFrom ? 'WorkItemList' : workItemFrom}.xhtml"
+                    id="done"
+                 value="Done"/>
+
+    </div>
+
+    <rich:tabPanel switchType="ajax">
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Job</h:panelGroup>
+        </f:facet>
+    <div class="association" id="jobParent">
+
+        <h:outputText value="There is no job associated with this workItem."
+                   rendered="#{workItemHome.instance.job == null}"/>
+
+        <rich:dataTable var="_job"
+                   value="#{workItemHome.instance.job}"
+                rendered="#{workItemHome.instance.job != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="jobTable">
+            <h:column>
+                <f:facet name="header">Job id</f:facet>
+                <h:outputText value="#{_job.jobId}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Completed date</f:facet>
+                <h:outputText value="#{_job.completedDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Created by</f:facet>
+                <h:outputText value="#{_job.createdBy}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Created date</f:facet>
+                <h:outputText value="#{_job.createdDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Description</f:facet>
+                <h:outputText value="#{_job.description}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Dispatched date</f:facet>
+                <h:outputText value="#{_job.dispatchedDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Earliest start</f:facet>
+                <h:outputText value="#{_job.earliestStart}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Est time</f:facet>
+                <h:outputText value="#{_job.estTime}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Job type</f:facet>
+                <h:outputText value="#{_job.jobType}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Latest start</f:facet>
+                <h:outputText value="#{_job.latestStart}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Note</f:facet>
+                <h:outputText value="#{_job.note}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Number of workers</f:facet>
+                <h:outputText value="#{_job.numberOfWorkers}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Organization org id</f:facet>
+                <h:outputText value="#{_job.organization.orgId}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Priority</f:facet>
+                <h:outputText value="#{_job.priority}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Scheduled date</f:facet>
+                <h:outputText value="#{_job.scheduledDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Started date</f:facet>
+                <h:outputText value="#{_job.startedDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Status</f:facet>
+                <h:outputText value="#{_job.status}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Sticky</f:facet>
+                <h:outputText value="#{_job.sticky}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewjob"
+                     value="View"
+                      view="/Job.xhtml">
+                    <f:param name="jobJobId"
+                           value="#{_job.jobId}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Task instance</h:panelGroup>
+        </f:facet>
+    <div class="association" id="taskInstanceParent">
+
+        <h:outputText value="There is no taskInstance associated with this workItem."
+                   rendered="#{workItemHome.instance.taskInstance == null}"/>
+
+        <rich:dataTable var="_taskInstance"
+                   value="#{workItemHome.instance.taskInstance}"
+                rendered="#{workItemHome.instance.taskInstance != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="taskInstanceTable">
+            <h:column>
+                <f:facet name="header">Task instance id</f:facet>
+                <h:outputText value="#{_taskInstance.taskInstanceId}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Est time</f:facet>
+                <h:outputText value="#{_taskInstance.estTime}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Is stand alone task</f:facet>
+                <h:outputText value="#{_taskInstance.isStandAloneTask}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Task task id</f:facet>
+                <h:outputText value="#{_taskInstance.task.taskId}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Task template task template id</f:facet>
+                <h:outputText value="#{_taskInstance.taskTemplate.taskTemplateId}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewtaskInstance"
+                     value="View"
+                      view="/TaskInstance.xhtml">
+                    <f:param name="taskInstanceTaskInstanceId"
+                           value="#{_taskInstance.taskInstanceId}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Work item steps</h:panelGroup>
+        </f:facet>
+    <h:form styleClass="association" id="workItemStepsChildren">
+
+        <h:outputText value="There are no workItemSteps associated with this workItem."
+                   rendered="#{empty workItemHome.workItemSteps}"/>
+
+        <rich:dataTable value="#{workItemHome.workItemSteps}"
+                       var="_workItemStep"
+                  rendered="#{not empty workItemHome.workItemSteps}"
+                rowClasses="rvgRowOne,rvgRowTwo"
+                        id="workItemStepsTable">
+            <rich:column sortBy="#{_workItemStep.workItemStepId}">
+                <f:facet name="header">Work item step id</f:facet>
+                <h:outputText value="#{_workItemStep.workItemStepId}"/>
+            </rich:column>
+            <rich:column sortBy="#{_workItemStep.note}">
+                <f:facet name="header">Note</f:facet>
+                <h:outputText value="#{_workItemStep.note}"/>
+            </rich:column>
+            <h:column>
+                <f:facet name="header">Action</f:facet>
+                <s:link id="selectworkItemStep"
+                     value="Select"
+                      view="/WorkItemStep.xhtml">
+                    <f:param name="workItemStepWorkItemStepId"
+                            value="#{_workItemStep.workItemStepId}"/>
+                    <f:param name="workItemStepFrom" value="WorkItem"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </h:form>
+
+    <div class="actionButtons">
+        <s:button
+               value="Add workItemStep"
+                view="/WorkItemStepEdit.xhtml">
+            <f:param name="workItemWorkItemId"
+                    value="#{workItemHome.instance.workItemId}"/>
+            <f:param name="workItemStepFrom" value="WorkItem"/>
+        </s:button>
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

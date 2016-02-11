@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.com/products/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.2.xsd">
+
+   <param name="taskInstanceFrom"/>
+   <param name="taskInstanceId" value="#{taskInstanceHome.taskInstanceId}"/>
+   <param name="taskFrom"/>
+   <param name="taskId" value="#{taskHome.taskId}"/>
+   <param name="taskTemplateFrom"/>
+   <param name="taskTemplateId" value="#{taskTemplateHome.taskTemplateId}"/>
+   <param name="assetTemplateFrom"/>
+   <param name="assetTemplateId" value="#{assetTemplateHome.assetTemplateId}"/>
+   <param name="assetTypeFrom"/>
+   <param name="assetTypeId" value="#{assetTypeHome.assetTypeId}"/>
+
+
+
+
+   <param name="assetFrom"/>
+   <param name="assetId" value="#{assetHome.assetId}"/>
+   <param name="organizationFrom"/>
+   <param name="organizationId" value="#{organizationHome.organizationId}"/>
+
+
+   <param name="jobFrom"/>
+   <param name="jobId" value="#{jobHome.jobId}"/>
+   <param name="contactFrom"/>
+   <param name="contactId" value="#{contactHome.contactId}"/>
+
+
+
+
+</page>

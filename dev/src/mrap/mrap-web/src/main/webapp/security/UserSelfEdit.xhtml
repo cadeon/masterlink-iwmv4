@@ -1,0 +1,62 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="user" styleClass="edit">
+
+     <rich:panel>
+        
+        <f:facet name="header">Edit User Account #{currentUser.lname}</f:facet>
+ 		
+ 		<s:decorate id="fname" template="/layout/edit.xhtml">
+            <ui:define name="label">First Name</ui:define>
+            <h:inputText required="true" value="#{currentUser.fname}"/>
+        </s:decorate>
+
+        <s:decorate id="lname" template="/layout/edit.xhtml">
+            <ui:define name="label">Last Name</ui:define>
+            <h:inputText required="true" value="#{currentUser.lname}"/>
+        </s:decorate>
+
+        <s:decorate id="email" template="/layout/edit.xhtml">
+            <ui:define name="label">Email</ui:define>
+            <h:inputText required="true" value="#{currentUser.email}" style=" width : 238px;"/>
+        </s:decorate>
+
+		
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{userManager.updateAccount}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/home.xhtml"/>
+
+         
+
+        </div>
+    </h:form>
+
+
+</ui:define>
+
+</ui:composition>

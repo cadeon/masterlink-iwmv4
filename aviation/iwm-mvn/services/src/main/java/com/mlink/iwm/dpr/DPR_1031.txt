@@ -1,0 +1,935 @@
+                                                                                                         01/31/11 (1031)    PAGE:   1
+                                                    SHOP SECTION 5      SUB-SHOP J                                                   
+0   ERO    TAM    ID    SERIAL #                    CAT  RDD  PRI       NSN-IN-MAINT      NOMEN       DCD  DRIS     BDI      EOT     
+ AWTG-STAT   OWNER     JOB-STATUS    PARTS CHARGE   ECH  QTY X-EROS      MARES/DATE       DEFECT      DDL  DIS  DEST/HOLDER          
+                          RCVD        DOCUMENT #    U/I  QTY  PRI         PART-NSN       PART-NAME    STAT DATE DIC/EXC NMCS LKH  ADV
+0   OAL31 D0030 11301A     628292                    N         13    2320-01-518-7330 TRK EXPANDED C       0264               M      
+             30300   1028-SHT PART          347.02   2     1               LD-  /0274   COMP-RPLC           132                      
+                     0320-UNIT RCL                                                                                                   
+                     0287-SHT FUND                                                                                                   
+                     0279-UNIT RCL                                                                                                   
+                     0278-SHT FUND                                                                                                   
+                     0277-RPR PRGS                                                                                                   
+                     0271-SHT TECH                                                                                                   
+                     0265-INS PRGS                                                                                                   
+                        R-0274     30300-0273-7T28  EA     1   13    6140-01-485-1472    BATTERY,ST                                PB
+                        R-0274     30300-0273-7T29  EA     1   13    2540-01-314-1189    MIRROR, RI                                PB
+                        C-0287     30300-0277-6M37  EA     1   13    2540-01-536-3029    VENTS                                     99
+                        C-0287     30300-0277-6M38  EA     1   13    4810-01-536-3832    VALVE, FLO                                99
+                        C-1026     30300-0319-7513  EA     2   13    2540-01-536-3029    VENTILATOR     RA         AE1       MQ1   AT
+                        C-1026     30300-0319-7514  EA     1   13    4810-01-536-3832    VALVE,FLOW     RA         AE1       MQ1   AT
+                                   30300-1021-7517  EA     2   13    2540-01-536-3029    VENTILATOR     BA  024    AE1       SMS   AT
+                                   30300-1021-7518  EA     1   13    4810-01-536-3832    VALVE,FLOW     BA  024    AE1       SMS   AT
+0   OAL42 D1125 08778D     609213                    N         13    2320-01-380-8229 M10452A TOW CA       0287               M      
+ WIR SUB     30300   1026-WIR SUB           312.72   2     1               LD-  /0299   COOL-ARCB           109                      
+                        R-0293     30300-0292-7T62  EA     1   13    2540-01-385-9031    PUMP,WINDS                                PB
+                        R-0293     30300-0292-7T63  EA     2   06    6140-01-446-9498    BATTERY,ST                                PB
+0   OAL44 D1125 08778D     599552                    N         13    2320-01-380-8229 M10452A TOW CA       0287               M      
+ WIR SUB     30300   1026-WIR SUB             0.00   2     1                            BODY-RPR            109                      
+                                                    SHOP SECTION 5      SUB-SHOP N                                                   
+0   ERO    TAM    ID    SERIAL #                    CAT  RDD  PRI       NSN-IN-MAINT      NOMEN       DCD  DRIS     BDI      EOT     
+ AWTG-STAT   OWNER     JOB-STATUS    PARTS CHARGE   ECH  QTY X-EROS      MARES/DATE       DEFECT      DDL  DIS  DEST/HOLDER          
+                          RCVD        DOCUMENT #    U/I  QTY  PRI         PART-NSN       PART-NAME    STAT DATE DIC/EXC NMCS LKH  ADV
+0   OA819 D1062 10631A     591189                    X         06    2320-01-465-2180 MTVR MK-27           0320               M      
+             30300   0328-SHT PART            0.00   2     1  QAF64        LD-  /0350   COMP-RPLC            76                      
+                     0321-INS PRGS                                                                                                   
+                        C-1026     30300-0319-7508  EA     1   13    6350-01-155-7555    HORN,SIGNA     RA         AE1       MQ1   AT
+                        C-1026     30300-0319-7509  EA     1   13    5315-01-491-1432    PIN,LOCK       RA         AE1       MQ1   AT
+                        C-1026     30300-0319-7510  EA     3   13    6220-01-473-0647    LIGHT ASSE     RA         AE1       MQ1   AT
+                        R-0364     30300-0322-7500  EA     1   13    2510-01-555-4586    INSULATION     5   323    AS1       LA9   2A
+                                   30300-1021-7515  EA     1   13    5315-01-491-1432    PIN,LOCK       BA  024    AE1       SMS   AT
+                                   30300-1021-7516  EA     3   13    6220-01-473-0647    LIGHT ASSE     CH  024    AE1       LA9   AT
+                                   30300-1021-7524  EA     1   06    6350-01-155-7555    HORN,SIGNA     J   024    AS1   N   SMS   AT
+0   OA820 D0022 11285A     622863                    N         13    2320-01-518-7332 TRUCK UTILITY        0340               M      
+ UNIT RCL    30300   0347-UNIT RCL            9.35   2     1               LD-  /0347   BODY-RPLC            56                      
+                                   30300-0242-7502  AY     1   13    2510-01-450-5480    DOOR,VEHIC     BB  004    AE1       SMS   AT
+                        R-0344     30300-0343-7T01  KT     1   13    2540-01-300-8745    PARTS KIT,                                PB
+                        R-1006     30300-0347-7500  EA     1   13    4810-01-536-3832    VALVE,FLOW     5   352    AS1       SMS   AT
+0   OA822 D1062 10631A          0                    S         13    2320-01-465-2180 MTVR MK-27           0319               M      
+             30300   0320-SHT PART            0.00   1    15                            NMAJ-SL-3AP          77                      
+                        R-1004     30300-0322-6200  EA     1   13    4930-01-480-9063    LUBRICATIN     H   326    AS1       SMS   AT
+                        R-1003     30300-0322-6201  EA     4   13    5120-00-227-7356    SCREWDRIVE     J   327    AS1       GSA   AT
+                        R-0356     30300-0322-6202  EA     3   13    5120-01-146-8096    JACK,HYDRA     J   327    AS1       GSA   AT
+                        R-1012     30300-0322-6203  EA     2   13    5120-00-264-3796    WRENCH,ADJ     J   337    AS1       GSA   AT
+                        R-0364     30300-0322-6204  EA     5   13    5340-01-485-4384    LOCKING HA     5   323    AS1       LA9   AT
+                        R-1003     30300-0322-6205  EA     5   13    2540-00-693-0744    BOW,VEHICU     5   324    AS1       SMS   AT
+                        R-1004     30300-0326-6203  EA     2   13    5120-00-264-3796    WRENCH,ADJ     J   337    AS1       GSA   AT
+                                   30300-0326-6250  EA     9   13    4930-01-498-9747    ADAPTER,GR     RA  326    AE1       MQ1   AT
+0   OA823 D0025 11202A          0                    S         13    2355-01-532-2174 JERRV EOD 4X4        0319               M      
+             30300   0320-SHT PART            0.00   1     2                            NMAJ-SL-3AP          77                      
+                        R-1003     30300-0321-6201  EA     1   13    2540-01-267-2912    TOWBAR,MOT     B   326    AS1       SMS   AT
+                        R-1004     30300-0321-6202  EA     1   13    5120-00-278-0341    WRENCH,ADJ     B   331    AS1       GSA   AT
+                        R-1004     30300-0321-6203  EA     1   13    5120-00-264-3796    WRENCH,ADJ     J   337    AS1       GSA   AT
+                                   30300-0322-6206  EA     2   13    5995-00-772-8813    CABLE ASSE     BB  006    AE1       SMS   AT
+                        C-0337     30300-0322-6207  EA     2   13    5130-01-400-0139    ADAPTER,SO     C8         AE1       GSA   AT
+                        R-0356     30300-0322-6208  EA     2   13    4210-01-245-9850    EXTINGUISH     5   344    AS1       SMS   AT
+                        R-0356     30300-0322-6209  EA     2   13    4910-01-561-6582    JACK,HYDRA     5   324    AS1       SMS   AT
+                        R-0363     30300-0322-6210  EA     4   13    5340-01-350-0872    PLATE,MOUN     5   324    AS1       SMS   AT
+                        R-0363     30300-0322-6212  EA     3   13    5340-01-556-3298    PAD,CUSHIO     5   324    AS1       SMS   AT
+                        R-0364     30300-0322-6213  EA     2   13    5120-01-491-2085    SOCKET .33     5   323    AS1       LA9   AT
+                        R-1020     30300-0356-7500  KT     1   13    2540-01-300-8744    HANDLE,DOO     H   362    AS1       SMS   AT
+0   OA824 D0027 11291C     UR0095                    S         13    2355-01-552-4677 CAT II RG33 JE       0319               M      
+             30300   0320-SHT PART            0.00   1     1                            NMAJ-SL-3AP          77                      
+                                   30300-0322-6214  EA     2   13    7240-01-337-5268    CAN,MILITA     BB  004    AE1       SMS   AT
+                        R-0363     30300-0322-6215  EA     2   13    4210-01-388-7854    EXTINGUISH     BA  323    AE1       SMS   AT
+                        R-1003     30300-0322-6216  EA     1   13    5120-00-061-8546    HAMMER,HAN     J   327    AS1       GSA   AT
+                        R-0363     30300-0322-6217  SE     1   13    5340-01-408-8452    PADLOCK SE     5   324    AS1       SMS   AT
+                                   30300-0322-6218  EA     1   13    5120-00-237-0984    SOCKET,SOC     BB  024    AE1       GSA   AT
+                                   30300-0322-6219  EA     1   13    5120-01-349-1042    SOCKET,SOC     BV  013    AE1       GSA   AT
+                        C-0337     30300-0322-6220  EA     1   13    5120-01-398-7937    SOCKET,SOC     C8         AE1       GSA   AT
+0 **OA825 D0860 00638E     532927                    P         06    2330-00-141-8050 TRLR M105A2     0315 0315               D      
+             30300   0319-SHT PART            0.00   2     1                            ELEC-RPLC       81   81                      
+                        C-1031     30300-0319-7550  EA     1   06    6150-00-830-6663    WIRING HAR     RA         AE1   N   MQ1   AT
+                                   30300-1024-7500  EA     1   06    6150-00-830-6663    WIRING HAR     BD  026    AE1   N   SMS   AT
+0   OA826 D0022 11285A     619912                    M         06    2320-01-518-7332 TRUCK UTILITY   0320 0320               M      
+             30300   0336-SHT PART            0.00   2     1               LC-S2/0336   ELEC-RPLC       76   76                      
+                     0334-RPR PRGS                                                                                                   
+                     0328-SHT TECH                                                                                                   
+                     0321-INS PRGS                                                                                                   
+                        C-1020     30300-0335-7500  EA     1   06    2920-01-168-7891    STARTER,EN                      N         AT
+                        R-0364     30300-0335-7501  EA     1   06    2815-01-148-3771    FLYWHEEL,E     H   336    AS1   N   SMS   AT
+                        R-1006     30300-0335-7502  EA     1   06    5310-01-286-6077    WASHER,FLA     J   336    AS1   N   SMS   AT
+                        R-1005     30300-0335-7503  EA     1   06    5305-01-285-4923    SCREW,CAP,     J   336    AS1   N   SMS   AT
+                        R-1004     30300-0335-7504  PG     1   06    5940-00-735-5520    TERMINAL,L     J   337    AS1   N   SMS   AT
+                        C-1021     30300-1014-7500  EA     1   06    2920-01-168-7891    STARTER,EN                                AT
+0   OA831 D0198 10629A     591898                    M         06    2320-01-465-2174 MTVR MK-23      0326 0326               M      
+             30300   1019-SHT PART            0.00   2     1               LC-S2/0328   ENG -START      70   70                      
+                     1011-SHT TECH                                                                                                   
+                     0328-SHT PART                                                                                                   
+                     0327-INS PRGS                                                                                                   
+                        R-1004     30300-0319-7507  EA     1   06    2990-01-474-5787    STARTER,24     5   337    AS1   N   LA9   AT
+                                   30300-1014-7510  EA     4   06    5310-01-360-0983    WASHER,FLA     B5  021    AE1   N   SMS   AT
+                                   30300-1014-7511  EA     4   06    5310-01-183-1237    NUT,PLAIN,     H   020    AS1   N   SMS   AT
+                                   30300-1014-7512  EA     1   06    5999-01-470-8845    CLIP,ELECT     H   020    AS1   N   SMS   AT
+                        R-1025     30300-1014-7513  EA     1   06    5305-01-360-1008    SCREW,CAP,     J   019    AS1   N   SMS   AT
+                                   30300-1014-7588  EA     4   06    5310-01-415-1603    WASHER,FLA     B5  021    AE1       SMS   AT
+                        R-1025     30300-1014-7589  EA     4   06    5365-01-496-0506    SPACER,RIN     J   019    AS1       SMS   AT
+                        R-1024     30300-1014-7590  EA     8   06    5340-01-460-0266    PLATE,RESI     J   019    AS1       SMS   AT
+                                   30300-1014-7591  EA     1   06    5305-01-516-5775    SCREW,MACH     BV  026    AE1       SMS   AT
+                                   30300-1014-7592  EA     1   06    5999-01-470-4232    STRIP,ELEC     BZ  018    AE1       SMS   AT
+                                   30300-1014-7593  EA     1   06    2910-01-521-8228    CONTROLLER     5   024    AS1       B16   AT
+                                   30300-1014-7594  EA     1   06    5975-01-058-9099                   B5  021    AE1       SMS   AT
+                        R-1024     30300-1014-7595  EA     1   06    5340-01-471-5243    CLIP,SPRIN     J   018    AS1       SMS   AT
+                                   30300-1014-7596  EA     3   06    5310-01-397-5100    NUT,PLAIN,     B5  021    AE1       SMS   AT
+                        R-1024     30300-1014-7597  EA     1   06    2590-01-516-5736    PLATE,HOOK     J   018    AS1       SMS   AT
+                                   30300-1014-7598  EA     3   06    5307-01-472-7266    STUD,SHOUL     B5  026    AE1       SMS   AT
+                                   30300-1014-7599  EA     7   06    5310-01-359-8806    WASHER,FLA     BV  018    AE1       SMS   AT
+0 **OA833 D1062 10631A     591427                    X         06    2320-01-465-2180 MTVR MK-27           0326               M      
+             30300   0327-SHT PART           36.91   2     1               LD-  /0347   COMP-RPLC            70                      
+                        C-1031     30300-0319-7530  EA     1   13    5340-01-500-9577    HANDLE,DIP     RA         AE1       MQ1   AT
+                        C-1031     30300-0319-7531  EA     1   13    2540-01-503-3332    HANDLE,WIN     RA         AE1       MQ1   AT
+                        C-1031     30300-0319-7532  EA     1   13    5365-01-516-6731    SPACER,PLA     RA         AE1       MQ1   AT
+                        C-1031     30300-0319-7533  EA     1   13    2510-01-475-5437    GUARD,SPLA     RA         AE1       MQ1   AT
+                        C-1031     30300-0319-7534  EA     1   13    2540-01-479-4553    GUARD,SPLA     RA         AE1       MQ1   AT
+                        C-1031     30300-0319-7535  EA     1   13    2540-01-479-4144    MIRROR ASS     RA         AE1       MQ1   AT
+                        C-1031     30300-0319-7536  KT     1   13    2590-01-308-1624    PARTS KIT,     RA         AE1       MQ1   AT
+                        R-0344     30300-0343-7T98  EA     1   13    4330-01-516-8051    FILTER                                    PB
+                                   30300-1024-7501  EA     1   13    5340-01-500-9577    HANDLE,DIP                                AT
+                                   30300-1024-7502  EA     1   13    2540-01-503-3332    HANDLE,WIN                                AT
+                                   30300-1024-7503  EA     1   13    5365-01-516-6731    SPACER,PLA                                AT
+                                   30300-1024-7504  EA     1   06    2510-01-475-5437    GUARD,SPLA     BZ  026    AE1   N   SMS   AT
+                                   30300-1024-7505  EA     1   06    2540-01-479-4553    GUARD,SPLA     BA  026    AE1   N   LA9   AT
+                                   30300-1024-7506  EA     1   13    2540-01-479-4144    MIRROR ASS                                AT
+                                   30300-1024-7507  KT     1   06    2590-01-308-1624    PARTS KIT,     BA  026    AE1   N   SMS   AT
+0   OA840 D0022 11285A     619916                    N         13    2320-01-518-7332 TRUCK UTILITY        0335               M      
+ UNIT RCL    30300   1014-UNIT RCL            0.00   2     1               LD-  /1014   BODY-RPLC            61                      
+                                   30300-0286-7506  AY     1   13    2510-01-450-5480    DOOR,VEHIC     BB  004    AE1       SMS   AT
+                        R-1005     30300-0286-7507  AY     1   06    2510-01-450-5479    DOOR,VEHIC     J   352    AS1       SMS   2A
+                        R-1005     30300-0351-7567  EA     2   06    6140-01-485-1472    BATTERY,ST     Q   354    AS1   N   SMS   AT
+                        R-1006     30300-0351-7568  EA     1   13    4810-01-536-3832    VALVE,FLOW     5   354    AS1       SMS   AT
+0   OA850 D0022 11285A     620653                    N         13    2320-01-518-7332 TRUCK UTILITY        0335               M      
+ UNIT RCL    30300   1026-UNIT RCL            0.00   2     1               LD-  /1019   COMP-RPLC            61                      
+                        R-1005     SAF57-1004-7002  EA     1   06    2520-01-489-0850    FSTOCKFFF                       N         F3
+                        C-1026     30300-0319-9500  EA     1   13    4810-01-536-3832    VALVE,FLOW     RA         AE1       MQ1   AT
+                        C-1026     30300-0319-9501  EA     1   13    6220-01-067-4718    BODY ASSEM     RA         AE1       MQ1   AT
+                                   30300-1021-9522  EA     1   13    4810-01-536-3832    VALVE,FLOW     BA  024    AE1       SMS   AT
+                                   30300-1021-9523  EA     1   13    6220-01-067-4718    BODY ASSEM     CJ  024    AE1       SMS   AT
+0   OA851 D0004 10629D     598084                    M         06    2320-01-530-5677 AMK25 7TON CAR  0335 0335               M      
+             30300   0343-SHT PART           92.50   2     1               LA-M2/0336   ENG -RPLC       61   61                      
+                     0336-INS PRGS                                                                                                   
+                                   SAF57-0341-7004  EA     1   06    2815-01-474-5704    ENGINE WIT                B16   N         F5
+                        R-0343     30300-0342-7T96  EA     1   13    2590-01-480-4013    MANHOLE CO                                PB
+                        R-0364     30300-0347-7505  EA     4   13    5340-01-480-3991    COVER,ACCE     5   349    AS1       LA9   AT
+                        R-1020     30300-0347-7506  EA     4   13    5310-01-478-8689    NUT,SELF-L     H   353    AS1       SMS   AT
+                        R-1020     30300-0347-7507  EA     4   13    5305-01-480-7045    SCREW,CAP,     H   352    AS1       SMS   AT
+                        R-1006     30300-0347-7508  EA     4   13    6220-01-516-4926    LIGHT,MARK     5   353    AS1       SMS   AT
+                        R-1006     30300-0347-7509  FT    10   13    5330-01-478-7736    SEAL,NONME     5   349    AS1       LA9   AT
+0   OA852 D0860 00638E     562620                    P         06    2330-00-141-8050 TRLR M105A2     0335 0335               D      
+             30300   0337-SHT PART            0.00   2     1                            BODY-RPLC       61   61                      
+                     0336-INS PRGS                                                                                                   
+                                   30300-0286-7501  EA     1   06    2590-01-183-6816    SUPPORT,RE     BB  289    AE1       SMS   AT
+                        C-0348     30300-0327-7514  EA     1   06    6150-00-830-6663    WIRING HAR                      N         AT
+                                   30300-0337-7520  EA     1   06    6150-00-830-6663    WIRING HAR     BB  026    AE1   N   SMS   AT
+0 **OBE11 D1062 10631A          0                    S         13    2320-01-465-2180 MTVR MK-27           0252               M      
+             30300   0288-SHT PART            0.00   1     6                            NMAJ-SL-3AP         144                      
+                     0260-SHT FUND                                                                                                   
+                     0253-INS PRGS                                                                                                   
+                                   30300-0160-6200  EA     3   13    2530-01-496-8356    TOWBAR KIT     BB  230    AE1       SMS   AT
+                        C-1026     30300-0286-6506  EA     1   13    5120-01-480-0640    PLIERS         C8         AE1       GSA   AT
+                        R-0298     30300-0286-6507  EA     1   13    5120-01-146-8096    JACK,HYDRA     J   291    AS1       GSA   AT
+                        R-0298     30300-0286-6508  EA     1   13    2990-01-498-9973    ADAPTER,AI     5   287    AS1       LA9   AT
+                        R-0298     30300-0286-6509  EA     1   13    5120-01-479-9220    WRENCH,SPA     5   287    AS1       LA9   AT
+                        R-0319     30300-0286-6510  EA     2   13    5120-01-373-8833    WRENCH,OPE     B   292    AS1       GSA   AT
+                        R-0298     30300-0286-6511  EA     1   13    5120-01-479-2034    WRENCH,OPE     5   289    AS1       SMS   AT
+                        R-0298     30300-0286-6512  HD     5   13    5305-00-638-8920    SCREW,CAP,     5   287    AS1       SMS   AT
+                        R-0298     30300-0286-6513  EA     2   13    6150-01-480-4003    LEAD,STORA     H   288    AS1       SMS   AT
+                        R-0298     30300-0286-6514  EA     2   13    5340-01-480-2332    FITTING,CA     5   287    AS1       LA9   AT
+                        R-0298     30300-0286-6515  EA     2   13    4730-01-479-2000    PLUG           5   287    AS1       LA9   AT
+                        R-0298     30300-0286-6516  EA     2   13    4930-01-480-9063    LUBRICATIN     H   288    AS1       SMS   AT
+                        R-0298     30300-0286-6517  EA     1   13    5340-01-209-7841    HANDLE,EXT     H   287    AS1       SMS   AT
+                        R-0298     30300-0286-6518  EA     1   13    4720-01-341-4912    HOSE ASSEM     H   288    AS1       SMS   AT
+                        R-0312     30300-0286-6519  EA     7   13    5340-00-158-3807    PADLOCK        H   299    AS1       SMS   AT
+                        R-0312     30300-0286-6520  EA     7   13    5340-00-158-3805    PADLOCK        H   299    AS1       SMS   AT
+                        C-1031     30300-0286-6521  EA    10   13    5340-01-114-7712    STRAP,WEBB     RA         AE1       MQ1   AT
+                        R-0322     30300-0295-6200  EA     2   13    5120-01-480-0643    SCREWDRIVE     B   316    AS1       GSA   AT
+                        C-0347     30300-0295-6201  EA     2   13    5120-01-367-3722    SCREWDRIVE     C8         AE1       GSA   AT
+                        R-0309     30300-0295-6202  EA     4   13    5120-00-227-7356    SCREWDRIVE     J   300    AS1       GSA   AT
+                        R-0312     30300-0295-6203  EA     4   13    5120-01-493-6828    INSERTER A     5   299    AS1       LA9   AT
+                        R-0306     30300-0295-6204  EA     4   13    5310-01-098-7246    WASHER,FLA     H   299    AS1       SMS   AT
+                        R-0309     30300-0295-6205  EA     2   13    5120-00-240-5328    WRENCH,ADJ     J   300    AS1       GSA   AT
+                        R-0314     30300-0295-6206  EA     2   13    5120-00-264-3796    WRENCH,ADJ     J   299    AS1       GSA   AT
+                        R-0306     30300-0295-6207  EA     2   13    5905-01-479-2230    RESISTOR,T     H   299    AS1       SMS   AT
+                                   30300-1024-6213  EA    10   13    5340-01-114-7712    STRAP,WEBB                                AT
+                                   30300-1024-6214  EA     1   13    5120-01-480-0640    PLIERS                                    AT
+0   OBE23 D0022 11285A     620660                    X         06    2320-01-518-7332 TRUCK UTILITY        0265               M      
+             30300   0287-SHT PART          979.00   2     1               LD-  /0281   BODY-GLASS          131                      
+                     0272-SHT FUND                                                                                                   
+                     0271-RPR PRGS                                                                                                   
+                     0266-INS PRGS                                                                                                   
+                        R-1019     30300-0119-7112  AY     1   13    2510-01-450-5479    DOOR,VEHIC     BB  305    AE1       SMS   AT
+                        C-0287     30300-0271-6M18  EA     1   06    2510-01-535-6000    WINDOW,VEH                                99
+                        C-0287     30300-0271-6M19  EA     1   13    4810-01-536-3832    VALVE, FLO                                99
+                        C-0287     30300-0271-6M20  EA     1   13    2540-01-444-5340    VENTS                                     99
+                        C-0287     30300-0271-6M21  EA     1   13    6220-01-067-4718    COMPOSITE                                 99
+                        R-0273     30300-0272-7T16  AY     1   13    2530-01-493-5859    WHEEL AND                                 PB
+                        R-0322     30300-0315-7548  EA     1   06    9340-01-185-3757    GLASS,LAMI     J   319    AS1   N   SMS   AT
+                        R-0336     30300-0319-7503  EA     1   06    2510-01-535-6000    WINDOW,VEH     RA  020    AE1   N   MQ1   AT
+                        C-1026     30300-0319-7504  EA     1   13    4810-01-536-3832    VALVE,FLOW     RA         AE1       MQ1   AT
+                        R-0336     30300-0319-7505  EA     2   13    2540-01-444-5340    HOUSING,AI     RA  020    AE1       MQ1   AT
+                        C-1026     30300-0319-7506  EA     1   13    6220-01-067-4718    BODY ASSEM     RA         AE1       MQ1   AT
+                        R-1004     30300-0334-7504  EA     2   06    6140-01-485-1472    BATTERY,ST     B   337    AS1   N   SMS   AT
+                                   30300-1021-7513  EA     1   13    4810-01-536-3832    VALVE,FLOW     BA  024    AE1       SMS   AT
+                                   30300-1021-7514  EA     1   13    6220-01-067-4718    BODY ASSEM     CJ  024    AE1       SMS   AT
+0   OBE27 D0850 00647C     586895                    P         06    2330-01-372-5641 TRLR, CARGO 3/  0278 0278               D      
+             30300   0320-SHT PART            8.61   2     1                            AXLE-STEER     118  118                      
+                     0286-SHT FUND                                                                                                   
+                     0279-RPR PRGS                                                                                                   
+                        R-0319     30300-0314-7T43  EA     1   13    6220-01-516-4925    REAR RED M                                PB
+                                   30300-0319-7511  EA     1   06    5306-01-417-2467    BOLT,RIBBE     RA  020    AE1   N   MQ1   2A
+                                   30300-0319-7512  BX     1   06    2640-01-098-2029    CAP,PNEUMA     RA  020    AE1   N   MQ1   2A
+                                   30300-1024-7510  EA     1   13    5306-01-417-2467    BOLT,RIBBE                                AT
+                                   30300-1024-7511  BX     1   13    2640-01-098-2029    CAP,PNEUMA                                AT
+0   OBE32 D1001 08991C     609271                    X         06    2310-01-380-8225 M997A2 AMB           0285               M      
+             30300   0319-SHT PART          979.00   2     1               LD-  /0300   BODY-SAFDL          111                      
+                     0307-SHT FUND                                                                                                   
+                     0294-RPR PRGS                                                                                                   
+                     0292-SHT TECH                                                                                                   
+                     0286-INS PRGS                                                                                                   
+                        R-0294     30300-0293-7T64  AY     1   13    2530-01-493-5859    WHEEL AND                                 PB
+                        C-0327     30300-0312-7501  EA     1   06    9340-01-185-3757    GLASS,LAMI                REJ   N         AT
+                        C-0327     30300-0312-7502  AY     2   13    4010-01-266-3842    WIRE ROPE                 REJ             AT
+                        R-0334     30300-0312-7503  EA     1   06    5340-01-197-4901    LEVER,LOCK     J   313    AS1   N   SMS   AT
+                        R-0334     30300-0312-7504  EA     1   13    6220-01-266-1651    SPOTLIGHT      G   324    AS1       SMS   AT
+                                   30300-0319-7501  EA     1   06    9340-01-185-3757    GLASS,LAMI     RA  020    AE1   N   MQ1   AT
+                                   30300-0319-7520  AY     2   13    4010-01-266-3842    WIRE ROPE      RA  020    AE1       MQ1   AT
+                                   30300-0319-7522  EA     1   13    6620-01-146-8006    THERMOSTAT     RA  020    AE1       MQ1   AT
+                                   30300-0319-7523  EA     1   13    5330-01-434-8611    GASKET         RA  020    AE1       MQ1   AT
+                                   30300-1021-7512  EA     1   06    9340-01-185-3757    GLASS,LAMI     J   024    AS1   N   SMS   AT
+                                   30300-1021-7519  AY     2   13    4010-01-266-3842    WIRE ROPE      BA  024    AE1       SMS   AT
+0   OBE43 D1001 08991C     609289                    M         06    2310-01-380-8225 M997A2 AMB      0294 0294               M      
+             30300   1028-RPR PRGS          979.00   2     1               LC-M2/1028   AXLE-RPR       102  102                      
+                     0319-SHT PART                                                                                                   
+                     0306-SHT FUND                                                                                                   
+                     0301-RPR PRGS                                                                                                   
+                     0299-SHT TECH                                                                                                   
+                     0295-INS PRGS                                                                                                   
+                        R-0302     30300-0301-7T93  AY     1   06    2530-01-493-5859    WHEEL AND                                 PB
+                        R-0334     30300-0313-7502  AY     2   13    4010-01-266-3842    WIRE ROPE      H   316    AS1       SMS   AT
+                        R-0322     30300-0313-7503  EA     1   06    2910-00-073-0165    PUMP,FUEL,     J   314    AS1   N   SMS   AT
+                        R-0334     30300-0313-7504  EA     1   06    5330-01-378-8572    RETAINER,O     J   314    AS1   N   SMS   AT
+                        R-0323     30300-0313-7505  SE     2   06    2530-01-420-8025    BRAKE SHOE     J   315    AS1   N   SMS   AT
+                        R-0327     30300-0315-7510  AY     1   13    5342-01-265-1129    LATCH ASSE     5   319    AS1       SMS   AT
+                        R-0334     30300-0315-7527  EA     1   06    5340-01-276-6673    HANDLE,DOO     J   319    AS1   N   SMS   AT
+                        R-0334     30300-0315-7528  EA     1   13    2540-01-184-5503    NOZZLE,WIN     BV  333    AE1       SMS   AT
+                        R-0334     30300-0315-7529  EA     1   06    2930-01-256-5350    TANK,RADIA     J   322    AS1   N   SMS   AT
+                        C-1026     30300-0319-7500  SE     1   06    5330-01-310-6780    GASKET SET     RA         AE1   N   MQ1   AT
+                        C-1026     30300-1021-7511  SE     1   06    5330-01-310-6780    GASKET SET                      N         AT
+0   OBE45 D1001 08991C     609283                    X         06    2310-01-380-8225 M997A2 AMB           0294               M      
+             30300   1005-SHT PART           38.63   2     1               LD-  /1028   FUEL-SAFDL          102                      
+                     0336-RPR PRGS                                                                                                   
+                     0320-SHT PART                                                                                                   
+                     0307-SHT FUND                                                                                                   
+                     0299-RPR PRGS                                                                                                   
+                     0295-INS PRGS                                                                                                   
+                        R-0301     30300-0299-7T84  EA     1   13    6240-00-966-3831    LAMP,INCAN                                PB
+                        R-0301     30300-0299-7T85  EA     1   13    6220-00-726-1916    MARKER LIG                                PB
+                        R-0323     30300-0315-7532  EA     1   06    2910-00-930-9367    PUMP,FUEL,     J   319    AS1   N   SMS   AT
+                        R-0327     30300-0315-7533  EA     1   06    5340-01-270-8435    STRIKE,CAT     J   319    AS1   N   SMS   AT
+                        R-0334     30300-0315-7534  EA     1   13    2540-01-270-5065    CUSHION,SE     5   320    AS1       SMS   AT
+                        R-0334     30300-0315-7535  LB     1   13    5320-00-754-0992    RIVET,SOLI     5   319    AS1       SMS   AT
+                        R-0326     30300-0315-7536  EA     1   13    2540-01-271-1991    CUSHION,SE     5   319    AS1       SMS   AT
+                        R-0334     30300-0315-7537  EA     1   13    2540-01-282-8562    VENTILATOR     H   319    AS1       SMS   AT
+                        R-0334     30300-0315-7538  EA     1   13    5305-01-283-7776    SCREW,TAPP     H   319    AS1       SMS   AT
+                        R-0323     30300-0315-7539  SE     1   06    5330-01-310-6780    GASKET SET     J   319    AS1   N   SMS   AT
+                        R-0334     30300-0315-7540  EA     1   06    5330-01-378-8572    RETAINER,O     J   319    AS1   N   SMS   AT
+                        R-0322     30300-0315-7541  EA     1   06    5330-01-360-5271    GASKET         J   319    AS1   N   SMS   AT
+                        R-0348     30300-0347-7T03  EA     1   13    5945-01-485-8450    RELAY,SOLI                                PB
+                        R-1005     30300-0351-7560  EA     2   13    6140-01-485-1472    BATTERY,ST     Q   354    AS1       SMS   AT
+                                   30300-0351-7561  EA     1   06    5930-01-266-4592    SWITCH,TIL     BB  026    AE1   N   SMS   AT
+                        R-1006     30300-0351-7562  EA     1   13    2910-00-025-3493    FILTER,FLU     5   354    AS1       SMS   AT
+                        R-1006     30300-0351-7563  AY     1   06    4710-01-265-3228    TUBE ASSEM     J   354    AS1   N   SMS   AT
+                        R-1006     30300-0351-7564  EA     1   13    5340-01-265-8911    HANDLE,DOO     5   354    AS1       SMS   AT
+                        R-1020     30300-0351-7565  EA     1   13    5340-01-270-8435    STRIKE,CAT     H   355    AS1       SMS   AT
+                        R-1006     30300-0351-7566  EA     1   13    5340-01-276-6673    HANDLE,DOO     5   354    AS1       SMS   AT
+                        R-1018     30300-1004-7503  EA     1   06    6680-01-477-3650    GAGE ROD,L     J   007    AS1   N   SMS   AT
+0   OBE55 D1062 10631A     596062                    N         13    2320-01-465-2180 MTVR MK-27           0298               M      
+ UNIT RCL    30300   0314-UNIT RCL            9.52   2     1               LD-  /0314   COMP-RPLC            98                      
+                        R-0314     30300-0313-7T20  EA     1   13    6220-01-516-4925    REAR RED M                                PB
+                        R-0314     30300-0313-7T25  EA     1   13    5315-01-491-1432    PIN,LOCK                                  PB
+                        R-0326     30300-0315-75N4  EA     1   13    5340-01-500-9577    HANDLE,DIP     5   319    AS1       LA9   AT
+                        R-0334     30300-0315-75N5  EA    16   13    5310-01-478-8687    NUT,SELF-L     H   319    AS1       SMS   AT
+                        R-0326     30300-0315-75N6  EA     3   13    5340-01-385-9862    CLIP,RETAI     H   319    AS1       SMS   AT
+                                   30300-0315-75N7  EA    16   13    5305-01-480-2359    SCREW,CAP,     RA  020    AE1       MQ1   AT
+                        R-0322     30300-0315-7557  EA     3   13    8030-01-479-1210    INSULATOR,     5   319    AS1       LA9   AT
+                                   30300-0319-7515  FT    10   13    4010-00-575-6233    ROPE,WIRE      RA  020    AE1       MQ1   AT
+                                   30300-0319-7516  EA     4   13    2530-01-495-5273    SLEEVE,SWA     RA  020    AE1       MQ1   AT
+                        R-1006     30300-0320-75N8  EA     3   13    2590-00-455-5899    BRACKET,SM     5   353    AS1       SMS   AT
+                                   30300-1021-7510  EA    16   13    5305-01-480-2359    SCREW,CAP,     BB  025    AE1       SMS   AT
+                                   30300-1024-7508  FT    10   13    4010-00-575-6233    ROPE,WIRE                                 AT
+                                   30300-1024-7509  EA     4   13    2530-01-495-5273    SLEEVE,SWA                                AT
+0   OBE62 D1062 10631B     592810                    N         13    2320-01-465-2182 MTVR MK-28           0299               M      
+ UNIT RCL    30300   0314-UNIT RCL           93.23   2     1               LD-  /0314   COMP-RPLC            97                      
+                        R-0307     30300-0306-7T02  EA     1   13    2530-01-471-6991    BOOT,VEHIC                                PB
+                        R-0313     30300-0312-7T19  EA     1   13    5315-01-491-1432    PIN,LOCK                                  PB
+                        R-0313     30300-0312-7T29  EA     1   06    5945-00-855-7478    RELAY,ELEC                                PB
+                        R-0334     30300-0315-7M89  EA     1   13    2590-01-396-1425    CAP,FILLER     G   320    AS1       SMS   AT
+                        R-0333     30300-0315-7M90  EA     1   13    2530-00-270-3878    DUMMY COUP     5   319    AS1       SMS   AT
+                        R-0322     30300-0315-7M91  EA     1   13    2540-01-479-9182    CUSHION,SE     5   319    AS1       LA9   AT
+                        R-0322     30300-0315-7M92  EA     1   13    9905-01-491-1437    REFLECTOR,     5   319    AS1       LA9   AT
+                        R-0334     30300-0315-7M93  EA     1   13    5340-01-059-0114    CAP,PROTEC     H   319    AS1       SMS   AT
+                        R-0334     30300-0315-7M94  EA     1   13    5305-01-492-5562    SCREW,CAP,     H   323    AS1       SMS   AT
+                        R-0334     30300-0315-7M95  EA     1   13    5360-01-493-5998    SPRING,HEL     BA  319    AE1       SMS   AT
+                        C-1007     30300-0315-7M96  EA     1   13    5310-01-492-5563    NUT,SELF-L     BM         AE1       SMS   AT
+                                   30300-1021-7525  EA     1   13    5310-01-492-5563    NUT,SELF-L     BZ  024    AE1       SMS   AT
+0   OBE73 D0022 11285A     622881                    M         06    2320-01-518-7332 TRUCK UTILITY   0298 0298               M      
+             30300   0302-SHT PART            0.00   2     1               LC-S2/0302   ELEC-RPLC       98   98                      
+                     0301-INS PRGS                                                                                                   
+                        C-0326     30300-0224-7506  AY     1   06    2510-01-450-5479    DOOR,VEHIC     BB         AE1       SMS   2A
+                        C-0328     30300-0313-7500  AY     1   13    2510-01-450-5479    DOOR,VEHIC     BQ         AE1       SMS   AT
+                                   30300-0315-7516  EA     1   06    6110-01-542-7668    CONTROL,RE     BB  026    AE1   N   SMS   AT
+                        C-0334     30300-0326-7036  AY     1   06    2510-01-450-5479    DOOR,VEHIC                      N         AT
+                        R-1005     30300-0326-7506  AY     1   06    2510-01-450-5479    DOOR,VEHIC     J   351    AS1   N   SMS   AT
+0 **OBO07 D1062 10631A     590938                    N         13    2320-01-465-2180 MTVR MK-27           0341               M      
+ AWTG PCKP   30300   1031-RPR COMP           55.54   2     1                            COMP-RPLC            55                      
+                        R-1006     30300-1005-7T37  EA     1   13    5315-01-491-1432    PIN,LOCK                                  PB
+                        R-1006     30300-1005-7T38  EA     1   13    6240-00-635-4406    LAMP,INCAN                                PB
+                        R-1006     30300-1005-7T39  EA     1   13    6350-01-319-9161    ALARM,BACK                                PB
+                        R-1027     30300-1010-7500  EA     1   13    4030-01-479-3488    LATCH,SAFE     H   015    AS1       SMS   AT
+                        R-1024     30300-1010-7501  EA     1   13    5340-01-517-1138    BRACKET,MO     5   015    AS1       SMS   AT
+                        R-1014     30300-1010-7502  EA     1   13    5342-01-479-9199    BELLOWS,PR     5   011    AS1       LA9   AT
+                        R-1014     30300-1010-7503  EA     1   06    5961-00-484-8041    SEMICONDUC     J   012    AS1       SMS   AT
+0 **OBO08 D1062 10631J     598570                    N         13    2320-01-556-2617 MTVR, 7T CARGO       0341               M      
+             30300   1031-SHT TECH            0.00   2     1                            NMAJ-ASPM            55                      
+                     1028-RPR PRGS                                                                                                   
+                     0348-SHT TECH                                                                                                   
+                     0342-INS PRGS                                                                                                   
+0   OBO09 D1062 10631J     598570                    M         06    2320-01-556-2617 MTVR, 7T CARGO  1027 0341               M      
+             30300   1028-RPR PRGS          106.93   2     1               LA-M2/1028   BODY-GLASS       4   55                      
+                     0348-SHT TECH                                                                                                   
+                     0342-INS PRGS                                                                                                   
+                        R-1028     30300-1027-7T08  EA     1   13    2990-01-495-5214    CAP ASSEMB                                PB
+                        R-1028     30300-1027-7T09  EA     1   13    2540-01-479-3014    NOZZLE,DEF                                PB
+                        R-1028     30300-1027-7T10  EA     1   13    2540-01-479-4144    MIRROR ASS                                PB
+0 **OBO13 D1062 10631A     591413                    M         06    2320-01-465-2180 MTVR MK-27      0342 0342               M      
+             30300   1028-SHT PART           44.07   2     1               LC-S2/1028   ELEC-RPR        54   54                      
+                     1026-RPR PRGS                                                                                                   
+                     0348-SHT TECH                                                                                                   
+                     0343-INS PRGS                                                                                                   
+                        R-1031     SAF57-1028-7003  EA     1   06    2990-01-474-5787    FSTOCKFFF                       N         F1
+                        R-1028     30300-1027-7T07  EA     1   13    2540-01-479-4144    MIRROR ASS                                PB
+0   OBO16 B2086 08990A          0                    S         13    5430-01-203-9971 WATER STORAGE        0344               D      
+             30300   0347-SHT PART            9.35   1     2                            NMAJ-SL-3AP          52                      
+                                   30300-0347-6200  EA     2   13    4720-01-361-6382    HOSE ASSEM     BM  349    AE1       SMS   AT
+                        R-1019     30300-1018-7T58  KT     1   13    2540-01-300-8745    PARTS KIT,                                PB
+0   OBO18 D0030 11301A     628295                    N         13    2320-01-518-7330 TRK EXPANDED C       0347               M      
+             30300   0354-SHT TECH            0.00   2     1                            NMAJ-SPM             49                      
+                     0348-INS PRGS                                                                                                   
+0   OBO19 D0030 11301A     628306                    N         13    2320-01-518-7330 TRK EXPANDED C       0347               M      
+             30300   0354-SHT TECH            0.00   2     1                            NMAJ-SPM             49                      
+                     0348-INS PRGS                                                                                                   
+0   OBO21 D0880 00648H     613909                    N         13    2330-01-108-7367 M149A2 TRL WAT       0347               D      
+ AWTG PCKP   30300   1027-RPR COMP            0.00   2     1                            NMAJ-SPM             49                      
+                        R-1006     30300-0351-7553  EA     2   13    5330-00-741-1429    SEAL,PLAIN     5   354    AS1       SMS   AT
+                        R-1020     30300-0351-7554  EA     2   13    5310-00-741-1378    WASHER,KEY     H   354    AS1       SMS   AT
+0   OBO22 D1062 10631A     591428                    X         06    2320-01-465-2180 MTVR MK-27           0347               M      
+             30300   0354-SHT TECH            0.00   2     1                            AXLE-RPR             49                      
+                     0348-INS PRGS                                                                                                   
+0   OBO24 D0880 00648H     517524                    N         13    2330-01-108-7367 M149A2 TRL WAT       0350               D      
+ UNIT RCL    30300   1021-UNIT RCL           17.85   2     1                            BODY-RPLC            46                      
+                        R-1020     30300-1019-7T71  EA     1   13    4510-00-595-1785    FAUCET,SIN                                PB
+                        R-1020     30300-1019-7T72  EA     1   13    4730-00-253-5765    ELBOW,PIPE                                PB
+                                   30300-1020-7595  EA     2   13    2540-01-025-5344    GUARD,SPLA     BA  021    AE1       SMS   AT
+                                   30300-1020-7596  EA     1   13    2510-01-163-1346    BRACE,FEND     BA  021    AE1       SMS   AT
+                                   30300-1020-7597  EA     1   13    4730-00-050-4203    FITTING,LU     BA  021    AE1       SMS   AT
+0   OBO26 D0880 00648H     548248                    N         13    2330-01-108-7367 M149A2 TRL WAT       0350               D      
+ UNIT RCL    30300   1021-UNIT RCL            0.00   2     1                            BODY-RPLC            46                      
+                                   30300-1020-7599  EA     1   13    3040-01-254-5369    BRACKET,EY     BA  021    AE1       SMS   AT
+
+
+
+
+
+
+
+0 **OBO29 D0030 11301A     628701                    M         06    2320-01-518-7330 TRK EXPANDED C  0350 0350               M      
+             30300   1020-SHT PART          366.52   2     1               LC-S2/1020   HYDR-STEER      46   46                      
+                     1019-RPR PRGS                                                                                                   
+                     0354-SHT TECH                                                                                                   
+                     0351-INS PRGS                                                                                                   
+                        C-1026     SAF57-1019-7017  EA     1   06    2920-01-420-9968    FSTOCKFFF                       N         F3
+                        R-1028     SAF57-1019-7017  EA     1   06    2920-01-420-9968    FSTOCKFFF      D7  026    AE9   N   SGA   F3
+                        R-1019     30300-1018-7T60  EA     1   13    2540-01-314-1190    MIRROR HEA                                PB
+                        R-1019     30300-1018-7T61  EA     1   13    2540-01-314-1189    MIRROR, RI                                PB
+                        R-1019     30300-1018-7T62  EA     1   06    6140-01-485-1472    BATTERY,ST                                PB
+                                   30300-1019-7518  EA     1   13    4810-01-536-3832    VALVE,FLOW     BA  020    AE1       SMS   AT
+                                   30300-1019-7519  EA     1   13    2510-01-535-6001    WINDOW,VEH     5   020    AS1       SMS   AT
+                                   30300-1019-7520  EA     1   13    5330-01-209-5997    SEAL,NONME     5   024    AS1       SMS   AT
+                                   30300-1019-7521  EA     3   13    5330-01-560-3956    SEAL,NONME     5   023    AS1       SMS   AT
+                        R-1027     30300-1019-7522  EA     1   13    5305-01-539-1128    SCREW,CAP,     H   023    AS1       SMS   AT
+                                   30300-1019-7523  EA     1   13    5340-01-536-0999    HANDLE,CRA     5   023    AS1       SMS   AT
+0   OBO35 D0030 11301A     628292                    N         13    2320-01-518-7330 TRK EXPANDED C       1003               M      
+             30300   1011-SHT TECH            0.00   2     1                            NMAJ-SPM             28                      
+                     1004-INS PRGS                                                                                                   
+0   OBO36 D0022 11285A     620654                    M         06    2320-01-518-7332 TRUCK UTILITY   1003 1003               M      
+             30300   1005-SHT PART            0.00   2     1               LC-S2/1005   ELEC-RPLC       28   28                      
+                     1004-INS PRGS                                                                                                   
+                                   30300-1003-7501  EA     1   06    6110-01-542-7668    CONTROL,RE     BB  026    AE1   N   SMS   AT
+                        R-1014     30300-1003-7502  KT     1   13    2540-01-300-8745    PARTS KIT,     5   005    AS1       SMS   AT
+0   OBO37 D0022 11285A     620650                    M         06    2320-01-518-7332 TRUCK UTILITY   1003 1003               M      
+             30300   1012-SHT PART            0.00   2     1               LC-S2/1012   COOL-PUMP       28   28                      
+                     1011-SHT TECH                                                                                                   
+                     1004-INS PRGS                                                                                                   
+                                   30300-0315-9502  AY     1   13    2510-01-450-5480    DOOR,VEHIC     BB  004    AE1       SMS   AT
+0   OBO38 D1062 10631A     591411                    X         06    2320-01-465-2180 MTVR MK-27           1003               M      
+             30300   1011-SHT TECH            0.00   2     1                            COMP-BRK             28                      
+                     1004-INS PRGS                                                                                                   
+0   OBO39 D0022 11285A     620604                    X         06    2320-01-518-7332 TRUCK UTILITY        1003               M      
+             30300   1012-SHT PART            0.00   2     1                            COOL-MOIST           28                      
+                     1011-SHT TECH                                                                                                   
+                     1004-INS PRGS                                                                                                   
+                        C-1026     30300-0319-7524  EA     1   13    4810-01-536-3832    VALVE,FLOW     RA         AE1       MQ1   AT
+                        C-1026     30300-0319-7556  EA     1   13    2540-01-548-9680    DUCT ASSEM     RA         AE1       MQ1   AT
+                                   30300-1021-7520  EA     1   13    4810-01-536-3832    VALVE,FLOW     BA  024    AE1       SMS   AT
+                                   30300-1021-7521  EA     1   13    2540-01-548-9680    DUCT ASSEM     BA  024    AE1       SMS   AT
+0   OBO48 D0022 11285A     622911                    N         13    2320-01-518-7332 TRUCK UTILITY        1013               M      
+ UNIT RCL    30300   1021-UNIT RCL          125.68   2     1               LD-  /1020   COMP-RPLC            18                      
+                        R-1020     30300-1019-7T64  EA     1   13    6240-00-966-3831    LAMP,INCAN                                PB
+                        R-1020     30300-1019-7T65  KT     1   13    2540-01-300-8744    HANDLE,DOO                                PB
+                        R-1020     30300-1019-7T66  EA     1   13    5930-00-307-8856    SWITCH ASS                                PB
+                        R-1020     30300-1019-7T67  EA     1   13    5306-01-185-7071    BOLT,HOOK                                 PB
+                        C-1026     30300-1019-7517  EA     1   13    4810-01-536-3832    VALVE,FLOW                                AT
+                                   30300-1019-7517  EA     1   13    4810-01-536-3832    VALVE,FLOW     BA  020    AE1       SMS   AT
+0 **OBO49 D1062 10631J     598560                    M         03    2320-01-556-2617 MTVR, 7T CARGO  1012 1013               M      
+             30300   1027-SHT PART           29.51   2     1               LC-S2/1027   TRAN-INOP       19   18                      
+                     1026-RPR PRGS                                                                                                   
+                     1020-SHT TECH                                                                                                   
+                     1014-INS PRGS                                                                                                   
+                                   SAF57-1025-7002  EA     1   03    2520-01-485-3211    TRANSFER T                      N         F5
+                        R-1026     30300-1025-7T01  EA     1   13    6220-01-516-4925    REAR RED M                                PB
+                        R-1026     30300-1025-7T02  EA     1   13    6220-01-473-0647    AMBER MARK                                PB
+                        R-1026     30300-1025-7T80  EA     1   13    2540-01-479-3014    NOZZLE,DEF                                PB
+                        R-1026     30300-1025-7T82  EA     1   03    5330-01-180-9099    SEAL,PLAIN                                PB
+                                   30300-1026-7501  EA     1   03    2530-00-270-3878    DUMMY COUP                      N         AT
+                                   30300-1026-7502  EA     1   03    5330-01-517-9793    SEAL,PLAIN                      N         AT
+                                   30300-1026-7503  EA     2   03    5330-01-446-3786    SEAL,PLAIN                      N         AT
+
+
+
+0 **OBO50 D0198 10629A     592690                    M         03    2320-01-465-2174 MTVR MK-23      1012 1013               M      
+             30300   1026-SHT PART           17.61   2     1               LA-M2/1014   FUEL-PUMP       19   18                      
+                     1026-RPR PRGS                                                                                                   
+                     1026-RPR PRGS                                                                                                   
+                     1020-SHT TECH                                                                                                   
+                     1014-INS PRGS                                                                                                   
+                        R-1026     30300-1025-7T93  EA     1   03    5330-01-480-7046    SEAL,PLAIN                                PB
+                                   30300-1025-7599  EA     1   03    6680-01-473-0600    INDICATOR,     BK  026    AE9   N   LA9   AT
+0   OBO51 D1062 10631A     596063                    M         03    2320-01-465-2180 MTVR MK-27      1013 1013               M      
+             30300   1026-SHT PART            4.55   2     1               LC-S2/1026   AXLE-RPLC       18   18                      
+                     1026-SHT PART                                                                                                   
+                     1026-SHT PART                                                                                                   
+                     1021-RPR PRGS                                                                                                   
+                     1020-SHT TECH                                                                                                   
+                     1014-INS PRGS                                                                                                   
+                        R-1024     30300-1021-7T88  EA     1   13    2540-01-479-3014    NOZZLE,DEF                                PB
+                                   30300-1025-7500  EA     1   03    5330-01-517-9793    SEAL,PLAIN     BA  026    AE1   N   SMS   AT
+                                   30300-1025-7501  EA     2   03    5330-01-446-3786    SEAL,PLAIN     BA  026    AE1   N   SMS   AT
+                                   30300-1025-7502  EA     1   03    5325-01-471-8149    FASTENER,P     BA  026    AE1   N   SMS   AT
+                                   30300-1025-7503  EA     1   03    5315-01-500-0187    PIN,COTTER     BA  026    AE1   N   LA9   AT
+                                   30300-1025-7504  EA     1   03    5305-01-499-9342    SCREW,EXTE     BA  026    AE1   N   LA9   AT
+0   OBO54 D1001 08991C     604190                    X         06    2310-01-380-8225 M997A2 AMB           1019               M      
+             30300   1028-SHT TECH            0.00   2     1                            ELEC-INOP            12                      
+                     1020-INS PRGS                                                                                                   
+0   OBO55 D1062 10631J     598571                    X         06    2320-01-556-2617 MTVR, 7T CARGO       1019               M      
+             30300   1028-SHT TECH            0.00   2     1                            AXLE-RPR             12                      
+                     1020-INS PRGS                                                                                                   
+0   OBO56 D0022 11285A     619911                    M         03    2320-01-518-7332 TRUCK UTILITY   1019 1019               M      
+             30300   1026-SHT PART            0.00   2     1               LC-S2/1026   ELEC-RPLC       12   12                      
+                     1020-INS PRGS                                                                                                   
+                                   SAF57-1025-7001  EA     1   03    2920-01-420-9968    FSTOCKFFF                       N         F3
+                                   30300-1025-7598  EA     1   03    4720-01-505-4702    HOSE,NONME     BK  026    AE9   N   SMS   AT
+0   OBO57 D0022 11285A     620629                    M         06    2320-01-518-7332 TRUCK UTILITY   1020 1020               M      
+             30300   1028-SHT TECH            0.00   2     1               LA-M2/1021   COOL-INOP       11   11                      
+                     1021-INS PRGS                                                                                                   
+0   OBO58 D0022 11285A     620650                    N         13    2320-01-518-7332 TRUCK UTILITY        1020               M      
+             30300   1028-SHT TECH            0.00   2     1                            NMAJ-ASPM            11                      
+                     1021-INS PRGS                                                                                                   
+0 **OBO59 D1062 10631J     598563                    M         06    2320-01-556-2617 MTVR, 7T CARGO  1020 1020               M      
+             30300   1026-SHT PART            0.00   2     1               LC-S2/1026   ENG -RPR        11   11                      
+                     1026-SHT PART                                                                                                   
+                     1021-INS PRGS                                                                                                   
+                        C-1026     30300-0315-7545  EA     1   13    6220-01-473-0647    LIGHT ASSE     BM         AE1       LA9   AT
+                        R-1024     30300-0319-7551  EA     4   13    5365-01-479-4205    SPACER,SLE                B16             AT
+                                   30300-1014-7545  EA     1   13    6220-01-473-0647    LIGHT ASSE     CH  018    AE1       LA9   AT
+                        R-1028     30300-1014-7551  EA     4   13    5365-01-479-4205    SPACER,SLE     5   018    AS1       LA9   AT
+                                   30300-1021-7502  EA     1   06    2540-01-491-1410    PARTS KIT,     5   024    AS1   N   LA9   AT
+                                   30300-1021-7503  EA     1   06    3030-01-536-0956    BELT,V         5   024    AS1   N   LA9   AT
+                                   30300-1021-7504  EA     1   06    3030-01-536-1488    BELT,SERPE     5   024    AS1   N   LA9   AT
+0   OBO60 D1062 10631B     592809                    M         06    2320-01-465-2182 MTVR MK-28      1021 1021               M      
+             30300   1026-SHT PART            0.00   2     1               LC-S2/1026   AXLE-RPR        10   10                      
+                     1026-SHT PART                                                                                                   
+                     1024-INS PRGS                                                                                                   
+                                   30300-1021-7500  EA     1   06    4730-00-196-1974    NIPPLE,PIP     J   025    AS1   N   SMS   AT
+                                   30300-1021-7501  EA     1   06    4730-01-309-9978    ELBOW,PIPE     J   024    AS1   N   SMS   AT
+0   OBO61 D1062 10631J     598100                    M         06    2320-01-556-2617 MTVR, 7T CARGO  1024 1024               M      
+             30300   1026-INS PRGS            0.00   2     1               LA-M2/1026   ENG -MDRV        7    7                      
+
+
+
+
+
+
+
+0   OBO62 D0030 11301B     628712                    M         06    2320-01-540-2038 TRUCK, UTILITY  1024 1024               M      
+             30300   1026-SHT PART            0.00   2     1               LA-S2/1026   ELEC-RPLC        7    7                      
+                        C-1026     30300-1019-7514  EA     1   06    5315-01-151-4180    PIN,STRAIG     BA         AE1       SMS   AT
+                                   30300-1019-7514  EA     1   06    5315-01-151-4180    PIN,STRAIG     J   020    AS1       SMS   AT
+                        C-1026     30300-1019-7515  EA     1   06    5330-01-378-8572    RETAINER,O     BA         AE1       SMS   AT
+                                   30300-1019-7515  EA     1   06    5330-01-378-8572    RETAINER,O     J   020    AS1       SMS   AT
+                        C-1026     30300-1019-7516  EA     1   06    5330-01-378-8572    RETAINER,O     BA         AE1       SMS   AT
+                                   30300-1019-7516  EA     1   06    5330-01-378-8572    RETAINER,O     J   020    AS1       SMS   AT
+0   OBO63 D0022 11285A     620656                    M         06    2320-01-518-7332 TRUCK UTILITY   1025 1025               M      
+             30300   1026-SHT PART            0.00   2     1               LA-S2/1026   BODY-RPLC        6    6                      
+                     1026-INS PRGS                                                                                                   
+0   OBO64 D0880 00648H     583802                    X         06    2330-01-108-7367 M149A2 TRL WAT       1026               D      
+             30300   1027-SHT PART            0.00   2     1                            BODY-RPLC             5                      
+                                   30300-1027-7501  EA     1   06    4730-00-247-3206    TEE,PIPE                        E         AT
+                                   30300-1027-7502  EA     1   13    2540-01-025-5344    GUARD,SPLA                                AT
+0 **OBO66 D0003 10629C     593745                    M         03    2320-01-530-5676 AMK23 7TON CAR  1027 1027               M      
+             30300   1031-RPR PRGS            0.00   2     1               LA-M2/1028   ENG -SEAL        4    4                      
+                     1028-INS PRGS                                                                                                   
+0 **OBO67 D0880 00648H     361616                    M         06    2330-01-108-7367 M149A2 TRL WAT  1027 1027               D      
+             30300   1031-RPR PRGS            0.00   2     1               LA-M2/1028   BODY-RPLC        4    4                      
+                     1028-INS PRGS                                                                                                   
+0 **OBO68 D1062 10631J     598101                    M         03    2320-01-556-2617 MTVR, 7T CARGO       1027               M      
+             30300   1028-INS PRGS            0.00   2     1               LD-  /1028   COOL-MOIST            4                      
+         CLOSED-STAT 1028-JOB CLOS   NON-SYS PARTS CHG          $.00  CIV-LAB       $.00  MIL-LAB        1.0                         
+0 **OBO69 D1062 10631A     591417                    M         03    2320-01-465-2180 MTVR MK-27      1027 1027               M      
+             30300   1031-RPR PRGS            0.00   2     1               LA-M2/1028   COOL-MOIST       4    4                      
+                     1028-INS PRGS                                                                                                   
+0   OBO70 D0860 00638E     557113                    P         06    2330-00-141-8050 TRLR M105A2     1027 1027               D      
+             30300   1028-INS PRGS            0.00   2     1                            ELEC-RPR         4    4                      
+0 **OBO71 D1062 10631B     598101                    M         03    2320-01-465-2182 MTVR MK-28      1025 1025               M      
+             30300   1031-INS PRGS            0.00   2     1               LA-M2/1031   COOL-MOIST       6    6                      
+                                                    SHOP SECTION 5      SUB-SHOP Q                                                   
+0   ERO    TAM    ID    SERIAL #                    CAT  RDD  PRI       NSN-IN-MAINT      NOMEN       DCD  DRIS     BDI      EOT     
+ AWTG-STAT   OWNER     JOB-STATUS    PARTS CHARGE   ECH  QTY X-EROS      MARES/DATE       DEFECT      DDL  DIS  DEST/HOLDER          
+                          RCVD        DOCUMENT #    U/I  QTY  PRI         PART-NSN       PART-NAME    STAT DATE DIC/EXC NMCS LKH  ADV
+                                                                                                                                     
+0   OBC48 D0000 00000D          0                    O         13    0000-00-000-0000 SHOP OVERHEAD        1003               D      
+             30300   1004-SHT PART            0.00   2     1                            NMAJ-SL-3AP          28                      
+                        R-1024     30300-0118-7502  EA     3   13    5330-01-340-9884    PACKING,PR     G   122    AS1       SMS   AT
+                        R-1024     30300-0118-7509  EA    14   13    6240-00-765-8443    LAMP,INCAN     RA  344    AE1       SMS   AT
+                        R-1024     30300-0118-7523  EA     2   13    6150-00-830-6663    WIRING HAR     BB  021    AE1       SMS   AT
+                        R-1024     30300-0232-7522  KT    15   13    2815-01-492-3214    PARTS KIT,     B   007    AS1       SMS   AT
+                                   30300-0238-7561  EA     4   13    4910-01-536-8795    KIT,BIENNI     BF  268    AE1       MQ1   AT
+                                   30300-0293-7523  EA     3   13    2590-01-183-6816    SUPPORT,RE     BB  295    AE1       SMS   AT
+                                   30300-0321-7503  AY     1   13    2510-01-450-5480    DOOR,VEHIC     BB  004    AE1       SMS   AT
+                                   30300-0327-7517  GL     5   13    9150-01-102-9455    BRAKE FLUI                                AT
+                        R-1004     30300-0334-7502  EA    10   13    6140-01-485-1472    BATTERY,ST     H   361    AS1       SMS   AT
+                        R-1005     30300-0335-7516  EA    10   13    5310-00-741-1378    WASHER,KEY     5   337    AS1       SMS   AT
+                                   30300-0335-7518  EA    11   13    6220-01-516-4925    LIGHT,MARK     5   338    AS1       SMS   AT
+                        R-1005     30300-0335-7519  EA     6   13    6220-01-516-4926    LIGHT,MARK     5   341    AS1       SMS   AT
+                                   30300-0335-7525  EA     4   13    2540-01-314-1189    MIRROR HEA     H   343    AS1       SMS   AT
+                        R-1020     30300-0337-7501  EA     2   13    5306-01-455-8016    BOLT,MACHI     H   345    AS1       SMS   AT
+                        R-1020     30300-0337-7502  EA     2   13    5310-01-412-4013    WASHER,FLA     H   345    AS1       SMS   AT
+                        R-1020     30300-0337-7503  EA     3   13    5305-01-539-1128    SCREW,CAP,     H   344    AS1       SMS   AT
+                        R-1020     30300-0337-7512  EA     1   13    6220-01-516-4925    LIGHT,MARK     H   346    AS1       SMS   AT
+                        R-1020     30300-0337-7516  EA     1   13    5340-01-255-9919    LOOP,STRAP     H   344    AS1       SMS   AT
+                        R-1020     30300-0347-9501  EA     2   13    5310-00-741-1378    WASHER,KEY     H   351    AS1       SMS   AT
+                        R-1020     30300-0351-7558  EA     2   13    5310-00-741-1378    WASHER,KEY     H   354    AS1       SMS   AT
+                        R-1006     30300-0351-7569  EA    10   13    5310-00-741-1378    WASHER,KEY     5   354    AS1       SMS   AT
+                        R-1010     30300-0351-7570  EA    20   13    5330-00-741-1429    SEAL,PLAIN     5   354    AS1       SMS   AT
+                        R-1010     30300-0351-7571  EA    15   13    5330-01-140-8231    SEAL,PLAIN     5   354    AS1       SMS   AT
+                        R-1010     30300-0351-7572  EA   100   13    2530-01-495-5273    SLEEVE,SWA     5   354    AS1       LA9   AT
+                        R-1010     30300-0351-7573  FT   100   13    4010-00-575-6233    ROPE,WIRE      5   354    AS1       SMS   AT
+                        R-1006     30300-0351-7574  EA     8   13    2530-01-554-8288    PARTS KIT,     5   354    AS1       SMS   AT
+                        R-1006     30300-0351-7576  EA     5   13    4910-01-536-8799    KIT,BIENNI     B   355    AS1       LA9   AT
+                        R-1010     30300-0351-7577  EA    10   13    4910-01-536-8790    KIT,ANNUAL     B   355    AS1       LA9   AT
+                                   30300-1010-7504  EA     1   13    6140-01-358-7470    BATTERY,ST     5   020    AS1       SMS   AT
+                                   30300-1019-7500  EA     5   13    5330-01-480-7046    SEAL,PLAIN     5   024    AS1       SMS   AT
+                                   30300-1019-7501  EA     3   13    4510-00-595-1785    FAUCET,SIN     BA  025    AE1       GSA   AT
+                                   30300-1019-7502  EA     2   13    6110-01-542-7668    CONTROL,RE     BB  021    AE1       SMS   AT
+                                   30300-1019-7503  EA    12   13    5331-01-348-8331    O-RING         5   023    AS1       SMS   AT
+                                   30300-1019-7504  EA    12   13    2610-01-561-7314    TIRE,PNEUM     BZ  020    AE1       SMS   AT
+                        R-1027     30300-1019-7505  EA     4   13    2640-00-050-1229    VALVE CORE     H   023    AS1       SMS   AT
+                                   30300-1019-7506  EA     3   13    2910-01-168-7905    PUMP,FUEL,     5   024    AS1       SMS   AT
+                                   30300-1019-7507  EA     4   13    6220-00-726-1916    LIGHT,MARK     5   024    AS1       SMS   AT
+                                   30300-1019-7508  EA     2   13    5930-01-480-9800    SWITCH,TOG     5   020    AS1       LA9   AT
+                                   30300-1019-7509  EA     2   13    5930-01-480-7051    SWITCH,TOG     5   020    AS1       LA9   AT
+                                   30300-1019-7510  EA     2   13    5930-01-480-7049    SWITCH,TOG     5   020    AS1       LA9   AT
+                                   30300-1019-7511  EA     2   13    2590-01-480-7063    SWITCH,BEA     5   020    AS1       LA9   AT
+                                   30300-1019-7512  EA     3   13    5945-00-855-7478    RELAY,ELEC     BZ  020    AE1       SMS   AT
+                                   30300-1019-7513  EA    30   13    5325-01-471-8149    FASTENER,P     H   025    AS1       SMS   AT
+                                                    SHOP SECTION 5      SUB-SHOP 5                                                   
+0   ERO    TAM    ID    SERIAL #                    CAT  RDD  PRI       NSN-IN-MAINT      NOMEN       DCD  DRIS     BDI      EOT     
+ AWTG-STAT   OWNER     JOB-STATUS    PARTS CHARGE   ECH  QTY X-EROS      MARES/DATE       DEFECT      DDL  DIS  DEST/HOLDER          
+                          RCVD        DOCUMENT #    U/I  QTY  PRI         PART-NSN       PART-NAME    STAT DATE DIC/EXC NMCS LKH  ADV
+0   OBA46 D0209 08780A     563425                    N         13    2320-01-177-5167 MK48 PWR UNIT        1025               M      
+             30300   1026-INS PRGS            0.00   2     1                            NMAJ-ASPM             6                      
+0   OBB15 A1957 09730B       2229                    C  9365   13    5820-01-431-8931 AN/MRC-145A          0293               D      
+ UNIT RCL    30300   1021-UNIT RCL        1,632.72   2     1  OAE07        LD-  /1021   COMP-RPLC           103                      
+                        R-0314     SAF57-0313-7002  EA     1   06    2920-01-420-9968    FSTOCKFFF                       N         F1
+                        R-0314     30300-0313-7T22  EA     1   13    6240-00-019-3093    1251 BULBS                                PB
+                        R-0314     30300-0313-7T23  EA     1   13    6240-00-765-8443    LAMP,INCAN                                PB
+                        R-0334     30300-0315-7M97  EA     1   06    2815-01-455-8424    SPEED SENS     J   319    AS1   N   SMS   AT
+                        R-0334     30300-0315-7M98  EA     1   13    2540-01-536-3029    VENTILATOR     H   319    AS1       SMS   AT
+                        R-1004     30300-0315-7M99  EA     1   06    2930-01-448-9439    RADIATOR,E     B   319    AS1   N   SMS   AT
+                                   30300-0319-7521  EA     1   13    4810-01-536-3832    VALVE,FLOW                                AT
+                        R-1019     30300-1018-7T59  EA     2   06    6140-01-485-1472    BATTERY,ST                                PB
+                        R-1024     30300-1021-7T82  AY     1   13    2530-01-493-5859    WHEEL AND                                 PB
+                                   30300-1024-7512  EA     1   13    4810-01-536-3832    VALVE,FLOW                                AT
+0   OBB21 A1957 09730B       2227                    C  9365   06    5820-01-431-8931 AN/MRC-145A     0292 0292               D      
+             30300   0327-SHT PART          111.08   2     1  OAE09        LD-  /0295   ELEC-RPLC      104  104                      
+                     0321-RPR PRGS                                                                                                   
+                     0299-SHT TECH                                                                                                   
+                     0295-INS PRGS                                                                                                   
+                        R-0327     30300-0326-7T64  EA     1   13    6240-00-019-3093    1251 BULBS                                PB
+                        R-0327     30300-0326-7T65  EA     1   13    6220-00-577-3434    LIGHT,MARK                                PB
+                        R-0327     30300-0326-7T67  EA     1   13    5930-00-307-8856    SWITCH ASS                                PB
+                        C-0348     30300-0327-7502  EA     1   06    6110-01-542-7668    CONTROL,RE                      N         AT
+                        C-0348     30300-0327-7503  EA     1   06    2920-01-469-6903    CONTROL UN                      N         AT
+                                   30300-0337-7513  EA     1   06    6110-01-542-7668    CONTROL,RE     BB  026    AE1   N   SMS   AT
+                        R-1004     30300-0337-7514  EA     1   06    2920-01-469-6903    CONTROL UN     J   342    AS1   N   SMS   AT
+0   OBB22 A1957 09730B       2245                    C  9365   06    5820-01-431-8931 AN/MRC-145A     0294 0294               D      
+             30300   1012-SHT PART          345.15   2     1  OAE10        LD-  /0295   ENG -MDRV      102  102                      
+                     1011-RPR PRGS                                                                                                   
+                     0328-SHT PART                                                                                                   
+                     0327-RPR PRGS                                                                                                   
+                     0299-SHT TECH                                                                                                   
+                     0295-INS PRGS                                                                                                   
+                        R-0327     30300-0326-7T68  EA     1   06    3030-01-466-9476    BELT,V                                    PB
+                        C-0342     30300-0327-7500  EA     1   06    3030-01-466-9476    BELT,V                          N         AT
+                        C-0348     30300-0327-7501  EA     1   13    5340-01-255-9919    LOOP,STRAP                                AT
+                        R-1005     30300-0334-7505  EA     1   06    3030-01-488-5606    BELT,V         J   335    AS1   N   SMS   AT
+                        R-0347     30300-0337-7515  EA     1   06    3030-01-466-9476    BELT,V         J   342    AS1   N   SMS   AT
+                        C-1011     30300-0337-7516  EA     1   13    5340-01-255-9919    LOOP,STRAP     H          AS1       SMS   AT
+                        R-1011     30300-1007-7T43  EA     1   06    6140-01-485-1472    BATTERY,ST                                PB
+                        R-1024     30300-1013-7500  EA     1   06    2920-01-491-2011    ARM,ADJUST     J   018    AS1   N   SMS   AT
+                        R-1024     30300-1013-7501  EA     1   06    5331-01-505-7218    O-RING         J   019    AS1   N   SMS   AT
+                        R-1024     30300-1013-7502  EA     1   06    5330-01-505-7214    GASKET         J   018    AS1   N   SMS   AT
+                        R-1025     30300-1013-7503  EA     1   06    5331-01-380-2118    O-RING         J   019    AS1   N   SMS   AT
+0   OBB26 A1957 09730B       2235                    C  9365   13    5820-01-431-8931 AN/MRC-145A          0314               D      
+ UNIT RCL    30300   0336-UNIT RCL            0.00   2     1  OAE13                     BODY-RPLC            82                      
+                                   30300-0216-7511  AY     1   13    2510-01-450-5480    DOOR,VEHIC     BB  004    AE1       SMS   AT
+0   OBB27 D0198 10629A     591950                    N         13    2320-01-465-2174 MTVR MK-23           0341               M      
+             30300   1021-SHT TECH          326.62   2     1               LD-  /1005   COMP-RPLC            55                      
+                     1020-AWTG EQUI                                                                                                  
+                     1005-UNIT RCL                                                                                                   
+                     1004-RPR PRGS                                                                                                   
+                     0348-SHT TECH                                                                                                   
+                     0342-INS PRGS                                                                                                   
+                        R-1004     30300-1003-7T27  EA     1   13    6140-01-485-1472    BATTERY,ST                                PB
+                        R-1014     30300-1006-7575  EA     1   13    2540-01-479-3017    HANDLE,WIN     5   007    AS1       LA9   AT
+0   OBB30 A1957 09730B       2241                    C         06    5820-01-431-8931 AN/MRC-145A     0341 0341               D      
+             30300   1005-SHT PART            0.00   2     1  OAE14                     ELEC-INOP       55   55                      
+                     1004-RPR PRGS                                                                                                   
+                     0348-SHT TECH                                                                                                   
+                     0342-INS PRGS                                                                                                   
+                                   30300-1004-7501  EA     1   06    6110-01-542-7668    CONTROL,RE     BB  026    AE1   N   SMS   AT
+                        R-1014     30300-1004-7502  EA     1   06    2920-01-469-6903    CONTROL UN     J   006    AS1   N   SMS   AT
+0   OBB31 A1957 09730B       2227                    C  9365   13    5820-01-431-8931 AN/MRC-145A          0343               D      
+             30300   0348-SHT TECH            0.00   2     1  OAE21                     NMAJ-ASPM            53                      
+                     0344-INS PRGS                                                                                                   
+0   OBB35 A1957 09730B       2228                    C  9365   13    5820-01-431-8931 AN/MRC-145A          0341               D      
+             30300   0348-SHT TECH            0.00   2     1  OAE17                     NMAJ-SPM             55                      
+                     0344-INS PRGS                                                                                                   
+0   OBB36 A1957 09730B       2243                    C  9365   13    5820-01-431-8931 AN/MRC-145A          0341               D      
+             30300   0348-SHT TECH            0.00   2     1  OAE19                     NMAJ-ASPM            55                      
+                     0344-INS PRGS                                                                                                   
+0   OBB37 D0022 11285A     620655                    N         13    2320-01-518-7332 TRUCK UTILITY        0350               M      
+             30300   0354-SHT TECH            0.00   2     1                            NMAJ-ASPM            46                      
+                     0351-INS PRGS                                                                                                   
+0   OBB38 D0198 10629A     591910                    N         13    2320-01-465-2174 MTVR MK-23           0350               M      
+             30300   0354-SHT TECH            0.00   2     1                            NMAJ-ASPM            46                      
+                     0351-INS PRGS                                                                                                   
+0 **OBB39 D0850 00647C     562621                    N         13    2330-01-372-5641 TRLR, CARGO 3/       1011               D      
+ UNIT RCL    30300   1031-UNIT RCL            0.00   2     1                            COMP-RPLC            20                      
+                                   30300-1028-7570  EA     2   13    5330-00-090-2128    PACKING,PR                                AT
+0   OBB40 D0198 10629B     591977                    X         06    2320-01-465-2176 MTVR MK-25           1011               M      
+             30300   1020-SHT TECH            0.00   2     1                            AXLE-STEER           20                      
+                     1012-INS PRGS                                                                                                   
+0   OBD16 A0067 11216A        851                    C         13    5820-01-533-6762 AN/MRC-148           0294               D      
+             90104   1026-AWTG EQUI         653.24   2     1               LD-  /0299   BODY-RPLC           102                      
+                     1026-AWTG EQUI                                                                                                  
+                     0327-UNIT RCL                                                                                                   
+                     0299-SHT TECH                                                                                                   
+                     0295-INS PRGS                                                                                                   
+                        R-0327     30300-0326-7T60  EA     2   06    6140-01-485-1472    BATTERY,ST                                PB
+                        C-0348     30300-0327-7505  EA     1   13    5340-01-256-9318    LOOP,STRAP                                AT
+                        C-0348     30300-0327-7506  EA     1   13    5340-01-255-9919    LOOP,STRAP                                AT
+                        C-0348     30300-0327-7507  AY     1   13    2510-01-450-5479    DOOR,VEHIC                                AT
+                        R-1020     30300-0337-7509  EA     1   13    5340-01-256-9318    LOOP,STRAP     H   345    AS1       SMS   AT
+                        R-1020     30300-0337-7510  EA     1   13    5340-01-255-9919    LOOP,STRAP     H   344    AS1       SMS   AT
+                        R-1005     30300-0337-7511  AY     1   13    2510-01-450-5479    DOOR,VEHIC     J   355    AS1       SMS   AT
+0   OBD17 A1957 09730A       1499                    C         13    5820-01-361-8536 AN/MRC-145           0342               D      
+ AWTG PCKP   90104   1026-RPR COMP           69.63   2     1  ORC01                     NMAJ-SPM             54                      
+                        R-1024     30300-1021-9T89  KT     1   13    2815-01-492-3214    PARTS KIT,                                PB
+
+
+
+
+
+
+
+0   OBD23 A1957 09730A        474                    C         06    5820-01-361-8536 AN/MRC-145      0342 0341               D      
+             90104   1006-SHT PART          133.38   2     1  ORB94        LD-  /0342   ELEC-RPLC       54   55                      
+                     1004-RPR PRGS                                                                                                   
+                     0348-SHT TECH                                                                                                   
+                     0342-INS PRGS                                                                                                   
+                        R-1005     SAF57-1004-7001  EA     1   06    2920-01-420-9968    FSTOCKFFF                       N         F1
+                        R-1006     30300-1005-7T01  EA     1   13    2540-01-385-9031    PUMP,WINDS                                PB
+                        R-1006     30300-1005-7T26  EA     1   13    5945-00-789-3706    FLASHER,TH                                PB
+                        R-1006     30300-1005-7T40  EA     1   13    6240-00-019-3093    1251 BULBS                                PB
+                        R-1007     30300-1006-7T01  EA     1   13    2540-01-385-9031    PUMP,WINDS                                PB
+                        R-1018     30300-1006-7570  AY     1   13    2510-01-450-5479    DOOR,VEHIC     J   008    AS1       SMS   AT
+                                   30300-1006-7571  EA     1   06    6110-01-542-7668    CONTROL,RE     BB  008    AE1   N   SMS   AT
+                        R-1014     30300-1006-7572  EA     1   06    2920-01-469-6903    CONTROL UN     J   008    AS1   N   SMS   AT
+                        R-1020     30300-1006-7573  EA     2   13    2540-01-536-3029    VENTILATOR     H   011    AS1       SMS   AT
+0   OBD24 A1957 09730A       1499                    C         13    5820-01-361-8536 AN/MRC-145           0342               D      
+ UNIT RCL    90104   1026-UNIT RCL          706.67   2     1  ORB98        LC-M2/0335   COMP-RPLC            54                      
+                        R-1024     30300-1021-7T83  EA     2   06    6140-01-485-1472    BATTERY,ST                                PB
+                        R-1024     30300-1021-7T84  EA     1   13    5306-01-190-2193    BOLT,HOOK                                 PB
+                        R-1026     30300-1025-7T95  EA     1   06    2920-01-469-6903    GLOW PLUG                                 PB
+                        R-1026     30300-1025-7T96  EA     1   13    6240-00-019-3093    1251 BULBS                                PB
+                        R-1026     30300-1025-7T97  EA     1   06    2530-01-189-2195    TIE ROD EN                                PB
+                        R-1026     30300-1025-7T98  EA     1   13    6220-00-726-1916    LIGHT,MARK                                PB
+                                   30300-1025-7506  EA     2   13    2540-01-536-3029    VENTILATOR                                AT
+0 **OBD26 A1957 09730A       1497                    C         06    5820-01-361-8536 AN/MRC-145      0347 0347               D      
+             90104   1031-SHT PART          326.62   2     1  ORB91        LD-  /0348   ELEC-RPLC       49   49                      
+                     1026-RPR PRGS                                                                                                   
+                     0354-SHT TECH                                                                                                   
+                     0348-INS PRGS                                                                                                   
+                                   SAF57-1028-7002  EA     1   06    2920-01-420-9968    FSTOCKFFF                       N         F3
+                        R-1026     30300-1025-7T99  EA     1   06    6140-01-485-1472    BATTERY,ST                                PB
+0   OBD27 D0198 10629A     591985                    M         06    2320-01-465-2174 MTVR MK-23      0348 0348               M      
+             90104   1026-RPR PRGS            0.91   2     1  ORJ17        LD-  /0349   SUSP-STEER      48   48                      
+                     1011-SHT TECH                                                                                                   
+                     0349-SHT PART                                                                                                   
+                        R-1006     30300-0347-7501  EA     1   06    5325-01-095-8663    RING,RETAI     J   350    AS1   N   SMS   AT
+                        R-1006     30300-0347-7502  EA     1   06    5325-01-479-2008    RING,RETAI     J   350    AS1   N   SMS   AT
+                        R-1006     30300-0347-7503  EA     2   06    5331-01-478-9901    O-RING         J   350    AS1   N   SMS   AT
+                        R-1006     30300-0347-7504  EA     1   06    6220-01-516-4926    LIGHT,MARK     J   350    AS1   N   SMS   AT
+                        R-1027     30300-1026-7T03  EA     1   13    5315-01-491-1432    PIN,LOCK                                  PB
+0 **OBD28 D0022 11285A     619904                    X         06    2320-01-518-7332 TRUCK UTILITY   0349 0349               M      
+             90104   1028-RPR PRGS           69.63   2     1  ORJ18        LD-  /0350   COMP-RPLC       47   47                      
+                     0354-SHT TECH                                                                                                   
+                     0350-INS PRGS                                                                                                   
+                        R-1007     30300-1006-9T77  KT     1   13    2815-01-492-3214    PARTS KIT,                                PB
+0   OBD29 A0067 11216A       0847                    C         06    5820-01-533-6762 AN/MRC-148      0350 0349               D      
+             90104   0354-SHT TECH            0.00   2     1  ORC03        LD-  /0350   ELEC-RPLC       46   47                      
+                     0350-INS PRGS                                                                                                   
+0   OBD30 D0198 10629A     591912                    N         13    2320-01-465-2174 MTVR MK-23           1013               M      
+             90104   1028-SHT TECH            0.00   2     1  ORJ22                     NMAJ-SPM             18                      
+                     1014-INS PRGS                                                                                                   
+0   OBD31 A0067 11216A       0851                    C         13    5820-01-533-6762 AN/MRC-148           1018               D      
+             90104   1028-SHT TECH            0.00   2     1  ORC05 OBD31               NMAJ-SPM             13                      
+                     1019-INS PRGS                                                                                                   
+0   OBD32 D0022 11285A     619894                    N         13    2320-01-518-7332 TRUCK UTILITY        1013               M      
+             90104   1028-SHT TECH            0.00   2     1  ORJ21                     NMAJ-SPM             18                      
+                     1014-INS PRGS                                                                                                   
+0   OBD33 A1957 09730A       1497                    C         13    5820-01-361-8536 AN/MRC-145           1013               D      
+             90104   1028-SHT TECH            0.00   2     1  ORC06                     NMAJ-ASPM            18                      
+                     1014-INS PRGS                                                                                                   
+0   OBD34 A0067 11216A       0846                    C         13    5820-01-533-6762 AN/MRC-148           1019               D      
+             90104   1028-SHT TECH            0.00   2     1  ORC04                     NMAJ-ASPM            12                      
+                     1020-INS PRGS                                                                                                   
+
+
+0   OBD35 D0085 09058C     584532                    N         13    2330-01-359-0080 CHASSIS TRLR         1019               D      
+             90104   1028-SHT TECH            0.00   2     1  ORJ19                     NMAJ-SPM             12                      
+                     1020-INS PRGS                                                                                                   
+0   OBD36 D0860 00638E     562515                    N         13    2330-00-141-8050 TRLR M105A2          1019               D      
+             90104   1028-SHT TECH            0.00   2     1  ORJ20                     NMAJ-SPM             12                      
+                     1020-INS PRGS                                                                                                   
+0   OBF33 D0022 11285A     620661                    N         13    2320-01-518-7332 TRUCK UTILITY        0279               M      
+ UNIT RCL    30380   0320-UNIT RCL          148.28   2     1  OCM39                     BODY-RPLC           117                      
+                        R-0281     30300-0280-7T47  EA     1   13    2540-01-385-9031    PUMP,WINDS                                PB
+                        R-0281     30300-0280-7T48  EA     1   13    6220-01-408-7785    CONTROL,DI                                PB
+                        R-1005     30300-0315-7583  AY     1   13    2510-01-450-5479    DOOR,VEHIC     J   355    AS1       SMS   AT
+                                   30300-0315-7584  AY     1   13    2510-01-450-5480    DOOR,VEHIC     BB  004    AE1       SMS   AT
+0   OBF40 D0022 11285A     620657                    M         06    2320-01-518-7332 TRUCK UTILITY   0340 0340               M      
+             30380   0342-SHT PART            0.00   2     1  OCM47        LD-  /0341   MTR -RPLC       56   56                      
+                     0341-INS PRGS                                                                                                   
+                                   30300-0315-7578  EA     1   06    6110-01-542-7668    CONTROL,RE     BB  026    AE1   N   SMS   AT
+                        R-1005     30300-0315-7579  AY     1   13    2510-01-450-5479    DOOR,VEHIC     J   355    AS1       SMS   AT
+0   OBF41 D1001 08991A     609297                    N         13    2310-01-111-2274 M997 HMMWV AMB       0293               M      
+ UNIT RCL    30380   1019-UNIT RCL           73.32   2     1  OCM41 OCM45  LD-  /0344   COMP-RPLC           103                      
+                        R-0323     30300-0315-7587  EA     1   06    6105-01-463-5260    MOTOR,DIRE     J   319    AS1   N   SMS   AT
+                        R-0326     30300-0315-7588  EA     1   13    5342-01-246-1120    CAP,FILLER     5   319    AS1       SMS   AT
+                        R-0334     30300-0315-7589  EA     1   13    2940-01-189-1809    CAP,AIR CL     5   320    AS1       SMS   AT
+                        R-0335     30300-0334-7T88  EA     1   13    2910-01-168-7905    PUMP,FUEL,                                PB
+                        R-1005     30300-0335-7508  EA     1   13    2540-01-385-9031    PUMP,WINDS     5   338    AS1       SMS   AT
+                        R-0356     30300-0335-7509  EA     1   13    2540-01-271-1991    CUSHION,SE     5   338    AS1       SMS   AT
+                        R-0349     30300-0335-7510  EA     4   13    5305-01-283-7776    SCREW,TAPP     H   339    AS1       SMS   AT
+                        R-0349     30300-0335-7511  AY     1   13    4010-01-266-3842    WIRE ROPE      H   338    AS1       SMS   AT
+                        R-0349     30300-0335-7512  EA     1   13    4010-01-299-7699    WIRE ROPE      H   340    AS1       SMS   AT
+                        R-0344     30300-0343-6M54  EA     1   06    2530-01-188-3685    PARTS KIT,                                PB
+                        R-1024     30300-1007-7500  AY     1   13    2510-01-198-0333    STACK ASSE     5   016    AS1       SMS   AT
+                        R-1027     30300-1007-7501  EA     1   13    5310-01-231-7455    NUT,PLAIN,     H   021    AS1       SMS   AT
+                        R-1027     30300-1007-7502  EA     1   13    5310-01-388-6205    NUT,PLAIN,     H   016    AS1       SMS   AT
+                        R-1027     30300-1007-7504  EA     2   13    5310-00-877-5975    WASHER,FLA     H   016    AS1       SMS   AT
+                        R-1020     30300-1007-7505  EA     2   13    5305-00-068-0509    SCREW,CAP,     H   015    AS1       SMS   AT
+0   OBF42 D0022 11285A     620665                    M         06    2320-01-518-7332 TRUCK UTILITY   0340 0340               M      
+             30380   0342-SHT PART            0.00   2     1  OCM46        LD-  /0341   ELEC-RPLC       56   56                      
+                     0341-INS PRGS                                                                                                   
+                        C-1026     30300-0315-75M1  AY     1   13    2510-01-450-5480    DOOR,VEHIC     RA         AE1       MQ1   AT
+                                   30300-0315-75M3  EA     1   06    6110-01-542-7668    CONTROL,RE     BB  026    AE1   N   SMS   AT
+0   OBF44 D1001 08991C     609279                    X         06    2310-01-380-8225 M997A2 AMB           0342               M      
+             30380   1021-SHT PART           43.08   2     1  OCM52        LD-  /0343   BODY-RPLC            54                      
+                     1019-RPR PRGS                                                                                                   
+                     0348-SHT TECH                                                                                                   
+                     0343-INS PRGS                                                                                                   
+                        R-1019     30300-1018-7T63  EA     1   13    2530-01-197-2160    TIE ROD EN                                PB
+                        R-1021     30300-1020-7T73  EA     1   06    2910-01-168-7905    PUMP,FUEL,                                PB
+                                   30300-1020-7598  EA     2   06    5340-01-265-8911    HANDLE,DOO     J   022    AS1       SMS   AT
+0   OBF45 D1001 08991C     609272                    X         06    2310-01-380-8225 M997A2 AMB      0342 0342               M      
+             30380   1026-SHT PART          332.05   2     1  OCM50        LD-  /0343   FUEL-PUMP       54   54                      
+                     1026-SHT PART                                                                                                   
+                     1021-RPR PRGS                                                                                                   
+                     0348-SHT TECH                                                                                                   
+                     0343-INS PRGS                                                                                                   
+                        R-1021     30300-1020-7T74  EA     1   13    6140-01-485-1472    BATTERY,ST                                PB
+                        R-1021     30300-1020-7T75  EA     1   13    2920-01-188-3863    GLOW PLUG                                 PB
+0   OBF47 D0198 10629A     591951                    X         06    2320-01-465-2174 MTVR MK-23           0342               M      
+             30380   0348-SHT TECH            0.00   2     1  OCM51        LD-  /0343   COOL-UNK             54                      
+                     0343-INS PRGS                                                                                                   
+0 **OBF48 D1001 08991A     609293                    M         06    2310-01-111-2274 M997 HMMWV AMB  0342 0342               M      
+             30380   1028-RPR PRGS           37.25   2     1  OCM49        LD-  /0343   ELEC-RPLC       54   54                      
+                     0348-SHT TECH                                                                                                   
+                     0343-INS PRGS                                                                                                   
+                        R-1028     30300-1027-7T05  EA     1   13    6240-00-966-3831    LAMP,INCAN                                PB
+                        R-1028     30300-1027-7T06  EA     1   13    2540-01-314-1190    MIRROR HEA                                PB
+                        R-1028     30300-1027-7T11  EA     1   13    5340-01-059-0114    CAP,PROTEC                                PB
+                                   30300-1028-7563  EA     1   06    5330-01-315-1609    GASKET                          E         AT
+                                   30300-1028-7564  EA     1   06    5330-01-413-2118    GASKET                          E         AT
+                                   30300-1028-7565  EA     1   06    5340-01-412-3563    COVER,ACCE                      N         AT
+                                   30300-1028-7566  EA     1   06    5340-01-314-5602    COVER,ACCE                      N         AT
+                                   30300-1028-7567  EA     4   13    5305-01-283-7776    SCREW,TAPP                                AT
+                                   30300-1028-7568  EA     1   13    2540-01-271-1991    CUSHION,SE                                AT
+                                   30300-1028-7569  EA     2   06    6140-01-485-1472    BATTERY,ST                      N         AT
+0   OBF51 D1001 08991A     609276                    M         06    2310-01-111-2274 M997 HMMWV AMB  1020 1020               M      
+             30380   1028-SHT TECH            0.00   2     1  OCM61        LD-  /1021   ELEC-RPLC       11   11                      
+                     1021-INS PRGS                                                                                                   
+0   OBF52 D1001 08991A     609274                    M         06    2310-01-111-2274 M997 HMMWV AMB  1020 1020               M      
+             30380   1028-SHT TECH            0.00   2     1  OCM59        LD-  /1021   ELEC-RPLC       11   11                      
+                     1021-INS PRGS                                                                                                   
+0   OBF53 D1001 08991A     609286                    N         13    2310-01-111-2274 M997 HMMWV AMB       1020               M      
+             30380   1028-SHT TECH            0.00   2     1  OCM60        LD-  /1021   NMAJ-ASPM            11                      
+                     1021-INS PRGS                                                                                                   
+0   OBF54 D1001 08991C     609286                    M         06    2310-01-380-8225 M997A2 AMB      1025 1024               M      
+             30380   1028-SHT PART            0.00   2     1  OCM22        LD-  /1027   ENG -SEAL        6    7                      
+                     1026-INS PRGS                                                                                                   
+                        C-1026     30300-0319-7557  EA     2   13    6250-01-339-6271    BASE,LAMPH     RA         AE1       MQ1   AT
+                                   30300-0319-7557  EA     2   13    6250-01-339-6271    BASE,LAMPH     RA  020    AE1       MQ1   AT
+                                   30300-1027-7500  EA     2   13    6250-01-339-6271    BASE,LAMPH                                AT
+0   OBF55 D1001 08991C     609274                    C         13    2310-01-380-8225 M997A2 AMB           1026               M      
+             30300   1027-INS PRGS            0.00   2     1  OCM90 OBF55               NMAJ-ASPM             5                      
+0   OBF56 D1001 08991C     609286                    C         13    2310-01-380-8225 M997A2 AMB           1026               M      
+             30380   1027-INS PRGS            0.00   2     1  OCM21                     NMAJ-ASPM             5                      
+0   OBF95 D0022 11285A     620662                    N  9355   13    2320-01-518-7332 TRUCK UTILITY        9363               M      
+ UNIT RCL    30380   0292-UNIT RCL           50.99   2     1  OCM85                     BODY-RPLC           398                      
+                        R-0019     30300-0007-7001  EA     1   06    5930-00-307-8856    SWITCH ASS     5   011    AS1   E   SMS   AT
+                        R-0201     30300-0007-7002  EA     1   13    2540-01-536-3029    VENTILATOR     5   188    AS1       SMS   AT
+                        R-0021     30300-0007-7003  EA     1   13    2540-01-504-7889    BOX,ACCESS     2   011    AS1       LA9   AT
+                        R-0019     30300-0007-7005  EA     1   06    2590-01-480-4013    DISC,COVER     5   011    AS1   E   LA9   AT
+                        R-0021     30300-0011-7028  EA     1   06    5930-00-307-8856    SWITCH ASS     5   013    AS1   E   SMS   AT
+                        C-0131     30300-0011-7029  EA     1   13    2540-01-536-3029    VENTILATOR     BQ         AE1       SMS   AT
+                        C-0120     30300-0011-7114  AY     1   13    2510-01-450-5479    DOOR,VEHIC     BB         AE1       AKZ   2A
+                        C-0326     30300-0119-7114  AY     1   06    2510-01-450-5479    DOOR,VEHIC     BB         AE1       SMS   2A
+                        R-0243     30300-0230-7502  EA     1   13    2590-01-316-0084    BRACKET,VE     H   231    AS1       SMS   AT
+                        R-0243     30300-0230-7503  EA     1   13    9340-01-185-3757    GLASS,LAMI     5   237    AS1       SMS   AT
+                        R-0279     30300-0278-7T38  EA     1   13    2540-01-314-1190    MIRROR HEA                                PB
+                        C-0299     30300-0279-6M52  AY     1   13    2510-01-450-5480    DOOR,VEHIC                                99
+                        R-0280     30300-0279-7T44  EA     1   13    2530-01-189-2195    TIE ROD EN                                PB
+                                   30300-0315-7582  AY     1   13    2510-01-450-5480    DOOR,VEHIC     BB  004    AE1       SMS   AT
+                        R-1005     30300-0326-7114  AY     1   06    2510-01-450-5479    DOOR,VEHIC     J   351    AS1   N   SMS   AT
+0   OBJ81 D0009 11165E     594178                    N         13    2320-01-551-0403 MTVR, MK31A1         0320               M      
+             30500   1026-AWTG EQUI           0.00   2     1                            SUSP-STEER           76                      
+                     1026-AWTG EQUI                                                                                                  
+                     0327-SHT PART                                                                                                   
+                     0327-UNIT RCL                                                                                                   
+                     0321-INS PRGS                                                                                                   
+                        R-0334     30300-0326-7555  EA     1   13    2530-01-474-5785    PARTS KIT,                                AT
+                        R-1006     30300-0347-7510  EA     2   13    5340-01-544-1761    BRACKET,SP     5   349    AS1       LA9   AT
+                        R-1006     30300-0347-7511  EA     2   13    5340-01-536-9940    BRACKET,MO     5   349    AS1       LA9   AT
+                        R-0364     30300-0347-7512  EA     2   13    9905-01-491-1437    REFLECTOR,     5   349    AS1       LA9   AT
+                        R-1020     30300-0347-7513  EA     2   13    5340-01-480-9034    STRAP,ELAS     H   353    AS1       SMS   AT
+                        R-1020     30300-0347-7514  EA     2   13    5340-01-363-8489    PLATE,MEND     H   353    AS1       SMS   AT
+                        R-1006     30300-0347-7515  EA     2   13    2540-01-479-4553    GUARD,SPLA     5   349    AS1       LA9   AT
+                        R-1006     30300-0347-7516  EA     2   13    5340-01-536-9924    BRACKET,MO     5   349    AS1       LA9   AT
+0   OBJ85 D0004 10629D     591412                    N         13    2320-01-530-5677 AMK25 7TON CAR       0349               M      
+             30500   1026-AWTG EQUI         301.66   2     1                            AXLE-SEAL            47                      
+                     1026-AWTG EQUI                                                                                                  
+                     1019-UNIT RCL                                                                                                   
+                     0354-SHT PART                                                                                                   
+                     0351-RPR PRGS                                                                                                   
+                     0350-INS PRGS                                                                                                   
+                        R-1004     30300-1003-7T30  EA     1   13    5930-01-480-9798    SWITCH,TOG                                PB
+                        R-1004     30300-1003-7T31  EA     1   13    2590-01-480-7063    SWITCH,BEA                                PB
+                        R-1004     30300-1003-7T32  EA     1   13    5930-01-480-7054    WIPER SWIT                                PB
+                        R-1004     30300-1003-7T34  EA     1   13    5930-01-480-9800    SWITCH                                    PB
+                        R-1004     30300-1003-7T35  EA     1   13    5930-01-480-7049    FAN FORD S                                PB
+                        R-1004     30300-1003-7T36  EA     1   13    5930-01-480-7051    ABS SWITCH                                PB
+                        R-1018     30300-1004-7596  EA     1   13    2540-01-540-8624    TARPAULIN      5   006    AS1       LA9   AT
+                        R-1018     30300-1004-7597  EA     1   13    2540-01-535-4561    SUPPORT,TA     5   006    AS1       LA9   AT
+                        R-1018     30300-1004-7598  EA     1   13    2540-01-533-4745    BAR,TARPAU     5   006    AS1       LA9   AT
+                        R-1014     30300-1004-7599  EA     1   06    4730-00-196-1974    NIPPLE,PIP     J   007    AS1   N   SMS   AT
+0   OBJ86 A0921 10916A       0051                    C         13    5895-01-503-6100 AN/TSQ-226(V)1       1013               D      
+             30500   1028-SHT TECH            0.00   2     1                            NMAJ-SPM             18                      
+                     1014-INS PRGS                                                                                                   
+0   OBJ87 A0170 11683A       0051                    C         06    5895-01-495-5980 AN/TSQ 226 (V3  1011 1013               D      
+             30500   1028-SHT TECH            0.00   2     1                            ELEC-RPR        20   18                      
+                     1014-INS PRGS                                                                                                   
+0   OBJ88 C7007 11446A  28408-016                    C         13    4940-01-552-1599 SHOP EQUIPMENT       1018               D      
+             30300   1019-INS PRGS            0.00   2     1                            NMAJ-ASPM            13                      
+0   OBJ89 C7007 11446A  28408-016                    C         06    4940-01-552-1599 SHOP EQUIPMENT  1018 1018               D      
+             30500   1028-SHT TECH            0.00   2     1                            ELEC-RPLC       13   13                      
+                     1019-INS PRGS                                                                                                   
+0   OBJ90 D0016 11248A     PCO9YK                    N         13    2330-01-387-5426 TRLR, CARGO          1012               D      
+             30500   1026-SHT TECH            0.00   2     1                            NMAJ-SPM             19                      
+                     1013-INS PRGS                                                                                                   
+0   OBJ91 D0016 11248A     PCO9Y9                    N         13    2330-01-387-5426 TRLR, CARGO          1012               D      
+             30500   1026-SHT TECH            0.00   2     1                            NMAJ-SPM             19                      
+                     1013-INS PRGS                                                                                                   
+0   OBJ92 D1158 08770D     202454                    M         06    2320-01-455-9593 M1123 TRUCK UT  1018 1018               M      
+             30500   1028-SHT TECH            0.00   2     1               LC-M2/1019   ELEC-RPLC       13   13                      
+                     1019-INS PRGS                                                                                                   
+0   OBJ93 A0921 10916A       0621                    C         13    5895-01-503-6100 AN/TSQ-226(V)1       1018               D      
+             30500   1028-SHT TECH            0.00   2     1                            NMAJ-SPM             13                      
+                     1019-INS PRGS                                                                                                   
+0   OBJ94 A0921 10916A       0621                    C         06    5895-01-503-6100 AN/TSQ-226(V)1  1018 1018               D      
+             30500   1028-SHT TECH            0.00   2     1                            ELEC-RPLC       13   13                      
+                     1019-INS PRGS                                                                                                   
+0   OBJ95 C7007 11446A   28408-52                    C         06    4940-01-552-1599 SHOP EQUIPMENT  1024 1024               D      
+             30300   1026-INS PRGS            0.00   2     1                            BODY-GLASS       7    7                      
+

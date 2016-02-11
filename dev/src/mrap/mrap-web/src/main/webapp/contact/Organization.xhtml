@@ -1,0 +1,111 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/template.xhtml">
+
+<ui:define name="body">
+
+    <rich:panel>
+        <f:facet name="header">Organization Details</f:facet>
+
+
+        <s:decorate id="name" template="/layout/display.xhtml">
+            <ui:define name="label">Name</ui:define>
+            <h:outputText value="#{organizationHome.instance.name}">
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="orgType" template="/layout/display.xhtml">
+            <ui:define name="label">Type</ui:define>
+            <h:outputText value="#{organizationHome.instance.orgType.label}"/>
+        </s:decorate>
+
+        <div style="clear:both"/>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+
+        <s:button view="/contact/OrganizationEdit.xhtml"
+                    id="edit"
+                 value="Edit"/>
+
+        <s:button view="/contact/#{empty organizationFrom ? 'OrganizationList' : organizationFrom}.xhtml"
+                    id="done"
+                 value="Done"/>
+
+    </div>
+
+    <rich:tabPanel switchType="ajax">
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Contacts</h:panelGroup>
+        </f:facet>
+    <h:form styleClass="association" id="contactsChildren">
+
+        <h:outputText value="There are no contacts associated with this organization."
+                   rendered="#{empty organizationHome.contacts}"/>
+
+        <rich:dataTable value="#{organizationHome.contacts}"
+                       var="_contact"
+                  rendered="#{not empty organizationHome.contacts}"
+                rowClasses="rvgRowOne,rvgRowTwo"
+                        id="contactsTable">
+            <rich:column sortBy="#{_contact.id}">
+                <f:facet name="header">Contact id</f:facet>
+                <h:outputText value="#{_contact.id}"/>
+            </rich:column>
+            <rich:column sortBy="#{_contact.fname}">
+                <f:facet name="header">Fname</f:facet>
+                <h:outputText value="#{_contact.fname}"/>
+            </rich:column>
+            <rich:column sortBy="#{_contact.jobTitle}">
+                <f:facet name="header">Job title</f:facet>
+                <h:outputText value="#{_contact.jobTitle}"/>
+            </rich:column>
+            <rich:column sortBy="#{_contact.lname}">
+                <f:facet name="header">Lname</f:facet>
+                <h:outputText value="#{_contact.lname}"/>
+            </rich:column>
+            <rich:column sortBy="#{_contact.middle}">
+                <f:facet name="header">Middle</f:facet>
+                <h:outputText value="#{_contact.middle}"/>
+            </rich:column>
+            <rich:column sortBy="#{_contact.suffix}">
+                <f:facet name="header">Suffix</f:facet>
+                <h:outputText value="#{_contact.suffix}"/>
+            </rich:column>
+            <h:column>
+                <f:facet name="header">Action</f:facet>
+                <s:link id="selectcontact"
+                     value="Select"
+                      view="/contact/Contact.xhtml">
+                    <f:param name="contactContactId"
+                            value="#{_contact.id}"/>
+                    <f:param name="contactFrom" value="Organization"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </h:form>
+
+    <div class="actionButtons">
+        <s:button
+               value="Add contact"
+                view="/contact/ContactEdit.xhtml">
+            <f:param name="organizationOrgId"
+                    value="#{organizationHome.instance.orgId}"/>
+            <f:param name="contactFrom" value="Organization"/>
+        </s:button>
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

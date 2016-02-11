@@ -1,0 +1,219 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="action" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{actionHome.managed ? 'Edit' : 'Add'} Action</f:facet>
+
+
+
+
+
+            <s:decorate id="archiveDateField" template="/layout/edit.xhtml">
+                <ui:define name="label">Archive date</ui:define>
+                <rich:calendar id="archiveDate"
+                          value="#{actionHome.instance.archiveDate}" datePattern="MM/dd/yyyy hh:mm a"/>
+            </s:decorate>
+
+
+            <s:decorate id="isCustomField" template="/layout/edit.xhtml">
+                <ui:define name="label">Is custom</ui:define>
+                <h:selectBooleanCheckbox id="isCustom"
+                                      value="#{actionHome.instance.isCustom}"/>
+            </s:decorate>
+
+
+            <s:decorate id="modifierField" template="/layout/edit.xhtml">
+                <ui:define name="label">Modifier</ui:define>
+                <h:inputText id="modifier"
+                           size="50"
+                      maxlength="50"
+                          value="#{actionHome.instance.modifier}">
+                    <a:support event="onblur" reRender="modifierField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="nameField" template="/layout/edit.xhtml">
+                <ui:define name="label">Name</ui:define>
+                <h:inputText id="name"
+                           size="50"
+                      maxlength="50"
+                          value="#{actionHome.instance.name}">
+                    <a:support event="onblur" reRender="nameField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="sequenceField" template="/layout/edit.xhtml">
+                <ui:define name="label">Sequence</ui:define>
+                <h:inputText id="sequence"
+                          value="#{actionHome.instance.sequence}">
+                    <a:support event="onblur" reRender="sequenceField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+
+            <s:decorate id="verbField" template="/layout/edit.xhtml">
+                <ui:define name="label">Verb</ui:define>
+                <h:inputText id="verb"
+                           size="50"
+                      maxlength="50"
+                          value="#{actionHome.instance.verb}">
+                    <a:support event="onblur" reRender="verbField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{actionHome.persist}"
+                       disabled="#{!actionHome.wired}"
+                       rendered="#{!actionHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{actionHome.update}"
+                       rendered="#{actionHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{actionHome.remove}"
+                      immediate="true"
+                       rendered="#{actionHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/asset/Action.xhtml"
+                rendered="#{actionHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/asset/#{empty actionFrom ? 'ActionList' : actionFrom}.xhtml"
+                rendered="#{!actionHome.managed}"/>
+
+        </div>
+    </h:form>
+
+<rich:tabPanel switchType="ajax">
+
+    <rich:tab label="Task">
+    <div class="association" id="taskParent">
+
+        <h:outputText value="There is no task associated with this action."
+                   rendered="#{actionHome.instance.task == null}"/>
+
+        <rich:dataTable var="_task"
+                   value="#{actionHome.instance.task}"
+                rendered="#{actionHome.instance.task != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="taskTable">
+     
+            <h:column>
+                <f:facet name="header">Description</f:facet>
+                <h:outputText value="#{_task.description}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Est time</f:facet>
+                <h:outputText value="#{_task.estTime}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Expiry days</f:facet>
+                <h:outputText value="#{_task.expiryDays}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Expiry type</f:facet>
+                <h:outputText value="#{_task.expiryType.label}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Freq days</f:facet>
+                <h:outputText value="#{_task.freqDays}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Freq months</f:facet>
+                <h:outputText value="#{_task.freqMonths}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Freq type</f:facet>
+                <h:outputText value="#{_task.freqType.label}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Is active</f:facet>
+                <h:outputText value="#{_task.isActive}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Is stand alone</f:facet>
+                <h:outputText value="#{_task.isStandAlone}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Last planned date</f:facet>
+                <h:outputText value="#{_task.lastPlannedDate}">
+                    <s:convertDateTime type="both" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Last serviced date</f:facet>
+                <h:outputText value="#{_task.lastServicedDate}">
+                    <s:convertDateTime type="both" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Priority</f:facet>
+                <h:outputText value="#{_task.priority}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Run hours thresh</f:facet>
+                <h:outputText value="#{_task.runHoursThresh}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Run hours thresh inc</f:facet>
+                <h:outputText value="#{_task.runHoursThreshInc}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Start date</f:facet>
+                <h:outputText value="#{_task.startDate}">
+                    <s:convertDateTime type="both" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+     
+            <h:column>
+                <f:facet name="header">Task type</f:facet>
+                <h:outputText value="#{_task.taskType.label}"/>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{actionHome.instance.task != null ? 'changeParent' : 'selectParent'}" value="#{actionHome.instance.task != null ? 'Change' : 'Select'} task"
+                       view="/asset/TaskList.xhtml">
+                <f:param name="from" value="ActionEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:s="http://jboss.com/products/seam/taglib" contentType="text/html">
+	<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>IWM</title>
+<a:loadStyle src="resource:///stylesheet/theme.xcss" />
+<a:loadStyle src="/stylesheet/theme.css" />
+</head>
+<body>
+	<div id="container">
+		<table border="0" width="100%" cellpadding="0" cellspacing="0">
+			<tr>
+				<td height="30" bgcolor="DFDFDF">
+					<img border="0" src="img/IWMlogo_2.jpeg" width="330" height="30"/>
+				</td>
+			</tr>
+			<tr>
+				<td height="30" bgcolor="#FFFFFF" align="center">
+					<table border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" width="80%">
+					  <tr>
+						<td width="33%" valign="middle" align="right">
+						<a href="ManageMaintenance.seam">
+							<img width="30" height="30" border="0" align="middle" src="img/Manage.jpg"/>
+							Manage maintenance
+						</a>	
+						</td>
+						<td width="33%" valign="middle" align="center">
+						<a  href="ManageMaintenance.seam" >
+							<img width="30" height="30" border="0" align="middle" src="img/search.jpeg"/>
+							Search and view reports
+						</a>
+						</td>
+						<td width="33%" valign="middle" align="left">
+						<a href="ManageMaintenance.seam" >
+							<img width="30" height="30" border="0" align="middle" src="img/airplane-icon.png"/>
+							Add/edit aircraft &amp; technicians
+						</a>
+						</td>
+					  </tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td height="10" bgcolor="#FFFFFF" width="100%">&nbsp;</td>
+			</tr>
+		</table>
+		
+		<h:messages id="messages" globalOnly="true" styleClass="message"
+			errorClass="errormsg" infoClass="infomsg" warnClass="warnmsg"
+			rendered="#{showGlobalMessages != 'false'}" />
+						
+		<ui:insert name="body" />
+		
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+				<td height="*" bgcolor="#FFFFFF" width="100%" >&nbsp;</td>
+			</tr>
+		</table>
+	</div>
+	<div class="footer">
+		<p>IWM v4.0 Masterlink Corp.</p>
+	</div>
+</body>
+	</html>
+</f:view>

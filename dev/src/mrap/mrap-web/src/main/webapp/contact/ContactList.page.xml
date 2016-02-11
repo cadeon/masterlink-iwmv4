@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.com/products/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.2.xsd">
+
+   <param name="firstResult" value="#{contactList.firstResult}"/>
+   <param name="sort" value="#{contactList.orderColumn}"/>
+   <param name="dir" value="#{contactList.orderDirection}"/>
+   <param name="logic" value="#{contactList.restrictionLogicOperator}"/>
+
+   <param name="from"/>
+   <param name="fname" value="#{contactList.contact.fname}"/>
+   <param name="jobTitle" value="#{contactList.contact.jobTitle}"/>
+   <param name="lname" value="#{contactList.contact.lname}"/>
+   <param name="middle" value="#{contactList.contact.middle}"/>
+   <param name="suffix" value="#{contactList.contact.suffix}"/>
+
+</page>

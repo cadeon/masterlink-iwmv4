@@ -1,0 +1,9 @@
+<Context path="/iwm" docBase="iwm" reloadable="true"
+	crossContext="true">
+
+	<Resource auth="Container" name="jdbc/iwmDemoDS" type="javax.sql.DataSource"
+		driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/iwmAviationDemo"
+		username="root" password="mlinkdb" maxActive="100" maxIdle="30"
+		maxWait="10000" />
+
+</Context>

@@ -1,0 +1,103 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/template.xhtml">
+
+<ui:define name="body">
+
+    <rich:panel>
+        <f:facet name="header">Asset attribute template Details</f:facet>
+
+
+        <s:decorate id="name" template="/layout/display.xhtml">
+            <ui:define name="label">Name</ui:define>
+            <h:outputText value="#{assetAttributeTemplateHome.instance.name}"/>
+        </s:decorate>
+
+        <s:decorate id="value" template="/layout/display.xhtml">
+            <ui:define name="label">Value</ui:define>
+            <h:outputText value="#{assetAttributeTemplateHome.instance.value}"/>
+        </s:decorate>
+
+        <div style="clear:both"/>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+
+        <s:button view="/define/AssetAttributeTemplateEdit.xhtml"
+                    id="edit"
+                 value="Edit"/>
+
+        <s:button view="/define/#{empty assetAttributeTemplateFrom ? 'AssetAttributeTemplateList' : assetAttributeTemplateFrom}.xhtml"
+                    id="done"
+                 value="Done"/>
+
+    </div>
+
+    <rich:tabPanel switchType="ajax">
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Asset template</h:panelGroup>
+        </f:facet>
+    <div class="association" id="assetTemplateParent">
+
+        <h:outputText value="There is no assetTemplate associated with this assetAttributeTemplate."
+                   rendered="#{assetAttributeTemplateHome.instance.assetTemplate == null}"/>
+
+        <rich:dataTable var="_assetTemplate"
+                   value="#{assetAttributeTemplateHome.instance.assetTemplate}"
+                rendered="#{assetAttributeTemplateHome.instance.assetTemplate != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="assetTemplateTable">
+            <h:column>
+                <f:facet name="header">Asset template id</f:facet>
+                <h:outputText value="#{_assetTemplate.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Asset kind</f:facet>
+                <h:outputText value="#{_assetTemplate.assetKind.label}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Asset type asset type id</f:facet>
+                <h:outputText value="#{_assetTemplate.assetType.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Is parent</f:facet>
+                <h:outputText value="#{_assetTemplate.isParent}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{_assetTemplate.name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Parent asset template id</f:facet>
+                <h:outputText value="#{_assetTemplate.parent.assetTemplateId}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Plan</f:facet>
+                <h:outputText value="#{_assetTemplate.plan}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewassetTemplate"
+                     value="View"
+                      view="/define/AssetTemplate.xhtml">
+                    <f:param name="assetTemplateAssetTemplateId"
+                           value="#{_assetTemplate.id}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

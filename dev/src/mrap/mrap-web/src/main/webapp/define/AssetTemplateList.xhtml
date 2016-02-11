@@ -1,0 +1,168 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="assetTemplateSearch" styleClass="edit">
+
+        <rich:simpleTogglePanel label="AssetTemplate Search Filter" switchType="ajax">
+
+            <s:decorate template="/layout/display.xhtml">
+                <ui:define name="label">Name</ui:define>
+                <h:inputText id="name" value="#{assetTemplateList.assetTemplate.name}"/>
+            </s:decorate>
+
+            <s:decorate template="/layout/display.xhtml">
+                <ui:define name="label">Plan</ui:define>
+                <h:inputText id="plan" value="#{assetTemplateList.assetTemplate.plan}"/>
+            </s:decorate>
+
+            <s:decorate template="/layout/display.xhtml">
+                <ui:define name="label">Match</ui:define>
+                <h:selectOneRadio id="logic" value="#{assetTemplateList.restrictionLogicOperator}" styleClass="radio">
+                    <f:selectItem itemLabel="All" itemValue="and"/>
+                    <f:selectItem itemLabel="Any" itemValue="or"/>
+                </h:selectOneRadio>
+            </s:decorate>
+
+        </rich:simpleTogglePanel>
+
+        <div class="actionButtons">
+            <h:commandButton id="search" value="Search" action="/define/AssetTemplateList.xhtml"/>
+            <s:button id="reset" value="Reset" includePageParams="false"/>
+        </div>
+
+    </h:form>
+
+    <rich:panel>
+        <f:facet name="header">AssetTemplate Search Results (#{empty assetTemplateList.resultList ? 0 : (assetTemplateList.paginated ? assetTemplateList.resultCount : assetTemplateList.resultList.size)})</f:facet>
+    <div class="results" id="assetTemplateList">
+
+    <h:outputText value="The assetTemplate search returned no results."
+               rendered="#{empty assetTemplateList.resultList}"/>
+
+    <rich:dataTable id="assetTemplateList"
+                var="_assetTemplate"
+              value="#{assetTemplateList.resultList}"
+           rendered="#{not empty assetTemplateList.resultList}">
+
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{assetTemplateList}"/>
+                    <ui:param name="propertyLabel" value="Asset kind"/>
+                    <ui:param name="propertyPath" value="assetTemplate.assetKind"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_assetTemplate.assetKind.label}"/>
+        </h:column>
+   
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{assetTemplateList}"/>
+                    <ui:param name="propertyLabel" value="Is parent"/>
+                    <ui:param name="propertyPath" value="assetTemplate.isParent"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_assetTemplate.isParent}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{assetTemplateList}"/>
+                    <ui:param name="propertyLabel" value="Name"/>
+                    <ui:param name="propertyPath" value="assetTemplate.name"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_assetTemplate.name}"/>
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="/layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{assetTemplateList}"/>
+                    <ui:param name="propertyLabel" value="Plan"/>
+                    <ui:param name="propertyPath" value="assetTemplate.plan"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_assetTemplate.plan}"/>
+        </h:column>
+        <rich:column styleClass="action">
+            <f:facet name="header">Action</f:facet>
+            <s:link view="/define/#{empty from ? 'AssetTemplate' : from}.xhtml"
+                   value="#{empty from ? 'View' : 'Select'}"
+             propagation="#{empty from ? 'none' : 'default'}"
+                      id="assetTemplateViewId">
+                <f:param name="assetTemplateAssetTemplateId"
+                        value="#{_assetTemplate.id}"/>
+            </s:link>
+            #{' '}
+            <s:link view="/define/AssetTemplateEdit.xhtml"
+                   value="Edit"
+             propagation="none"
+                      id="assetTemplateEdit"
+                rendered="#{empty from}">
+                <f:param name="assetTemplateAssetTemplateId"
+                        value="#{_assetTemplate.id}"/>
+            </s:link>
+        </rich:column>
+    </rich:dataTable>
+
+    </div>
+    </rich:panel>
+
+    <div class="tableControl">
+
+        <s:link view="/define/AssetTemplateList.xhtml"
+            rendered="#{assetTemplateList.previousExists}"
+               value="#{messages.left}#{messages.left} First Page"
+                  id="firstPage">
+          <f:param name="firstResult" value="0"/>
+        </s:link>
+
+        <s:link view="/define/AssetTemplateList.xhtml"
+            rendered="#{assetTemplateList.previousExists}"
+               value="#{messages.left} Previous Page"
+                  id="previousPage">
+            <f:param name="firstResult"
+                    value="#{assetTemplateList.previousFirstResult}"/>
+        </s:link>
+
+        <s:link view="/define/AssetTemplateList.xhtml"
+            rendered="#{assetTemplateList.nextExists}"
+               value="Next Page #{messages.right}"
+                  id="nextPage">
+            <f:param name="firstResult"
+                    value="#{assetTemplateList.nextFirstResult}"/>
+        </s:link>
+
+        <s:link view="/define/AssetTemplateList.xhtml"
+            rendered="#{assetTemplateList.nextExists}"
+               value="Last Page #{messages.right}#{messages.right}"
+                  id="lastPage">
+            <f:param name="firstResult"
+                    value="#{assetTemplateList.lastFirstResult}"/>
+        </s:link>
+
+    </div>
+
+    <s:div styleClass="actionButtons" rendered="#{empty from}">
+        <s:button view="/define/AssetTemplateEdit.xhtml"
+                    id="create"
+           propagation="none"
+                 value="Create assetTemplate">
+            <f:param name="assetTemplateAssetTemplateId"/>
+        </s:button>
+    </s:div>
+
+</ui:define>
+
+</ui:composition>

@@ -1,0 +1,68 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/template.xhtml">
+
+       <ui:define name="body">
+
+   <rich:panel style="width : 623px; height : 486px;">
+   
+     <h:panelGrid columns="2" >
+           <s:div>     
+            <h:panelGrid columns="1">
+                <!--h:graphicImage value="/img/seamlogo.png" alt="Seam logo"/-->
+                <s:div >
+                    <rich:panel style="width : 279px; height : 205px;">
+        			<f:facet name="header">UL</f:facet>       
+    			 </rich:panel>  
+                </s:div>
+               <rich:spacer style="width : 51px; height : 25px;" />
+               	   
+
+               <s:div >
+                    <rich:panel style="width : 279px; height : 205px;">
+        			<f:facet name="header">LL</f:facet>       
+    			 </rich:panel>  
+                </s:div>            
+            </h:panelGrid>
+            
+            </s:div>
+            
+            <h:panelGrid columns="1">
+                <!--h:graphicImage value="/img/seamlogo.png" alt="Seam logo"/-->
+                <s:div >
+                    <h:form id="homeUR" styleClass="display">
+                    <rich:panel style="width : 279px; height : 205px;">
+        			<f:facet name="header">UR</f:facet>  
+        			     <!--rich:menuItem>
+    						<s:link view="/addressbook/AddressbookList.xhtml"
+           							value="Addressbook List"
+           							id="AddressbookId"
+								includePageParams="false"
+     							propagation="none"/>
+     					  </rich:menuItem-->
+    			 </rich:panel>  
+    			 </h:form>
+                </s:div>
+                <rich:spacer style="width : 51px; height : 25px;" />
+               <s:div >
+                    <rich:panel style="width : 279px; height : 205px;">
+        			<f:facet name="header">LR</f:facet>       
+    			 </rich:panel>  
+                </s:div>            
+            </h:panelGrid>
+           
+       </h:panelGrid>         
+         
+            
+            
+       
+   </rich:panel>
+
+    </ui:define>
+</ui:composition>

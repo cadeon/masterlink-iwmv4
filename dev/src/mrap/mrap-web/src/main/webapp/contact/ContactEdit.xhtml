@@ -1,0 +1,310 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="contact" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{contactHome.managed ? 'Edit' : 'Add'} Contact</f:facet>
+
+
+
+
+
+            <s:decorate id="fnameField" template="/layout/edit.xhtml">
+                <ui:define name="label">Fname</ui:define>
+                <h:inputText id="fname"
+                       required="true"
+                           size="50"
+                      maxlength="50"
+                          value="#{contactHome.instance.fname}">
+                    <a:support event="onblur" reRender="fnameField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="jobTitleField" template="/layout/edit.xhtml">
+                <ui:define name="label">Job title</ui:define>
+                <h:inputText id="jobTitle"
+                           size="50"
+                      maxlength="50"
+                          value="#{contactHome.instance.jobTitle}">
+                    <a:support event="onblur" reRender="jobTitleField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="lnameField" template="/layout/edit.xhtml">
+                <ui:define name="label">Lname</ui:define>
+                <h:inputText id="lname"
+                       required="true"
+                           size="50"
+                      maxlength="50"
+                          value="#{contactHome.instance.lname}">
+                    <a:support event="onblur" reRender="lnameField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="middleField" template="/layout/edit.xhtml">
+                <ui:define name="label">Middle</ui:define>
+                <h:inputText id="middle"
+                           size="50"
+                      maxlength="50"
+                          value="#{contactHome.instance.middle}">
+                    <a:support event="onblur" reRender="middleField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+
+
+            <s:decorate id="suffixField" template="/layout/edit.xhtml">
+                <ui:define name="label">Suffix</ui:define>
+                <h:inputText id="suffix"
+                           size="25"
+                      maxlength="25"
+                          value="#{contactHome.instance.suffix}">
+                    <a:support event="onblur" reRender="suffixField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{contactHome.persist}"
+                       disabled="#{!contactHome.wired}"
+                       rendered="#{!contactHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{contactHome.update}"
+                       rendered="#{contactHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{contactHome.remove}"
+                      immediate="true"
+                       rendered="#{contactHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/contact/Contact.xhtml"
+                rendered="#{contactHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/contact/#{empty contactFrom ? 'ContactList' : contactFrom}.xhtml"
+                rendered="#{!contactHome.managed}"/>
+
+        </div>
+    </h:form>
+
+<rich:tabPanel switchType="ajax">
+
+    <rich:tab label="Addresses">
+        <h:form styleClass="association" id="addressesChildren">
+
+            <h:outputText value="There are no addresses associated with this contact."
+                       rendered="#{empty contactHome.addresses}"/>
+
+            <rich:dataTable value="#{contactHome.addresses}"
+                           var="_address"
+                      rendered="#{not empty contactHome.addresses}"
+                    rowClasses="rvgRowOne,rvgRowTwo"
+                            id="addressesTable">
+                <rich:column sortBy="#{_address.id}">
+                    <f:facet name="header">Address id</f:facet>
+                    <h:outputText value="#{_address.id}"/>
+                </rich:column>
+                <rich:column sortBy="#{_address.addrType}">
+                    <f:facet name="header">Addr type</f:facet>
+                    <h:outputText value="#{_address.addrType}"/>
+                </rich:column>
+                <rich:column sortBy="#{_address.city}">
+                    <f:facet name="header">City</f:facet>
+                    <h:outputText value="#{_address.city}"/>
+                </rich:column>
+                <rich:column sortBy="#{_address.isMailingAddr}">
+                    <f:facet name="header">Is mailing addr</f:facet>
+                    <h:outputText value="#{_address.isMailingAddr}"/>
+                </rich:column>
+                <rich:column sortBy="#{_address.line1}">
+                    <f:facet name="header">Line1</f:facet>
+                    <h:outputText value="#{_address.line1}"/>
+                </rich:column>
+                <rich:column sortBy="#{_address.line2}">
+                    <f:facet name="header">Line2</f:facet>
+                    <h:outputText value="#{_address.line2}"/>
+                </rich:column>
+                <rich:column sortBy="#{_address.state}">
+                    <f:facet name="header">State</f:facet>
+                    <h:outputText value="#{_address.state}"/>
+                </rich:column>
+                <rich:column sortBy="#{_address.zip}">
+                    <f:facet name="header">Zip</f:facet>
+                    <h:outputText value="#{_address.zip}"/>
+                </rich:column>
+            </rich:dataTable>
+
+        </h:form>
+
+        <f:subview rendered="#{contactHome.managed}" id="addresses">
+        <div class="actionButtons">
+            <s:button id="addaddress"
+                   value="Add address"
+                    view="/contact/AddressEdit.xhtml"
+             propagation="none">
+                 <f:param name="contactContactId"
+                         value="#{contactHome.instance.contactId}"/>
+                 <f:param name="addressFrom" value="Contact"/>
+            </s:button>
+        </div>
+        </f:subview>
+    </rich:tab>
+
+    <rich:tab label="Emails">
+        <h:form styleClass="association" id="emailsChildren">
+
+            <h:outputText value="There are no emails associated with this contact."
+                       rendered="#{empty contactHome.emails}"/>
+
+            <rich:dataTable value="#{contactHome.emails}"
+                           var="_email"
+                      rendered="#{not empty contactHome.emails}"
+                    rowClasses="rvgRowOne,rvgRowTwo"
+                            id="emailsTable">
+                <rich:column sortBy="#{_email.id}">
+                    <f:facet name="header">Email id</f:facet>
+                    <h:outputText value="#{_email.id}"/>
+                </rich:column>
+                <rich:column sortBy="#{_email.addrType}">
+                    <f:facet name="header">Addr type</f:facet>
+                    <h:outputText value="#{_email.addrType}"/>
+                </rich:column>
+                <rich:column sortBy="#{_email.address}">
+                    <f:facet name="header">Address</f:facet>
+                    <h:outputText value="#{_email.address}"/>
+                </rich:column>
+            </rich:dataTable>
+
+        </h:form>
+
+        <f:subview rendered="#{contactHome.managed}" id="emails">
+        <div class="actionButtons">
+            <s:button id="addemail"
+                   value="Add email"
+                    view="/contact/EmailEdit.xhtml"
+             propagation="none">
+                 <f:param name="contactContactId"
+                         value="#{contactHome.instance.contactId}"/>
+                 <f:param name="emailFrom" value="Contact"/>
+            </s:button>
+        </div>
+        </f:subview>
+    </rich:tab>
+
+    <rich:tab label="Organization">
+    <div class="association" id="organizationParent">
+
+        <h:outputText value="There is no organization associated with this contact."
+                   rendered="#{contactHome.instance.organization == null}"/>
+
+        <rich:dataTable var="_organization"
+                   value="#{contactHome.instance.organization}"
+                rendered="#{contactHome.instance.organization != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="organizationTable">
+            <h:column>
+                <f:facet name="header">Org id</f:facet>
+                <h:outputText value="#{_organization.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Archived date</f:facet>
+                <h:outputText value="#{_organization.archivedDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Org type</f:facet>
+                <h:outputText value="#{_organization.orgType}"/>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{contactHome.instance.organization != null ? 'changeParent' : 'selectParent'}" value="#{contactHome.instance.organization != null ? 'Change' : 'Select'} organization"
+                       view="/contact/OrganizationList.xhtml">
+                <f:param name="from" value="ContactEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab label="Phones">
+        <h:form styleClass="association" id="phonesChildren">
+
+            <h:outputText value="There are no phones associated with this contact."
+                       rendered="#{empty contactHome.phones}"/>
+
+            <rich:dataTable value="#{contactHome.phones}"
+                           var="_phone"
+                      rendered="#{not empty contactHome.phones}"
+                    rowClasses="rvgRowOne,rvgRowTwo"
+                            id="phonesTable">
+                <rich:column sortBy="#{_phone.id}">
+                    <f:facet name="header">Phone id</f:facet>
+                    <h:outputText value="#{_phone.id}"/>
+                </rich:column>
+                <rich:column sortBy="#{_phone.ext}">
+                    <f:facet name="header">Ext</f:facet>
+                    <h:outputText value="#{_phone.ext}"/>
+                </rich:column>
+                <rich:column sortBy="#{_phone.number}">
+                    <f:facet name="header">Number</f:facet>
+                    <h:outputText value="#{_phone.number}"/>
+                </rich:column>
+                <rich:column sortBy="#{_phone.phoneType}">
+                    <f:facet name="header">Phone type</f:facet>
+                    <h:outputText value="#{_phone.phoneType}"/>
+                </rich:column>
+            </rich:dataTable>
+
+        </h:form>
+
+        <f:subview rendered="#{contactHome.managed}" id="phones">
+        <div class="actionButtons">
+            <s:button id="addphone"
+                   value="Add phone"
+                    view="/contact/PhoneEdit.xhtml"
+             propagation="none">
+                 <f:param name="contactContactId"
+                         value="#{contactHome.instance.contactId}"/>
+                 <f:param name="phoneFrom" value="Contact"/>
+            </s:button>
+        </div>
+        </f:subview>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>
